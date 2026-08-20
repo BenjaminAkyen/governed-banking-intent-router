@@ -16,11 +16,15 @@ source.
 ## Data policy
 
 - Preserve the official BANKING77 train and test boundary.
-- Derive a stratified validation split only from official training data.
+- Normalise Unicode, case and whitespace only for duplicate detection; do not rewrite model input.
+- Quarantine official-training rows whose normalised text occurs in the official test file.
+- Keep same-label duplicate groups together while deriving a group-stratified validation split
+  only from official training data.
 - Use validation data for checkpoint selection and temperature fitting.
 - Use a separate development set for uncertainty and possible-OOD threshold selection.
 - Keep official test and unknown-request holdout data untouched until all choices are locked.
-- Record source revision, file hashes, counts, label mappings and overlap checks in a manifest.
+- Record source revision, expected and observed file hashes, exact row indices, counts, label
+  mappings and overlap checks in a text-free manifest.
 
 ## Comparisons
 

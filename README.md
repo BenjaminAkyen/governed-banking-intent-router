@@ -4,7 +4,7 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: research scaffold. Not trained, validated or approved for production use.**
+> **Status: data pipeline validated; models not yet trained or approved for production use.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -29,8 +29,8 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 1 establishes the Python package, Mac/MPS device selection, CI checks, system boundary and
-pre-registered evaluation contract. No model result is claimed at this stage.
+Module 2 adds a commit- and hash-pinned BANKING77 loader, group-aware validation split, leakage
+quarantine and text-free reproducibility manifest. No model result is claimed at this stage.
 
 Run the local checks:
 
@@ -41,9 +41,17 @@ ruff check .
 pytest --cov=governed_banking --cov-report=term-missing
 ```
 
+Prepare and audit the dataset:
+
+```bash
+python scripts/prepare_banking77.py
+```
+
 Then open
-[`01-verify-mac-mps-environment.ipynb`](output/jupyter-notebook/01-verify-mac-mps-environment.ipynb)
-in VS Code and run it with the `Governed Banking AI (MPS)` kernel.
+[`02-build-banking77-manifest.ipynb`](output/jupyter-notebook/02-build-banking77-manifest.ipynb)
+in VS Code and run it with the `Governed Banking AI (MPS)` kernel. The verified seed-42 manifest
+contains 8,495 training rows, 1,501 validation rows and all 3,080 official test rows. Seven
+training rows that duplicate normalized official-test messages are quarantined.
 
 ## Evidence contract
 
@@ -55,14 +63,14 @@ in VS Code and run it with the `Governed Banking AI (MPS)` kernel.
   evidence.
 - Unverified results are never promoted from notebooks into the README.
 
-See [system boundary](docs/SYSTEM_BOUNDARY.md) and
+See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.md) and
 [evaluation protocol](docs/EVALUATION_PROTOCOL.md).
 
 ## Planned modules
 
-1. Mac/MPS foundation and evaluation contract - **current**
-2. Immutable BANKING77 loader and split-integrity tests
-3. TF-IDF logistic-regression baseline
+1. Mac/MPS foundation and evaluation contract - **complete**
+2. Immutable BANKING77 loader and split-integrity tests - **complete**
+3. TF-IDF logistic-regression baseline - **next**
 4. Frozen RoBERTa embedding baseline
 5. LoRA-RoBERTa and optional full fine-tuning
 6. Multi-seed manifests and aggregation

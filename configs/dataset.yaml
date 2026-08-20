@@ -1,0 +1,22 @@
+schema_version: 1
+name: banking77
+source:
+  repository_slug: PolyAI-LDN/task-specific-datasets
+  commit: 57ec275d8078af65b7731c2a98be812d844a6d6b
+  subdirectory: banking_data
+  files:
+    categories: categories.json
+    official_train: train.csv
+    official_test: test.csv
+  sha256:
+    categories: 53261da888122daf2d120d925458631d9619e15d82e56052e7a42e535ce32b63
+    official_train: b06e26ac675513959a63135f11b94ea7786ed02da65db93a5650d8838cbc664b
+    official_test: d12d6e3bc4c3103966ae786dc435913c0c563dfa328f5a3646d0e62cfeeb474d
+expected:
+  official_train_rows: 10003
+  official_test_rows: 3080
+  label_count: 77
+split:
+  validation_fraction: 0.15
+  seed: 42
+  normalization: unicode_nfkc_casefold_whitespace_v1

@@ -3,7 +3,7 @@
 | Claim | Status | Evidence required |
 |---|---|---|
 | The project implements an MPS-aware runtime | Testable now | Device module and tests |
-| The official test split is untouched | Pending Module 2 | Data manifest and access controls |
+| The Module 2 pipeline leaves all official test rows untouched | Verified | Seed-42 manifest and split-integrity tests |
 | LoRA improves on the baseline | Prohibited until evaluated | Three-seed locked-test results |
 | Calibration improves confidence quality | Prohibited until evaluated | Validation-fitted temperature and test ECE |
 | The system detects OOD requests | Overstated | Representative external evaluation; use "possible-OOD" meanwhile |
