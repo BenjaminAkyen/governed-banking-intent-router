@@ -216,3 +216,27 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+.venv/
+
+# Governed Banking Intent Router artifacts
+artifacts/
+checkpoints/
+data/raw/
+reports/*.json
+reports/*.jsonl
+reports/*.csv
+reports/figures/*.png
+reports/tables/*.csv
+*.safetensors
+*.bin
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
+.env
+artifacts/
+checkpoints/
+.cache/
+data/raw/
+*.log
