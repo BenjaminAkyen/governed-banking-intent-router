@@ -144,6 +144,8 @@ def test_liveness_readiness_versioned_route_and_graceful_close() -> None:
 
         assert live.status_code == 200
         assert live.json()["status"] == "alive"
+        assert client.get("/docs").status_code == 404
+        assert client.get("/openapi.json").status_code == 404
         assert ready.status_code == 200
         assert ready.json()["status"] == "ready"
         assert ready.json()["selected_device"] == "mps"
@@ -347,6 +349,35 @@ def test_request_timeout_retains_capacity_until_background_inference_finishes() 
         assert len(harness.store.events) == 1
 
 
+def test_route_rate_limit_returns_retry_after() -> None:
+    base = _native_profile()
+    profile = replace(
+        base,
+        capacity=replace(base.capacity, rate_limit_requests=2),
+    )
+    app = create_deployment_app(
+        profile,
+        environment=_native_environment(),
+        service_loader=LoaderHarness(selected_device="mps"),
+    )
+
+    with TestClient(app) as client:
+        headers = {"Authorization": f"Bearer {DEV_TOKEN}"}
+        assert client.post(
+            "/v1/route", json={"message": "Where is my card?"}, headers=headers
+        ).status_code == 200
+        assert client.post(
+            "/v1/route", json={"message": "Where is my card?"}, headers=headers
+        ).status_code == 200
+        limited = client.post(
+            "/v1/route", json={"message": "Where is my card?"}, headers=headers
+        )
+
+    assert limited.status_code == 429
+    assert limited.json() == {"detail": "rate_limited"}
+    assert int(limited.headers["retry-after"]) >= 1
+
+
 def test_capacity_controller_backpressure_queue_timeout_and_drain() -> None:
     async def scenario() -> None:
         controller = CapacityController(
@@ -361,6 +392,16 @@ def test_capacity_controller_backpressure_queue_timeout_and_drain() -> None:
         await asyncio.sleep(0)
         await controller.release()
         assert await drain is True
+
+        queued_controller = CapacityController(
+            maximum_concurrent_requests=1,
+            maximum_queue_depth=1,
+            queue_timeout_seconds=0.01,
+        )
+        await queued_controller.acquire()
+        with pytest.raises(CapacityRejected, match="queue_timeout"):
+            await queued_controller.acquire()
+        await queued_controller.release()
 
     asyncio.run(scenario())
 
