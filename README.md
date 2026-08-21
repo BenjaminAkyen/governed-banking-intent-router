@@ -4,7 +4,7 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: lexical and frozen-encoder baselines evaluated; no model is production approved.**
+> **Status: lexical, frozen-encoder and LoRA baselines evaluated; no model is production approved.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -29,9 +29,10 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 4 evaluates a pinned, fully frozen RoBERTa-base encoder against Module 3. Embeddings are
-created on MPS, while validation-only model selection and locked-test evidence use the same row
-manifest and artifact controls. These remain single-seed engineering results.
+Module 5 evaluates two pinned LoRA-RoBERTa candidates on MPS under the same row and evidence
+contract. The registered three-epoch run did not outperform either baseline, and both validation
+curves were still improving at the training-budget boundary. This negative result is preserved
+rather than hidden or tuned after test access. These remain single-seed engineering results.
 
 Run the local checks:
 
@@ -42,34 +43,39 @@ ruff check .
 pytest --cov=governed_banking --cov-report=term-missing
 ```
 
-Prepare the dataset and reproduce the baseline:
+Prepare the dataset and reproduce Module 5 (about 23 minutes on the documented Mac):
 
 ```bash
 python scripts/prepare_banking77.py --offline
-python scripts/run_frozen_roberta_baseline.py run --offline
-python scripts/compare_module4_baselines.py
+python scripts/run_lora_roberta.py run --offline
+python scripts/compare_module5_models.py
 ```
 
 Then open
-[`04-frozen-roberta-embedding-baseline.ipynb`](output/jupyter-notebook/04-frozen-roberta-embedding-baseline.ipynb) in VS
+[`05-lora-adapted-roberta.ipynb`](output/jupyter-notebook/05-lora-adapted-roberta.ipynb) in VS
 Code and run it with the `Governed Banking AI (MPS)` kernel.
 
-## Verified baseline comparison
+## Verified Module 5 comparison
 
 Both models were evaluated on the same 3,080 official test rows:
 
-| Metric | TF-IDF | Frozen RoBERTa |
-|---|---:|---:|
-| Accuracy | 0.9052 | 0.8961 |
-| Macro-F1 | 0.9053 | 0.8964 |
-| Weighted-F1 | 0.9053 | 0.8964 |
-| Log-loss | 0.4970 | 0.3990 |
-| Top-3 accuracy | 0.9705 | 0.9718 |
+| Metric | TF-IDF | Frozen RoBERTa | LoRA RoBERTa |
+|---|---:|---:|---:|
+| Accuracy | **0.9052** | 0.8961 | 0.8273 |
+| Macro-F1 | **0.9053** | 0.8964 | 0.8202 |
+| Weighted-F1 | **0.9053** | 0.8964 | 0.8202 |
+| Log-loss | 0.4970 | **0.3990** | 0.7746 |
+| Top-3 accuracy | 0.9705 | **0.9718** | 0.9497 |
 
 Frozen RoBERTa corrected 135 rows missed by TF-IDF, while TF-IDF corrected 163 rows missed by
 RoBERTa. Their paired exact McNemar p-value is 0.1177, which does not establish equivalence. The
 results suggest complementarity, but not that generic frozen embeddings beat the lexical baseline.
-Probabilities remain uncalibrated. See the [frozen baseline card](docs/FROZEN_BASELINE_CARD.md).
+
+The rank-8 LoRA candidate trained 944,717 parameters (0.7519%) and won validation, but finished
+0.0851 macro-F1 below TF-IDF and 0.0762 below frozen RoBERTa. Its validation curve improved in every
+epoch, so the defensible conclusion is that this registered protocol underfit—not that LoRA is
+generally inferior. Probabilities remain uncalibrated. See the
+[LoRA baseline card](docs/LORA_BASELINE_CARD.md).
 
 ## Evidence contract
 
@@ -90,8 +96,8 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 2. Immutable BANKING77 loader and split-integrity tests - **complete**
 3. TF-IDF logistic-regression baseline - **complete**
 4. Frozen RoBERTa embedding baseline - **complete**
-5. LoRA-RoBERTa and optional full fine-tuning - **next**
-6. Multi-seed manifests and aggregation
+5. LoRA-RoBERTa registered baseline - **complete; negative result preserved**
+6. Multi-seed manifests, revised development protocol and aggregation - **next**
 7. Calibration and selective prediction
 8. Possible-OOD evaluation and robustness suites
 9. PII controls, risk policy and metadata-only auditing

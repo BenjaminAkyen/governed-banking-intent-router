@@ -11,3 +11,9 @@ serialization and must never be loaded from an untrusted source.
 Module 4 stores frozen-RoBERTa selection, extraction, locked-test, prediction and paired-comparison
 evidence under `frozen-roberta/`. The model snapshot and embedding arrays remain in ignored local
 storage; reports retain their hashes and text-free metadata.
+
+Module 5 stores LoRA validation selection, locked test, predictions and paired comparisons under
+`lora-roberta/`. Adapter weights stay in ignored local storage under `artifacts/lora-roberta/`;
+their SafeTensors hashes and sizes are preserved in the committed selection lock. The result is a
+documented negative finding: the registered three-epoch protocol underfit and did not beat either
+baseline.

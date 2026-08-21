@@ -1,0 +1,53 @@
+schema_version: 1
+experiment_name: lora_adapted_roberta
+random_seed: 42
+thread_limit: 1
+model:
+  repository: FacebookAI/roberta-base
+  revision: e2da8e2f811d1448a5b465c236feacd80ffbac7b
+  license: MIT
+  max_length: 96
+  train_batch_size: 32
+  evaluation_batch_size: 64
+  gradient_accumulation_steps: 2
+  device: mps
+  attention_implementation: eager
+  snapshot_files:
+    - config.json
+    - merges.txt
+    - model.safetensors
+    - tokenizer.json
+    - tokenizer_config.json
+    - vocab.json
+training:
+  epochs: 3
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  max_gradient_norm: 1.0
+selection:
+  metric: macro_f1
+  tie_breakers:
+    - accuracy
+    - negative_log_loss
+    - candidate_name
+candidates:
+  - name: lora_r8_lr2e4
+    rank: 8
+    alpha: 16
+    dropout: 0.1
+    learning_rate: 0.0002
+    target_modules:
+      - query
+      - value
+    modules_to_save:
+      - classifier
+  - name: lora_r16_lr1e4
+    rank: 16
+    alpha: 32
+    dropout: 0.1
+    learning_rate: 0.0001
+    target_modules:
+      - query
+      - value
+    modules_to_save:
+      - classifier

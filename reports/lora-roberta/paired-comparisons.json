@@ -1,0 +1,368 @@
+{
+  "artifact_type": "module5_model_comparisons",
+  "comparisons": [
+    {
+      "artifact_type": "paired_baseline_comparison",
+      "candidate_advantage_intents": [
+        {
+          "candidate_correct": 39,
+          "candidate_minus_reference_correct": 5,
+          "intent": "extra_charge_on_statement",
+          "reference_correct": 34,
+          "support": 40
+        },
+        {
+          "candidate_correct": 37,
+          "candidate_minus_reference_correct": 5,
+          "intent": "verify_my_identity",
+          "reference_correct": 32,
+          "support": 40
+        },
+        {
+          "candidate_correct": 37,
+          "candidate_minus_reference_correct": 4,
+          "intent": "top_up_failed",
+          "reference_correct": 33,
+          "support": 40
+        },
+        {
+          "candidate_correct": 39,
+          "candidate_minus_reference_correct": 3,
+          "intent": "card_payment_wrong_exchange_rate",
+          "reference_correct": 36,
+          "support": 40
+        },
+        {
+          "candidate_correct": 36,
+          "candidate_minus_reference_correct": 3,
+          "intent": "disposable_card_limits",
+          "reference_correct": 33,
+          "support": 40
+        },
+        {
+          "candidate_correct": 40,
+          "candidate_minus_reference_correct": 2,
+          "intent": "exchange_rate",
+          "reference_correct": 38,
+          "support": 40
+        },
+        {
+          "candidate_correct": 36,
+          "candidate_minus_reference_correct": 2,
+          "intent": "pending_top_up",
+          "reference_correct": 34,
+          "support": 40
+        },
+        {
+          "candidate_correct": 39,
+          "candidate_minus_reference_correct": 1,
+          "intent": "Refund_not_showing_up",
+          "reference_correct": 38,
+          "support": 40
+        },
+        {
+          "candidate_correct": 39,
+          "candidate_minus_reference_correct": 1,
+          "intent": "balance_not_updated_after_cheque_or_cash_deposit",
+          "reference_correct": 38,
+          "support": 40
+        },
+        {
+          "candidate_correct": 38,
+          "candidate_minus_reference_correct": 1,
+          "intent": "change_pin",
+          "reference_correct": 37,
+          "support": 40
+        }
+      ],
+      "candidate_model": "lora_adapted_roberta",
+      "comparison_sha256": "438386ed40f330f97200e7f99152dc2585fdf7ccea0c0cd0391b598d56766bae",
+      "contains_message_text": false,
+      "correctness": {
+        "both_correct": 2438,
+        "both_wrong": 182,
+        "candidate_only_correct": 110,
+        "discordant_rows": 460,
+        "prediction_disagreements": 541,
+        "reference_only_correct": 350
+      },
+      "implementation_sha256": {
+        "compare_module5_models.py": "40c227ab36cd486e51b15620531e3dc0a16ad07b75b351a62151e8eceed78c25",
+        "comparison.py": "5c1a1ec69c7b35259fc1a04a76518c38661e37c3b0f999b2f7d1c62f45dc3423"
+      },
+      "inputs": {
+        "candidate_evaluation_sha256": "1b8c569dbc905ba9aeb825e12af8d8f384dc0fe92022f8fdfacd427e389af5ad",
+        "candidate_predictions_sha256": "6015afccb40f6747b2b98d123762b9187a55e48997599f17320efd9170851c62",
+        "reference_evaluation_sha256": "c0446495a7aaccf0d685e54ac46264fd4602dd78e53e69f2a93dd4666e8eba53",
+        "reference_predictions_sha256": "d13cdf56f06b88829a82a8e58c4616b2eada16c3fb1b6b0179a413ca752755a3"
+      },
+      "interpretation_guardrail": "A non-significant paired result does not establish model equivalence.",
+      "metrics": {
+        "candidate_macro_f1": 0.8202064851,
+        "candidate_minus_reference_macro_f1": -0.0850945506,
+        "exact_mcnemar_two_sided_p_value": 0.0,
+        "reference_macro_f1": 0.9053010357
+      },
+      "reference_advantage_intents": [
+        {
+          "candidate_correct": 6,
+          "candidate_minus_reference_correct": -30,
+          "intent": "contactless_not_working",
+          "reference_correct": 36,
+          "support": 40
+        },
+        {
+          "candidate_correct": 9,
+          "candidate_minus_reference_correct": -19,
+          "intent": "virtual_card_not_working",
+          "reference_correct": 28,
+          "support": 40
+        },
+        {
+          "candidate_correct": 20,
+          "candidate_minus_reference_correct": -16,
+          "intent": "card_acceptance",
+          "reference_correct": 36,
+          "support": 40
+        },
+        {
+          "candidate_correct": 20,
+          "candidate_minus_reference_correct": -16,
+          "intent": "card_swallowed",
+          "reference_correct": 36,
+          "support": 40
+        },
+        {
+          "candidate_correct": 16,
+          "candidate_minus_reference_correct": -16,
+          "intent": "topping_up_by_card",
+          "reference_correct": 32,
+          "support": 40
+        },
+        {
+          "candidate_correct": 26,
+          "candidate_minus_reference_correct": -13,
+          "intent": "supported_cards_and_currencies",
+          "reference_correct": 39,
+          "support": 40
+        },
+        {
+          "candidate_correct": 24,
+          "candidate_minus_reference_correct": -11,
+          "intent": "top_up_by_bank_transfer_charge",
+          "reference_correct": 35,
+          "support": 40
+        },
+        {
+          "candidate_correct": 25,
+          "candidate_minus_reference_correct": -10,
+          "intent": "beneficiary_not_allowed",
+          "reference_correct": 35,
+          "support": 40
+        },
+        {
+          "candidate_correct": 23,
+          "candidate_minus_reference_correct": -10,
+          "intent": "why_verify_identity",
+          "reference_correct": 33,
+          "support": 40
+        },
+        {
+          "candidate_correct": 28,
+          "candidate_minus_reference_correct": -8,
+          "intent": "pending_cash_withdrawal",
+          "reference_correct": 36,
+          "support": 40
+        }
+      ],
+      "reference_model": "tfidf_logistic_regression",
+      "row_count": 3080,
+      "schema_version": 1
+    },
+    {
+      "artifact_type": "paired_baseline_comparison",
+      "candidate_advantage_intents": [
+        {
+          "candidate_correct": 39,
+          "candidate_minus_reference_correct": 6,
+          "intent": "extra_charge_on_statement",
+          "reference_correct": 33,
+          "support": 40
+        },
+        {
+          "candidate_correct": 37,
+          "candidate_minus_reference_correct": 4,
+          "intent": "top_up_by_cash_or_cheque",
+          "reference_correct": 33,
+          "support": 40
+        },
+        {
+          "candidate_correct": 37,
+          "candidate_minus_reference_correct": 4,
+          "intent": "top_up_failed",
+          "reference_correct": 33,
+          "support": 40
+        },
+        {
+          "candidate_correct": 32,
+          "candidate_minus_reference_correct": 3,
+          "intent": "balance_not_updated_after_bank_transfer",
+          "reference_correct": 29,
+          "support": 40
+        },
+        {
+          "candidate_correct": 39,
+          "candidate_minus_reference_correct": 3,
+          "intent": "balance_not_updated_after_cheque_or_cash_deposit",
+          "reference_correct": 36,
+          "support": 40
+        },
+        {
+          "candidate_correct": 40,
+          "candidate_minus_reference_correct": 3,
+          "intent": "get_physical_card",
+          "reference_correct": 37,
+          "support": 40
+        },
+        {
+          "candidate_correct": 39,
+          "candidate_minus_reference_correct": 2,
+          "intent": "card_payment_wrong_exchange_rate",
+          "reference_correct": 37,
+          "support": 40
+        },
+        {
+          "candidate_correct": 33,
+          "candidate_minus_reference_correct": 2,
+          "intent": "compromised_card",
+          "reference_correct": 31,
+          "support": 40
+        },
+        {
+          "candidate_correct": 37,
+          "candidate_minus_reference_correct": 2,
+          "intent": "exchange_via_app",
+          "reference_correct": 35,
+          "support": 40
+        },
+        {
+          "candidate_correct": 40,
+          "candidate_minus_reference_correct": 2,
+          "intent": "passcode_forgotten",
+          "reference_correct": 38,
+          "support": 40
+        }
+      ],
+      "candidate_model": "lora_adapted_roberta",
+      "comparison_sha256": "576114ee0c4c67ffe807c6792512751a3f30d3017091ad7a827321c57850049a",
+      "contains_message_text": false,
+      "correctness": {
+        "both_correct": 2415,
+        "both_wrong": 187,
+        "candidate_only_correct": 133,
+        "discordant_rows": 478,
+        "prediction_disagreements": 563,
+        "reference_only_correct": 345
+      },
+      "implementation_sha256": {
+        "compare_module5_models.py": "40c227ab36cd486e51b15620531e3dc0a16ad07b75b351a62151e8eceed78c25",
+        "comparison.py": "5c1a1ec69c7b35259fc1a04a76518c38661e37c3b0f999b2f7d1c62f45dc3423"
+      },
+      "inputs": {
+        "candidate_evaluation_sha256": "1b8c569dbc905ba9aeb825e12af8d8f384dc0fe92022f8fdfacd427e389af5ad",
+        "candidate_predictions_sha256": "6015afccb40f6747b2b98d123762b9187a55e48997599f17320efd9170851c62",
+        "reference_evaluation_sha256": "b3e6b944259f510695b2461ff35ecba88e280252da121621a8c63afd8bf7e7cf",
+        "reference_predictions_sha256": "e59229255b0400553b30e7613e9c3e52630673f97d7b7931f10ec621bc9de64c"
+      },
+      "interpretation_guardrail": "A non-significant paired result does not establish model equivalence.",
+      "metrics": {
+        "candidate_macro_f1": 0.8202064851,
+        "candidate_minus_reference_macro_f1": -0.0762108574,
+        "exact_mcnemar_two_sided_p_value": 0.0,
+        "reference_macro_f1": 0.8964173425
+      },
+      "reference_advantage_intents": [
+        {
+          "candidate_correct": 6,
+          "candidate_minus_reference_correct": -26,
+          "intent": "contactless_not_working",
+          "reference_correct": 32,
+          "support": 40
+        },
+        {
+          "candidate_correct": 9,
+          "candidate_minus_reference_correct": -22,
+          "intent": "virtual_card_not_working",
+          "reference_correct": 31,
+          "support": 40
+        },
+        {
+          "candidate_correct": 20,
+          "candidate_minus_reference_correct": -17,
+          "intent": "card_acceptance",
+          "reference_correct": 37,
+          "support": 40
+        },
+        {
+          "candidate_correct": 23,
+          "candidate_minus_reference_correct": -16,
+          "intent": "why_verify_identity",
+          "reference_correct": 39,
+          "support": 40
+        },
+        {
+          "candidate_correct": 16,
+          "candidate_minus_reference_correct": -15,
+          "intent": "topping_up_by_card",
+          "reference_correct": 31,
+          "support": 40
+        },
+        {
+          "candidate_correct": 20,
+          "candidate_minus_reference_correct": -14,
+          "intent": "card_swallowed",
+          "reference_correct": 34,
+          "support": 40
+        },
+        {
+          "candidate_correct": 30,
+          "candidate_minus_reference_correct": -9,
+          "intent": "getting_spare_card",
+          "reference_correct": 39,
+          "support": 40
+        },
+        {
+          "candidate_correct": 28,
+          "candidate_minus_reference_correct": -9,
+          "intent": "pending_cash_withdrawal",
+          "reference_correct": 37,
+          "support": 40
+        },
+        {
+          "candidate_correct": 27,
+          "candidate_minus_reference_correct": -9,
+          "intent": "transfer_timing",
+          "reference_correct": 36,
+          "support": 40
+        },
+        {
+          "candidate_correct": 29,
+          "candidate_minus_reference_correct": -8,
+          "intent": "card_delivery_estimate",
+          "reference_correct": 37,
+          "support": 40
+        }
+      ],
+      "reference_model": "frozen_roberta_mean_logistic_regression",
+      "row_count": 3080,
+      "schema_version": 1
+    }
+  ],
+  "contains_message_text": false,
+  "evidence_sha256": "2ce6c394efa5093cd58a14b171ad31db2fc66c5d3eca5c196b222ca72bd92a33",
+  "implementation_sha256": {
+    "compare_module5_models.py": "40c227ab36cd486e51b15620531e3dc0a16ad07b75b351a62151e8eceed78c25",
+    "comparison.py": "5c1a1ec69c7b35259fc1a04a76518c38661e37c3b0f999b2f7d1c62f45dc3423"
+  },
+  "schema_version": 1
+}
