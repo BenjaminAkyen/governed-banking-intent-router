@@ -345,7 +345,9 @@ def test_request_timeout_retains_capacity_until_background_inference_finishes() 
             json={"message": "Where is my card?"},
             headers={"Authorization": f"Bearer {DEV_TOKEN}"},
         )
-        time.sleep(0.08)
+        deadline = time.monotonic() + 1.0
+        while not harness.store.events and time.monotonic() < deadline:
+            time.sleep(0.01)
 
         assert response.status_code == 504
         assert immediate_response.status_code == 503
