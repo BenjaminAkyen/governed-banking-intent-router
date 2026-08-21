@@ -71,6 +71,7 @@ select = ["B", "E", "F", "I", "UP"]
 python_version = "3.12"
 strict = true
 ignore_missing_imports = true
+follow_imports = "silent"
 warn_unused_configs = true
 show_error_codes = true
 files = [
