@@ -32,6 +32,11 @@ verification_required:
   - complete_clean_clone_test_suite
   - publication_hygiene_gate
   - github_hosted_module16_checks
+verification_observations:
+  module17_governance_tests: passed_9
+  clean_clone_non_hygiene_tests: passed_258_with_1_expected_artifact_skip
+  publication_hygiene: failed_committed_module11a_notebook_contains_local_path_output
+  overall: release_blocked
 decision_notes:
   - User-confirmed operating assumptions are recorded in configs/governance/module17.yaml.
   - Empty recorded_approvals is intentional; this file must not fabricate a reviewer decision.

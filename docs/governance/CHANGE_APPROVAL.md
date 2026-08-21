@@ -45,7 +45,9 @@ behalf of an absent reviewer.
 `governance/change-approvals/module17.yaml` truthfully records that Module 17 changes documentation
 and governance contracts, not runtime behaviour. It remains `pending_release_approval` with an empty
 approval list. This prevents the repository from fabricating independent review and blocks v0.2.0
-release until accountable roles record decisions.
+release until accountable roles record decisions. The clean-clone Module 17 check also found that
+the committed Module 11A notebook retains a local Mac path in saved output; publication hygiene is
+therefore explicitly failed until Module 18 sanitises and revalidates that notebook.
 
 ## Verification and retention
 

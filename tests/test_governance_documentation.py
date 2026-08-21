@@ -89,6 +89,7 @@ def test_release_blockers_match_known_negative_evidence() -> None:
         "robustness_classification_and_security_routing_gates_failed",
         "served_model_is_not_registered_champion",
         "identity_provider_not_configured",
+        "publication_hygiene_failed_on_committed_notebook_output",
         "release_change_approval_pending",
     } <= blockers
 
@@ -104,6 +105,7 @@ def test_change_record_never_fabricates_approval() -> None:
     assert release["production_approval_created"] is False
     assert record["model_artifact_changed"] is False
     assert record["routing_policy_changed"] is False
+    assert record["verification_observations"]["overall"] == "release_blocked"
 
 
 def test_model_card_matches_champion_registry() -> None:

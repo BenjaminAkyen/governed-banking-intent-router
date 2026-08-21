@@ -75,9 +75,10 @@ These are implemented properties, not proof that all failures or personal data w
 
 Real MPS runtime, service and in-memory observability tests have passed on the documented Mac.
 Cross-platform CPU CI, CodeQL and container jobs are configured but require GitHub-hosted evidence.
-The current system still has eight explicit release blockers in
+The current system still has nine explicit release blockers in
 `configs/governance/module17.yaml`, including representative data, uncertainty, robustness,
-champion alignment and deployment-infrastructure gaps.
+champion alignment, deployment-infrastructure gaps and a committed notebook output that fails the
+publication-hygiene gate.
 
 ## External dependencies
 
