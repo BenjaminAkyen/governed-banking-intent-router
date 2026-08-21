@@ -279,6 +279,10 @@ def validate_backend_report(
         raise ValueError("backend report identifies a different accelerator")
     if report.get("config_sha256") != config.config_sha256:
         raise ValueError("backend report uses a different parity registration")
+    registered_profile = config.runtime_profiles[expected_backend]
+    runtime_profile = RuntimeProfile.from_yaml(registered_profile.path)
+    if report.get("runtime_profile") != runtime_profile.to_dict():
+        raise ValueError("backend report uses a different runtime profile")
     runtime = report.get("runtime", {})
     if (
         runtime.get("requested") != expected_backend
@@ -286,6 +290,14 @@ def validate_backend_report(
         or runtime.get("real_hardware_observed") is not True
     ):
         raise ValueError("backend report does not prove the explicitly requested real device")
+    if expected_backend == "mps" and runtime.get("mps_available") is not True:
+        raise ValueError("MPS report does not record an available MPS backend")
+    if expected_backend == "cuda" and (
+        runtime.get("cuda_available") is not True
+        or runtime.get("cuda_device_count", 0) < 1
+        or runtime.get("cuda_build_version") is None
+    ):
+        raise ValueError("CUDA report does not record an available CUDA runtime")
     boundary = report.get("data_boundary")
     if boundary != {
         "fixture_is_synthetic": True,
@@ -298,12 +310,34 @@ def validate_backend_report(
     if _contains_prohibited_text_keys(report):
         raise ValueError("backend report contains a prohibited message-text field")
 
+    service_config = ServiceConfig.from_yaml(config.legacy_service_config_path)
+    privacy_config = PrivacyConfig.from_yaml(service_config.privacy_config_path)
+    routing_config = RoutingPolicyConfig.from_yaml(service_config.routing_config_path)
+    expected_source_evidence = {
+        "legacy_service_config_sha256": config.expected_legacy_service_config_sha256,
+        "fixture_sha256": config.expected_fixture_sha256,
+        "privacy_config_sha256": privacy_config.config_sha256,
+        "routing_config_sha256": routing_config.config_sha256,
+        "checkpoint_files_sha256": dict(
+            sorted(service_config.predictor.expected_checkpoint_files_sha256.items())
+        ),
+        "calibration_report_sha256": (
+            service_config.predictor.expected_calibration_report_sha256
+        ),
+    }
+    if report.get("source_evidence") != expected_source_evidence:
+        raise ValueError("backend report source evidence differs from registration")
+
     labels = report.get("label_names")
     cases = report.get("cases")
     if not isinstance(labels, list) or len(labels) != 77 or len(set(labels)) != 77:
         raise ValueError("backend report label taxonomy is invalid")
     if not isinstance(cases, list) or report.get("case_count") != len(cases) or not cases:
         raise ValueError("backend report case collection is invalid")
+    expected_cases = _load_fixture(config.fixture_path, config.expected_fixture_sha256)
+    expected_case_ids = [case["case_id"] for case in expected_cases]
+    if [case.get("case_id") for case in cases if isinstance(case, dict)] != expected_case_ids:
+        raise ValueError("backend report cases differ from the registered fixture")
     case_ids: set[str] = set()
     for case in cases:
         if not isinstance(case, dict):

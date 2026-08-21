@@ -1,0 +1,77 @@
+{
+  "artifact_type": "module11_real_hardware_runtime_report",
+  "claim_scope": "hardware_runtime_verification_not_model_quality",
+  "created_at_utc": "2026-08-21T15:32:22.437738+00:00",
+  "data_boundary": {
+    "customer_data_access": false,
+    "model_inference_performed": false,
+    "official_test_access": false
+  },
+  "implementation_sha256": {
+    "accelerator.py": "f53abe0a68b5c7664e6442bd367ad3ec91ef805b4bd3d33b97dac58d839e160f",
+    "runtime_evidence.py": "91b448c972cac206d4a8d9995e931e0a698af7ca5ae7243584bf83e9946251bb",
+    "verify_accelerator.py": "f0f87c3313c84402112375c1954606a7aa05a6da64f143c35c565e8fe6475a64"
+  },
+  "probe": {
+    "all_finite": true,
+    "dtype": "float32",
+    "input_shape": [
+      4,
+      4
+    ],
+    "operation": "float32_matrix_multiplication",
+    "output_shape": [
+      4,
+      4
+    ],
+    "sum": 4704.0
+  },
+  "profile": {
+    "allow_mps_cpu_fallback": false,
+    "claim_scope": "hardware_runtime_verification_not_model_quality",
+    "config_path": "configs/runtime/mps.yaml",
+    "config_sha256": "abf0eaf54a3f1858b06727495d74ebb48a12ce3f7296ee6dfba65f8675e66c9d",
+    "cuda_device_index": 0,
+    "device_preference": "mps",
+    "precision": "float32",
+    "profile_name": "module11-mps-fp32",
+    "require_accelerator": true,
+    "schema_version": 1
+  },
+  "report_sha256": "d6dc1e68fb83eb078ccba1c65c1d7eaa9aeb90c8c492fe40774c753e2b82bc35",
+  "runtime": {
+    "accelerator_name": "Apple M4",
+    "compute_capability": null,
+    "cuda_available": false,
+    "cuda_build_version": null,
+    "cuda_device_count": 0,
+    "cudnn_version": null,
+    "device": "mps",
+    "device_index": 0,
+    "machine": "arm64",
+    "memory_allocated_bytes": 0,
+    "memory_free_bytes": null,
+    "memory_reserved_bytes": 475136,
+    "memory_semantics": "metal_recommended_max_working_set_unified_memory",
+    "memory_total_bytes": 19069665280,
+    "mps_available": true,
+    "mps_built": true,
+    "operating_system": "Darwin",
+    "operating_system_release": "25.5.0",
+    "processor": "arm",
+    "python_version": "3.12.14",
+    "real_hardware_observed": true,
+    "requested": "mps",
+    "selected": "mps",
+    "torch_version": "2.13.0"
+  },
+  "schema_version": 1,
+  "seed": 42,
+  "verification": {
+    "cpu_verified": false,
+    "cuda_verified": false,
+    "mps_verified": true,
+    "real_hardware_observed": true,
+    "requested_backend_selected": true
+  }
+}

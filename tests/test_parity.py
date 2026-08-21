@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import pytest
@@ -5,12 +6,13 @@ import torch
 
 from governed_banking.api import ServiceConfig
 from governed_banking.data import sha256_file
-from governed_banking.parity import CLAIM_SCOPE, PredictionParityConfig
+from governed_banking.parity import CLAIM_SCOPE, PredictionParityConfig, validate_backend_report
 from governed_banking.portable_inference import PortableLoRAPredictor
 from governed_banking.runtime_evidence import RuntimeProfile
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 PARITY_CONFIG = PROJECT_ROOT / "configs/prediction_parity.yaml"
+MPS_REPORT = PROJECT_ROOT / "reports/parity/mps-seed42.json"
 
 
 def test_registered_parity_contract_is_hash_bound_and_text_safe() -> None:
@@ -32,6 +34,21 @@ def test_parity_contract_does_not_claim_model_quality() -> None:
     assert CLAIM_SCOPE == "cross_device_numerical_and_decision_parity_not_model_quality"
     assert "test" not in config.fixture_path.name
     assert config.fixture_path.is_relative_to(config.project_root)
+
+
+def test_committed_mps_report_is_valid_and_matches_current_implementation() -> None:
+    config = PredictionParityConfig.from_yaml(PARITY_CONFIG)
+    report = json.loads(MPS_REPORT.read_text(encoding="utf-8"))
+
+    validate_backend_report(report, config=config, expected_backend="mps")
+    assert report["implementation_sha256"] == {
+        "accelerator.py": sha256_file(PROJECT_ROOT / "src/governed_banking/accelerator.py"),
+        "parity.py": sha256_file(PROJECT_ROOT / "src/governed_banking/parity.py"),
+        "portable_inference.py": sha256_file(
+            PROJECT_ROOT / "src/governed_banking/portable_inference.py"
+        ),
+        "run_backend_parity.py": sha256_file(PROJECT_ROOT / "scripts/run_backend_parity.py"),
+    }
 
 
 @pytest.mark.skipif(torch.cuda.is_available(), reason="requires a host without CUDA")
