@@ -4,7 +4,7 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: data pipeline validated; models not yet trained or approved for production use.**
+> **Status: first baseline evaluated; no model is approved for production use.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -29,8 +29,9 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 2 adds a commit- and hash-pinned BANKING77 loader, group-aware validation split, leakage
-quarantine and text-free reproducibility manifest. No model result is claimed at this stage.
+Module 3 establishes a serious sparse-text baseline. TF-IDF vocabularies are fitted on training
+messages only, candidate selection uses validation macro-F1, and test access requires a valid
+selection lock. This is a single-seed engineering result, not yet the three-seed primary comparison.
 
 Run the local checks:
 
@@ -41,17 +42,33 @@ ruff check .
 pytest --cov=governed_banking --cov-report=term-missing
 ```
 
-Prepare and audit the dataset:
+Prepare the dataset and reproduce the baseline:
 
 ```bash
-python scripts/prepare_banking77.py
+python scripts/prepare_banking77.py --offline
+python scripts/run_tfidf_baseline.py run
 ```
 
 Then open
-[`02-build-banking77-manifest.ipynb`](output/jupyter-notebook/02-build-banking77-manifest.ipynb)
-in VS Code and run it with the `Governed Banking AI (MPS)` kernel. The verified seed-42 manifest
-contains 8,495 training rows, 1,501 validation rows and all 3,080 official test rows. Seven
-training rows that duplicate normalized official-test messages are quarantined.
+[`03-tfidf-logreg-baseline.ipynb`](output/jupyter-notebook/03-tfidf-logreg-baseline.ipynb) in VS
+Code and run it with the `Governed Banking AI (MPS)` kernel.
+
+## Verified Module 3 result
+
+The locked winner combines word (1,2)-grams and character-within-word (3,5)-grams with logistic
+regression at `C=4.0`. On all 3,080 official test rows it achieved:
+
+| Metric | Result |
+|---|---:|
+| Accuracy | 0.9052 |
+| Macro-F1 | 0.9053 |
+| Weighted-F1 | 0.9053 |
+| Log-loss | 0.4970 |
+| Top-3 accuracy | 0.9705 |
+
+The weakest intent F1 was 0.7556 for `balance_not_updated_after_bank_transfer`. Identity,
+transfer-state and top-up-state confusions remain important. Probabilities are uncalibrated and
+must not yet drive automated routing. See the [baseline card](docs/BASELINE_CARD.md).
 
 ## Evidence contract
 
@@ -70,8 +87,8 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 
 1. Mac/MPS foundation and evaluation contract - **complete**
 2. Immutable BANKING77 loader and split-integrity tests - **complete**
-3. TF-IDF logistic-regression baseline - **next**
-4. Frozen RoBERTa embedding baseline
+3. TF-IDF logistic-regression baseline - **complete**
+4. Frozen RoBERTa embedding baseline - **next**
 5. LoRA-RoBERTa and optional full fine-tuning
 6. Multi-seed manifests and aggregation
 7. Calibration and selective prediction

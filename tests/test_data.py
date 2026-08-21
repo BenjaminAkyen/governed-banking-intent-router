@@ -13,6 +13,7 @@ from governed_banking.data import (
     DatasetConfig,
     acquire_and_prepare,
     build_manifest,
+    load_manifest_split,
     normalize_text,
     prepare_splits,
     read_banking_csv,
@@ -278,6 +279,16 @@ def test_offline_end_to_end_preparation(tmp_path: Path) -> None:
     assert manifest["splits"]["validation"]["count"] == 4
     assert manifest["splits"]["test"]["count"] == 2
     validate_manifest(json.loads(manifest_path.read_text(encoding="utf-8")))
+
+    loaded_train = load_manifest_split(
+        config_path, raw_directory, manifest_path, "train"
+    )
+    assert len(loaded_train) == 16
+    (raw_directory / "test.csv").unlink()
+    loaded_validation = load_manifest_split(
+        config_path, raw_directory, manifest_path, "validation"
+    )
+    assert len(loaded_validation) == 4
 
     with (raw_directory / "train.csv").open("a", encoding="utf-8") as handle:
         handle.write("tampered,alpha\n")

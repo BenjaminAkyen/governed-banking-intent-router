@@ -527,6 +527,81 @@ def validate_manifest(manifest: Mapping[str, Any]) -> None:
         raise ValueError("manifest content hash check failed")
 
 
+def load_manifest_split(
+    config_path: Path,
+    raw_directory: Path,
+    manifest_path: Path,
+    split_name: str,
+) -> tuple[BankingRecord, ...]:
+    """Load one verified split without accessing any unrequested source split."""
+
+    if split_name not in {"train", "validation", "test"}:
+        raise ValueError("split_name must be train, validation or test")
+
+    config = DatasetConfig.from_yaml(config_path)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    validate_manifest(manifest)
+    if manifest.get("dataset") != config.name:
+        raise ValueError("manifest dataset does not match dataset configuration")
+    if manifest.get("source_commit") != config.commit:
+        raise ValueError("manifest source commit does not match dataset configuration")
+
+    manifest_sources = manifest.get("sources")
+    if not isinstance(manifest_sources, dict):
+        raise ValueError("manifest sources must be a mapping")
+    observed_hashes = {
+        name: details.get("sha256")
+        for name, details in manifest_sources.items()
+        if isinstance(details, dict)
+    }
+    if observed_hashes != dict(config.expected_sha256):
+        raise ValueError("manifest source hashes do not match dataset configuration")
+
+    split_details = manifest.get("splits", {}).get(split_name)
+    if not isinstance(split_details, dict):
+        raise ValueError(f"manifest is missing split: {split_name}")
+    source_name = split_details.get("source")
+    if source_name not in {"official_train", "official_test"}:
+        raise ValueError(f"unsupported manifest source for {split_name}")
+
+    source_path = raw_directory / config.files[source_name]
+    if not source_path.exists():
+        raise FileNotFoundError(f"verified source is missing: {source_path}")
+    _verify_source_hash(source_path, config.expected_sha256[source_name])
+    expected_rows = (
+        config.expected_train_rows
+        if source_name == "official_train"
+        else config.expected_test_rows
+    )
+    source_records = read_banking_csv(
+        source_path,
+        source_split=source_name,
+        expected_rows=expected_rows,
+    )
+
+    indices = split_details.get("source_indices")
+    if (
+        not isinstance(indices, list)
+        or not all(isinstance(index, int) and not isinstance(index, bool) for index in indices)
+        or len(indices) != len(set(indices))
+    ):
+        raise ValueError(f"{split_name} source indices must be unique integers")
+    if split_details.get("source_indices_sha256") != stable_json_sha256(indices):
+        raise ValueError(f"{split_name} source-index hash check failed")
+    if split_details.get("count") != len(indices):
+        raise ValueError(f"{split_name} count does not match its source indices")
+    if any(index < 0 or index >= len(source_records) for index in indices):
+        raise ValueError(f"{split_name} contains an out-of-range source index")
+
+    selected = tuple(source_records[index] for index in indices)
+    labels = manifest.get("label_names")
+    if not isinstance(labels, list) or len(labels) != config.expected_label_count:
+        raise ValueError("manifest label names do not match dataset configuration")
+    if _label_distribution(selected, labels) != split_details.get("label_distribution"):
+        raise ValueError(f"{split_name} label distribution check failed")
+    return selected
+
+
 def finite_fraction(value: float) -> float:
     """Small validation helper kept public for CLI configuration checks."""
 

@@ -1,0 +1,50 @@
+schema_version: 1
+experiment_name: tfidf_logistic_regression
+random_seed: 42
+thread_limit: 1
+selection:
+  metric: macro_f1
+  tie_breakers:
+    - accuracy
+    - negative_log_loss
+    - candidate_name
+candidates:
+  - name: word_12_c2
+    word:
+      ngram_range: [1, 2]
+      min_df: 2
+      max_features: 60000
+    char: null
+    logistic_regression:
+      C: 2.0
+      solver: saga
+      max_iter: 1200
+      tolerance: 0.0001
+  - name: word_char_c2
+    word:
+      ngram_range: [1, 2]
+      min_df: 2
+      max_features: 50000
+    char:
+      ngram_range: [3, 5]
+      min_df: 2
+      max_features: 80000
+    logistic_regression:
+      C: 2.0
+      solver: saga
+      max_iter: 1200
+      tolerance: 0.0001
+  - name: word_char_c4
+    word:
+      ngram_range: [1, 2]
+      min_df: 2
+      max_features: 50000
+    char:
+      ngram_range: [3, 5]
+      min_df: 2
+      max_features: 80000
+    logistic_regression:
+      C: 4.0
+      solver: saga
+      max_iter: 1200
+      tolerance: 0.0001
