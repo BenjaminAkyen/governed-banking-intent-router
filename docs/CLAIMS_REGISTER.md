@@ -37,4 +37,9 @@
 | Module 11 CUDA execution works on a real NVIDIA GPU | Unverified | Registered CUDA runtime and prediction reports from Notebook 11B |
 | Module 11 MPS and CUDA predictions satisfy the registered parity gates | Unverified | Independent backend reports and passing comparison; no tolerance changes after observation |
 | Cross-device parity establishes model quality or production fitness | Prohibited | Parity evaluates numerical and routing consistency only; representative independent evaluation is required |
+| TF-IDF is the current Module 12 champion | Verified registry decision | Best historical like-for-like test macro-F1 and hash-bound champion registry |
+| Revised LoRA is eligible to replace TF-IDF | Not supported | Existing validation/calibration evidence is post-test development evidence and uncertainty gates failed |
+| A challenger may be promoted using another BANKING77 test run | Prohibited | The official test is already observed; a new locked external evaluation source is mandatory |
+| Module 12 automatically promotes a model that passes numeric gates | Refuted by design | Passing creates eligibility for human review; automatic registry mutation is prohibited |
+| Module 10 serves the approved champion | Refuted | The shadow service uses revised LoRA while TF-IDF remains champion |
 | The system is production ready | Prohibited | Representative deployment evidence and organisational approval |

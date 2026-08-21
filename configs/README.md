@@ -66,3 +66,8 @@ do not access BANKING77 or make model-quality claims.
 immutable Module 10 service source, the existing synthetic fixture and a 0.001 absolute-probability
 tolerance. Top-1 intent and deterministic routing-action equality are mandatory. Changing any of
 these gates invalidates both backend reports and their comparison.
+
+`champion_challenger.yaml` registers Module 12's current TF-IDF champion, model lifecycle states,
+historical and development evidence hashes, service misalignment, external-data requirement and
+two promotion routes. The classification, calibration, selective-risk and safety margins are fixed
+before external evaluation exists. All existing evidence remains promotion-ineligible.

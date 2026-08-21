@@ -4,9 +4,9 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: Module 11 verifies CPU and native Mac MPS execution. CUDA support is implemented but
-> remains unverified until the registered Colab notebook runs on a real NVIDIA GPU. Module 8
-> uncertainty gates remain failed and no automated route is production approved.**
+> **Status: Module 12 retains TF-IDF as the evidence-backed champion. Existing challenger evidence
+> cannot authorize promotion, the required external evaluation lock is missing, and no production
+> deployment is approved. Module 11 real-CUDA verification also remains pending.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -31,15 +31,16 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 11 adds strict `auto`, `cuda`, `mps` and `cpu` execution profiles without modifying Module
-10's historical MPS files. `auto` selects CUDA, then MPS, then CPU. Every explicit profile fails if
-its requested backend is unavailable; CUDA is never simulated and MPS operator fallback to CPU is
-prohibited in registered evidence runs.
+Module 12 introduces a hash-bound champion–challenger registry. TF-IDF remains champion because it
+has the highest macro-F1 in the completed like-for-like historical comparison. Frozen RoBERTa,
+revised LoRA and planned full RoBERTa fine-tuning are challengers. No existing evidence is marked
+promotion-eligible because BANKING77 test results are already observed and later validation roles
+influenced development.
 
-The same pinned seed-42 adapter can now produce metadata-only prediction reports on MPS and CUDA.
-The comparison requires identical top-1 intents and deterministic routing actions plus a maximum
-absolute probability difference of 0.001. It uses the existing 12-case synthetic service fixture,
-not BANKING77 test data or customer data. These checks concern execution parity, not model quality.
+Promotion now requires either statistically supported macro-F1 superiority across seeds 17, 42
+and 73, or macro-F1 non-inferiority with a material calibration or selective-risk improvement.
+Every route also has security, privacy, routing and audit vetoes and requires human approval. A new
+locked external evaluation dataset is mandatory before these gates can make a credible decision.
 
 The service remains in `shadow_review_only` mode. It may return `security_queue` or `human_review`,
 but its schema cannot return `suggest_queue`. Module 8 thresholds are experimental observations
@@ -53,6 +54,16 @@ python -m pip install -e ".[dev,notebook]"
 ruff check .
 pytest --cov=governed_banking --cov-report=term-missing
 ```
+
+Rebuild the metadata-only Module 12 registry without loading dataset text:
+
+```bash
+python scripts/build_champion_registry.py
+pytest -q tests/test_champion.py
+```
+
+See the [champion–challenger card](docs/CHAMPION_CHALLENGER_CARD.md) and
+[`12-champion-challenger-registry-audit.ipynb`](output/jupyter-notebook/12-champion-challenger-registry-audit.ipynb).
 
 Reproduce the verified native-Mac reference:
 
@@ -96,6 +107,22 @@ curl --request POST http://127.0.0.1:8000/v1/route \
   --header "Content-Type: application/json" \
   --data '{"message":"When will my replacement card arrive?"}'
 ```
+
+## Verified Module 12 registry decision
+
+| Measure | Registered result |
+|---|---:|
+| Current champion | TF-IDF word+character logistic regression |
+| Registered challengers | Frozen RoBERTa, original/revised LoRA, planned full RoBERTa |
+| Promotion-eligible challenger evidence | 0 |
+| External evaluation lock | Missing |
+| Current decision | Retain champion |
+| Automatic promotion | Prohibited |
+| Production deployment | Not approved |
+| Module 10 shadow service aligned with champion | No |
+
+The service mismatch is intentional and visible: Module 10 is a bounded LoRA research service, not
+the approved champion deployment.
 
 ## Verified Module 11 local execution evidence
 
@@ -247,6 +274,7 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 9. PII controls, risk policy and metadata-only auditing - **complete; synthetic control evidence**
 10. FastAPI service and local MPS integration evidence - **complete; production release prohibited**
 11. Cross-platform runtime and prediction parity - **MPS/CPU verified; real CUDA run pending**
+12. Champion–challenger registry and promotion gates - **framework complete; external lock missing**
 
 ## Responsible-use limitations
 

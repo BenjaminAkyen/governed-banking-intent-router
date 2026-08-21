@@ -50,3 +50,8 @@ evidence under `parity/`. The committed CPU and MPS reports describe observed lo
 MPS prediction report contains calibrated probability vectors and routing metadata for the 12
 registered synthetic cases, but no request or redacted text. CUDA and MPS–CUDA comparison reports
 must not be added until the registered Colab notebook runs successfully on a real NVIDIA GPU.
+
+Module 12 stores `champion/champion-registry.json`. It validates and summarizes existing report
+hashes without reading dataset text or computing new model metrics. The registry retains TF-IDF,
+marks every current challenger artifact promotion-ineligible, records the Module 10 shadow-service
+misalignment and refuses promotion while the external evaluation lock is missing.

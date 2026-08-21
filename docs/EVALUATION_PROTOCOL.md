@@ -85,6 +85,14 @@ source and redacted message values in API responses and audit events. These thre
 one documented Mac and synthetic traffic; they are not service-level objectives or production
 capacity evidence.
 
+Module 12 treats all completed BANKING77 test results as historical context and all subsequent
+validation, calibration and synthetic possible-OOD results as development evidence. TF-IDF remains
+champion until a challenger is evaluated with the champion across seeds 17, 42 and 73 on the same
+new locked external dataset. Promotion requires either paired classification superiority or paired
+classification non-inferiority with material calibration or selective-risk improvement, plus
+security-intent, privacy, routing and audit gates. Passing creates eligibility for human approval;
+the framework cannot promote automatically.
+
 ## Metrics
 
 ### Classification
