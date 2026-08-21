@@ -1,382 +1,236 @@
+<div align="center">
+
 # Governed Banking Intent Router
 
-A Mac-first research implementation of a privacy-aware banking support router. The system uses
-LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
-uncertainty handling, deterministic escalation and metadata-only audit events.
+**An evidence-first reference implementation for privacy-aware, risk-controlled banking support routing.**
 
-> **Status: Module 17 adds a model card, system card, governed data boundary, risk register, threat
-> model, human oversight, incident response, rollback, change approval, monitoring, validation and
-> NIST AI RMF mapping. The v0.2.0 change record remains pending. TF-IDF remains champion; the served
-> LoRA model is a research challenger, and production deployment is not approved.**
+[![Quality and evidence](https://github.com/BenjaminAkyen/governed-banking-intent-router/actions/workflows/quality.yml/badge.svg)](https://github.com/BenjaminAkyen/governed-banking-intent-router/actions/workflows/quality.yml)
+[![CodeQL](https://github.com/BenjaminAkyen/governed-banking-intent-router/actions/workflows/codeql.yml/badge.svg)](https://github.com/BenjaminAkyen/governed-banking-intent-router/actions/workflows/codeql.yml)
+[![Python](https://img.shields.io/badge/Python-3.12%20%7C%203.13-3776AB?logo=python&logoColor=white)](pyproject.toml)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.12%2B-EE4C2C?logo=pytorch&logoColor=white)](pyproject.toml)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Transformers%205-FFD21E)](pyproject.toml)
+[![PEFT](https://img.shields.io/badge/PEFT-LoRA-65A30D)](pyproject.toml)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.116%2B-009688?logo=fastapi&logoColor=white)](pyproject.toml)
+[![License](https://img.shields.io/badge/License-MIT-2EA44F)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Research%20Preview-6F42C1)](#project-status)
 
-![System architecture](docs/images/system-architecture.svg)
+</div>
 
-## Problem
+> [!IMPORTANT]
+> This repository is a **research preview**, not production banking software. The service operates
+> in `shadow_review_only` mode and can route only to human review or a security queue. It cannot
+> authorize transactions, freeze accounts, authenticate customers, make fraud decisions or provide
+> financial advice.
 
-Customer-support teams must route short and often ambiguous messages. A closed-set classifier will
-always choose one of its known labels, even when a request is unfamiliar, contains multiple issues
-or requires urgent security review. Optimising average accuracy alone does not make that behaviour
-safe.
+## Why this project exists
 
-This project evaluates a more defensible design:
+Banking support messages are short, ambiguous and sometimes security-critical. A conventional
+closed-set classifier always returns a known intent—even when the request is unfamiliar,
+multi-intent or unsafe to automate.
 
-1. redact structured personal information before model inference;
-2. classify the redacted request with LoRA-RoBERTa;
-3. calibrate probabilities on validation data;
-4. compute uncertainty and possible out-of-distribution signals;
-5. apply a versioned, deterministic routing policy;
-6. record decision metadata without retaining the customer message.
+This project treats intent classification as one component of a governed decision system. It
+combines model evaluation with privacy controls, calibrated confidence, uncertainty signals,
+deterministic escalation, metadata-only auditing and explicit human oversight.
 
-The service recommends a queue. It never moves money, freezes an account, approves a payment,
-authenticates a customer or provides financial advice.
+![Governed Banking Intent Router architecture](docs/images/system-architecture.svg)
 
-## Current module
+## What the system demonstrates
 
-Module 17 converts the confirmed research boundary into a machine-readable governance contract and
-an operational document set. It records INNETWORK Technology Limited as the accountable
-organisation, preserves role-based veto authority, scores 13 current risks, models nine concrete
-security threats and defines human review, incident, immutable rollback, monitoring, validation and
-change-approval procedures. Its NIST AI RMF 1.0 crosswalk is a current-state mapping—not a
-certification. The Module 17 record deliberately contains no fabricated approvals, so v0.2.0
-remains blocked pending real accountable review. See the [governance inventory](docs/governance/README.md),
-[model card](docs/MODEL_CARD.md) and [system card](docs/SYSTEM_CARD.md).
+| Capability | Implementation |
+|---|---|
+| Model comparison | TF-IDF logistic regression, frozen RoBERTa and LoRA-adapted RoBERTa under a shared evaluation contract |
+| Champion–challenger control | TF-IDF remains champion until a challenger passes registered validation gates |
+| Privacy before inference | Structured PII is redacted before classification; raw or redacted message text is excluded from audit and telemetry records |
+| Calibrated uncertainty | Temperature scaling, entropy, confidence and selective-risk analysis use separated development and assessment roles |
+| Deterministic routing | Versioned policy overrides model confidence for security-sensitive and failed-control cases |
+| Governed service | Authenticated FastAPI endpoints, readiness checks, concurrency limits, rate limiting and rollback metadata |
+| Operational evidence | Reproducible manifests, hash-bound artifacts, privacy-safe OpenTelemetry signals and cross-platform CI |
 
-Module 16 adds an auditable continuous-integration and supply-chain boundary without changing any
-registered model or safety evidence. The CPU matrix covers Ubuntu, macOS and Windows on supported
-Python 3.12 and 3.13. Separate privacy, policy, integration and unit reports feed registered
-per-module coverage floors. Package, container, CodeQL, dependency-review, vulnerability, SBOM and
-provider-aware secret controls are configured with least-privilege permissions and commit-pinned
-Actions. GitHub repository settings still need to be enabled by an administrator, and a hosted run
-is required before these controls can be claimed as externally verified. See the
-[Module 16 CI and supply-chain card](docs/CONTINUOUS_INTEGRATION.md).
+The request path is deliberately layered:
 
-Module 15 wraps the immutable Module 14 service with manual OpenTelemetry instrumentation. It
-records request, error and latency signals; model-load duration; selected device; model and policy
-versions; human-review and security-escalation rates; redaction categories; uncertainty
-distribution; and descriptive routing-distribution change. Only fixed, registered metadata is
-accepted. Customer or redacted text, matched PII, headers, identity, request/correlation IDs and
-message hashes are prohibited.
+1. validate the request and authentication boundary;
+2. redact registered PII patterns;
+3. classify the redacted message;
+4. apply temperature scaling and compute uncertainty signals;
+5. execute deterministic risk-routing rules;
+6. return a bounded recommendation for human handling; and
+7. emit metadata-only audit and observability events.
 
-The real Apple M4/MPS evidence routed 20 synthetic cases and observed all 14 registered metrics,
-both span names, 10 human-review actions, 10 security escalations and the registered email and
-authentication-secret redaction categories. All 14 privacy and signal checks passed. The test used
-an in-memory exporter, so Collector, Prometheus and trace-backend operation remain unverified.
+## Verified evidence
 
-See [Module 15 observability](docs/OBSERVABILITY.md), the metadata-only
-[`module15-native-mps-observability.json`](reports/observability/module15-native-mps-observability.json)
-and the preserved [Module 14 deployment profiles](docs/DEPLOYMENT_PROFILES.md).
+### Model comparison
 
-Start a reviewed loopback Collector before the observed native service:
+The official BANKING77 test split was evaluated before the later development work. It is therefore
+historical evidence, not a fresh confirmation set.
+
+| Model | Test macro-F1 | Position |
+|---|---:|---|
+| TF-IDF word + character logistic regression | **0.9053** | Champion |
+| Frozen RoBERTa embeddings + classifier | 0.8964 | Challenger |
+| LoRA-adapted RoBERTa | 0.8202 | Challenger; registered protocol underfit |
+
+The revised three-seed LoRA study reached **0.8974 ± 0.0073 validation macro-F1**. That result is
+post-test development evidence and is not presented as proof that LoRA surpassed the champion.
+
+### Calibration, uncertainty and robustness
+
+| Assessment | Result | Decision |
+|---|---:|---|
+| Mean expected calibration error, raw → temperature-scaled | 0.0470 → 0.0280 | Improvement on held-out calibration assessment roles |
+| Mean selective risk | 0.0643 | Failed the registered 0.05 ceiling |
+| Mean synthetic possible-OOD recall | 0.8889 | Failed the registered 0.90 target |
+| Synthetic robustness acceptable-intent rate | 68.52% | Failed promotion gate |
+| Expected-security routing recall | 78.57% | Failed promotion gate |
+| PII expectation agreement | 100% (60/60) | Passed on the versioned synthetic pack |
+
+These negative results are intentional project outputs: strong ranking metrics do not automatically
+produce a safe operating threshold. TF-IDF remains the champion, automatic model promotion is
+prohibited and production deployment is not approved.
+
+### Engineering assurance
+
+- **260 tests pass locally**, with a green hosted matrix across Ubuntu, macOS and Windows on Python
+  3.12 and 3.13.
+- Quality gates cover formatting, linting, static typing, safety-critical coverage, package builds,
+  container contracts, dependency review, vulnerability scanning, SBOM generation, secret scanning
+  and CodeQL analysis.
+- Native Apple MPS evidence completed 36/36 synthetic API requests with 39/39 metadata-only audit
+  events validated and zero message-value matches.
+- Runtime profiles support explicit `cpu`, `mps` and `cuda` selection. Unsupported explicit device
+  requests fail closed; real CUDA prediction-parity evidence remains pending.
+
+See the [claims register](docs/CLAIMS_REGISTER.md) for the evidence boundary behind public claims.
+
+## Quick start
+
+### Requirements
+
+- Python 3.12 or 3.13
+- Git
+
+### Install and validate
 
 ```bash
-otelcol-contrib --config deploy/observability/collector-local.yaml
-export OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4317
-export GOVERNED_BANKING_DEV_API_TOKEN="$(openssl rand -hex 32)"
-python scripts/run_deployment_api.py \
-  --profile configs/deployment/native-mps.yaml
-```
+git clone https://github.com/BenjaminAkyen/governed-banking-intent-router.git
+cd governed-banking-intent-router
 
-The older Module 10 evidence remains immutable and is summarized below.
-
-Module 13 introduces a hash-locked 60-case synthetic robustness pack with complete acceptable-
-intent, routing, severity, escalation, provenance and licence annotations. It covers ten families,
-including typo and speech noise, paraphrases, multi-intent and ambiguous requests, code-switching,
-PII, prompt-like manipulation, non-banking input and urgent security incidents. A registered
-leakage gate found zero exact or high-overlap matches within the pack or across all 13,083 pinned
-BANKING77 rows.
-
-The real-MPS assessment preserved a negative result. The Module 10 LoRA service reached 68.52%
-acceptable-intent accuracy on 54 in-scope synthetic cases, 78.57% expected-security routing recall
-and 90.00% overall routing-action agreement. Each missed its preregistered gate. PII expectations
-matched 60/60 and no suggestion action or message value entered the report. The evaluated LoRA
-service is not the retained TF-IDF champion, and these authored cases are not production validation.
-
-The service remains in `shadow_review_only` mode. It may return `security_queue` or `human_review`,
-but its schema cannot return `suggest_queue`. Module 8 thresholds are experimental observations
-only and cannot authorize automation.
-
-Run the local checks:
-
-```bash
+python3.12 -m venv .venv
 source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+
+pytest -q
+```
+
+On Windows PowerShell, activate the environment with
+`.\.venv\Scripts\Activate.ps1` before installing the package.
+
+To inspect the privacy, policy and API safety boundary without a model checkpoint:
+
+```bash
+pytest -q tests/test_privacy.py tests/test_policy.py tests/test_audit.py tests/test_api.py
+```
+
+### Run the research notebooks
+
+```bash
 python -m pip install -e ".[dev,notebook]"
-ruff check .
-pytest --cov=governed_banking --cov-report=term-missing
+jupyter lab output/jupyter-notebook
 ```
 
-Rebuild the metadata-only Module 12 registry without loading dataset text:
+The repository does not redistribute trained adapters, cached BANKING77 data or model snapshots.
+Model-backed experiments require the exact registered artifacts and hashes described in the
+[model card](docs/MODEL_CARD.md) and [data card](docs/DATA_CARD.md).
 
-```bash
-python scripts/build_champion_registry.py
-pytest -q tests/test_champion.py
-```
+### Run the governed API
 
-See the [champion–challenger card](docs/CHAMPION_CHALLENGER_CARD.md) and
-[`12-champion-challenger-registry-audit.ipynb`](output/jupyter-notebook/12-champion-challenger-registry-audit.ipynb).
-
-Revalidate the Module 13 pack and reproduce the real-MPS assessment:
-
-```bash
-python scripts/build_robustness_pack.py
-python scripts/run_robustness_evaluation.py
-pytest -q tests/test_robustness.py
-```
-
-The second command requires a real MPS device and cannot fall back to CPU. See the
-[synthetic robustness evaluation card](docs/ROBUSTNESS_EVALUATION_CARD.md) and
-[`13-synthetic-robustness-evaluation.ipynb`](output/jupyter-notebook/13-synthetic-robustness-evaluation.ipynb).
-
-Reproduce the verified native-Mac reference:
-
-```bash
-python scripts/verify_accelerator.py \
-  --profile configs/runtime/mps.yaml \
-  --report reports/runtime/mps-runtime.json
-python scripts/run_backend_parity.py \
-  --backend mps \
-  --report reports/parity/mps-seed42.json
-```
-
-Then use
-[`11b-google-colab-cuda-prediction-parity.ipynb`](output/jupyter-notebook/11b-google-colab-cuda-prediction-parity.ipynb)
-on a real Colab GPU. It restores only the exact hash-bound private adapter, downloads the pinned
-public RoBERTa revision, creates CUDA evidence and applies the preregistered parity gates. The CUDA
-and cross-device reports must not be claimed until that notebook passes.
-
-Reproduce the Module 10 real-MPS integration evidence:
-
-```bash
-python scripts/run_service_evaluation.py
-```
-
-Then open
-[`10-shadow-fastapi-mps-evaluation.ipynb`](output/jupyter-notebook/10-shadow-fastapi-mps-evaluation.ipynb)
-in VS Code and run it with the project virtual environment's `Python 3` kernel.
-
-Start the local API with a fresh development token:
+After the registered LoRA artifacts are available locally:
 
 ```bash
 export GOVERNED_BANKING_API_TOKEN="$(openssl rand -hex 32)"
 python scripts/run_api.py
 ```
 
-The service binds only to `127.0.0.1:8000`. In another terminal, submit a synthetic request:
+The development service binds to `127.0.0.1:8000` and exposes:
 
-```bash
-curl --request POST http://127.0.0.1:8000/v1/route \
-  --header "Authorization: Bearer $GOVERNED_BANKING_API_TOKEN" \
-  --header "Content-Type: application/json" \
-  --data '{"message":"When will my replacement card arrive?"}'
+- `GET /health/live`
+- `GET /health/ready`
+- `POST /v1/route`
+
+Deployment-specific authentication and runtime profiles are documented in
+[Deployable service profiles](docs/DEPLOYMENT_PROFILES.md).
+
+## Runtime profiles
+
+| Profile | Purpose | Status |
+|---|---|---|
+| Native macOS MPS | Local Apple Silicon development and evidence generation | Verified on Apple M4 |
+| Linux CPU container | Portable CPU deployment contract | Dockerfile contract verified; runtime pending |
+| Linux NVIDIA CUDA container | GPU deployment and Colab parity workflow | Dockerfile contract verified; real CUDA runtime and parity pending |
+| Auto selection | Select CUDA → MPS → CPU | Supported for convenience; registered evidence uses explicit devices |
+
+MPS runs natively on macOS; it is not presented as available inside a standard Linux container.
+
+## Repository structure
+
+```text
+.
+├── src/governed_banking/     # Models, controls, service and evidence logic
+├── configs/                  # Versioned model, policy, runtime and deployment contracts
+├── tests/                    # Unit, integration, privacy, policy and evidence tests
+├── data/                     # Manifests and explicitly labelled synthetic fixtures
+├── output/jupyter-notebook/  # Reproducible research notebooks
+├── reports/                  # Registered metadata-only evidence artifacts
+├── deploy/                   # CPU/CUDA containers, gateway and Kubernetes templates
+├── docs/                     # Technical, assurance and operational documentation
+└── scripts/                  # Reproducible experiment and verification entry points
 ```
 
-## Verified Module 13 synthetic robustness decision
+## Documentation
 
-| Measure | Registered result |
-|---|---:|
-| Locked synthetic cases | 60; six in each of ten primary families |
-| BANKING77 rows scanned for lexical leakage | 13,083 |
-| Internal / BANKING77 exact or near matches | 0 / 0 |
-| In-scope acceptable-intent rate | 68.52% (37/54) — **fail** |
-| Expected-security routing recall | 78.57% (11/14) — **fail** |
-| Overall routing-action agreement | 90.00% (54/60) — **fail** |
-| PII expectation agreement | 100% (60/60) — pass |
-| Suggestion actions | 0 — pass |
-| Production validation | No |
-| Decision | Stop LoRA promotion; retain champion |
+| Area | Start here |
+|---|---|
+| System and model | [System card](docs/SYSTEM_CARD.md) · [Model card](docs/MODEL_CARD.md) · [System boundary](docs/SYSTEM_BOUNDARY.md) |
+| Data and evaluation | [Data card](docs/DATA_CARD.md) · [Evaluation protocol](docs/EVALUATION_PROTOCOL.md) · [Champion–challenger card](docs/CHAMPION_CHALLENGER_CARD.md) |
+| Safety evidence | [Calibration](docs/CALIBRATION_CARD.md) · [Uncertainty and OOD](docs/UNCERTAINTY_OOD_CARD.md) · [Robustness](docs/ROBUSTNESS_EVALUATION_CARD.md) |
+| Privacy and service | [Privacy and audit](docs/PRIVACY_AUDIT_CARD.md) · [Routing policy](docs/RISK_ROUTING_POLICY.md) · [Service boundary](docs/SERVICE_BOUNDARY.md) |
+| Operations | [Deployment profiles](docs/DEPLOYMENT_PROFILES.md) · [Observability](docs/OBSERVABILITY.md) · [Continuous integration](docs/CONTINUOUS_INTEGRATION.md) |
+| Governance | [Governance inventory](docs/governance/README.md) · [Threat model](docs/governance/governed-banking-intent-router-threat-model.md) · [NIST AI RMF mapping](docs/governance/NIST_AI_RMF_MAPPING.md) |
 
-The weakest primary family was typographical error at 16.67% acceptable-intent accuracy. Three
-expected-security cases were under-routed, while three unrelated requests were over-routed to
-security after closed-set predictions. These cases are failure-discovery evidence, not population
-estimates.
+## Project status
 
-## Verified Module 12 registry decision
+The target release is **v0.2.0 research preview**. It is not labelled v1.0 because:
 
-| Measure | Registered result |
-|---|---:|
-| Current champion | TF-IDF word+character logistic regression |
-| Registered challengers | Frozen RoBERTa, original/revised LoRA, planned full RoBERTa |
-| Promotion-eligible challenger evidence | 0 |
-| External evaluation lock | Missing |
-| Current decision | Retain champion |
-| Automatic promotion | Prohibited |
-| Production deployment | Not approved |
-| Module 10 shadow service aligned with champion | No |
+- uncertainty and robustness promotion gates have not passed;
+- BANKING77 and authored synthetic cases are not representative production banking data;
+- the served LoRA research model is not the retained TF-IDF champion;
+- real CUDA prediction parity remains to be established; and
+- accountable release approval has not been recorded.
 
-The service mismatch is intentional and visible: Module 10 is a bounded LoRA research service, not
-the approved champion deployment.
+This limitation is a governance feature, not a missing disclaimer: the repository is designed to
+show how evidence can stop an unsafe promotion.
 
-## Verified Module 11 local execution evidence
+## Responsible use
 
-| Measure | Registered result |
-|---|---:|
-| Explicit CPU tensor probe | Pass |
-| Explicit MPS tensor probe | Pass — Apple M4 |
-| MPS prediction cases | 12/12 completed |
-| Input or redacted text persisted | No |
-| Official test or customer data accessed | No |
-| Explicit CUDA request on the Mac | Failed closed; no fallback |
-| Real CUDA prediction evidence | **Pending Colab execution** |
-| MPS–CUDA parity decision | **Not yet available** |
+Use this repository for research, education, reproducibility studies and development of governed
+AI-routing patterns. Do not use it as a substitute for banking operations, fraud investigation,
+identity verification, regulated advice or autonomous customer decision-making.
 
-The MPS reference is bound to the runtime profile, service configuration, fixture, privacy policy,
-routing policy, calibration report, checkpoint files and implementation hashes. See the
-[cross-platform accelerator decision](docs/decisions/0002-cross-platform-accelerators.md).
+Known limitations include benchmark-only training data, regex-based PII recognition, synthetic
+robustness cases and unapproved uncertainty thresholds. Any real deployment requires representative
+data, privacy and security review, domain-expert validation, accountable approval and continuous
+human oversight.
 
-## Verified Module 10 local integration evidence
+## Contributing
 
-| Measure | Registered result |
-|---|---:|
-| Runtime | Apple MPS |
-| Model/API startup | 0.9031 seconds |
-| Measured sequential requests | 36/36 HTTP 200 |
-| Mean / p50 / p95 latency | 67.00 / 13.34 / 299.25 ms |
-| Registered p95 maximum | 750 ms — pass |
-| Metadata-only audit events | 39/39 validated |
-| Security-boundary checks | 7/7 passed |
-| Original or redacted value matches | 0 |
-| `suggest_queue` actions | 0 |
-
-The latency run used an in-process client on one Mac and included inference, routing and an
-`fsync`-backed local audit append. It is not a throughput test or service-level objective. See the
-[Module 10 service boundary](docs/SERVICE_BOUNDARY.md).
-
-## Verified Module 9 control evidence
-
-| Control | Registered synthetic result |
-|---|---:|
-| PII cases | 23/23 matched expected output |
-| Registered PII detector classes exercised | 11/11 |
-| Routing safety cases | 8/8 matched expected action and queue |
-| Metadata-only audit events round-tripped | 24/24 |
-| Original or redacted message values found in audit serialization | 0 |
-| `suggest_queue` actions | 0 |
-| Local audit directory/file modes | `0700` / `0600` |
-
-These results verify code behaviour only against the versioned fixtures. The recognizers do not
-detect free-form names or all contextual identifiers, and the local JSONL sink is not a production
-logging platform. See the [privacy and audit card](docs/PRIVACY_AUDIT_CARD.md) and
-[deterministic routing policy](docs/RISK_ROUTING_POLICY.md).
-
-## Verified Module 8 assessment evidence
-
-The selected signal and threshold differ by seed because selection was performed independently on
-each seed's development roles. None may be changed after assessment.
-
-| Seed | Selected signal | Known coverage | Selective risk | Synthetic possible-OOD recall | AUROC | Gate |
-|---:|---|---:|---:|---:|---:|---|
-| 17 | Inverse normalized entropy | 0.9200 | 0.0609 | 0.8542 | 0.9546 | Fail |
-| 42 | Maximum probability | 0.9362 | 0.0597 | 0.8750 | 0.9586 | Fail |
-| 73 | Inverse normalized entropy | 0.8827 | 0.0725 | 0.9375 | 0.9699 | Fail |
-| **Mean** | — | **0.9129** | **0.0643** | **0.8889** | **0.9611** | **Fail** |
-
-The ranking result is strong but operational performance is insufficient. AUROC around 0.96 does
-not imply a safe threshold: seeds 17 and 42 missed the 90% synthetic possible-OOD recall target,
-and every seed exceeded the 5% selective-risk ceiling. Public-services and shopping/delivery
-requests were recurring false accepts. See the
-[uncertainty and possible-OOD card](docs/UNCERTAINTY_OOD_CARD.md).
-
-## Verified Module 7 calibration evidence
-
-Metrics below use only each seed's held-out `calibration_assessment` rows. Lower is better.
-
-| Seed | Temperature | Assessment rows | ECE raw → scaled | NLL raw → scaled | Brier raw → scaled |
-|---:|---:|---:|---:|---:|---:|
-| 17 | 0.8285 | 750 | 0.0555 → 0.0334 | 0.3378 → 0.3234 | 0.1354 → 0.1317 |
-| 42 | 0.8910 | 751 | 0.0463 → 0.0265 | 0.3216 → 0.3090 | 0.1404 → 0.1375 |
-| 73 | 0.8924 | 750 | 0.0391 → 0.0242 | 0.3926 → 0.3846 | 0.1611 → 0.1589 |
-| **Mean** | **0.8706** | — | **0.0470 → 0.0280** | **0.3507 → 0.3390** | **0.1456 → 0.1427** |
-
-All registered point-estimate gates passed and zero assessment predictions changed. Paired
-bootstrap intervals support lower NLL and Brier score for every seed. The seed-73 interval for the
-ECE change crosses zero, however, and maximum calibration error is unstable in sparsely populated
-bins. The credible conclusion is therefore narrower than “the model is calibrated”: scalar
-temperature scaling improved several assessment-set probability-quality measures in this
-post-selection experiment. See the [calibration card](docs/CALIBRATION_CARD.md).
-
-## Verified Module 6 validation evidence
-
-| Seed | Best epoch | Best validation macro-F1 |
-|---:|---:|---:|
-| 17 | 8 | 0.9006 |
-| 42 | 8 | 0.9026 |
-| 73 | 6 | 0.8890 |
-| **Mean ± sample SD** | — | **0.8974 ± 0.0073** |
-
-These values describe validation behaviour only. They cannot be compared with Module 5's official
-test result as evidence of improved generalisation. Seeds 17 and 42 still peaked at the eight-epoch
-boundary, so full convergence is not established. See the
-[multi-seed exploratory card](docs/MULTISEED_EXPLORATORY_CARD.md).
-
-## Verified Module 5 comparison
-
-Both models were evaluated on the same 3,080 official test rows:
-
-| Metric | TF-IDF | Frozen RoBERTa | LoRA RoBERTa |
-|---|---:|---:|---:|
-| Accuracy | **0.9052** | 0.8961 | 0.8273 |
-| Macro-F1 | **0.9053** | 0.8964 | 0.8202 |
-| Weighted-F1 | **0.9053** | 0.8964 | 0.8202 |
-| Log-loss | 0.4970 | **0.3990** | 0.7746 |
-| Top-3 accuracy | 0.9705 | **0.9718** | 0.9497 |
-
-Frozen RoBERTa corrected 135 rows missed by TF-IDF, while TF-IDF corrected 163 rows missed by
-RoBERTa. Their paired exact McNemar p-value is 0.1177, which does not establish equivalence. The
-results suggest complementarity, but not that generic frozen embeddings beat the lexical baseline.
-
-The rank-8 LoRA candidate trained 944,717 parameters (0.7519%) and won validation, but finished
-0.0851 macro-F1 below TF-IDF and 0.0762 below frozen RoBERTa. Its validation curve improved in every
-epoch, so the defensible conclusion is that this registered protocol underfit—not that LoRA is
-generally inferior. Its Module 5 probabilities were uncalibrated; Module 7 later evaluated scalar
-temperature scaling on the revised multi-seed checkpoints. See the
-[LoRA baseline card](docs/LORA_BASELINE_CARD.md).
-
-## Evidence contract
-
-- The official test split is not used for training, checkpoint selection, calibration or threshold
-  selection.
-- Model comparisons use the same data policy and report seeds 17, 42 and 73.
-- Public results include macro-F1, per-intent failures, calibration and risk-coverage behaviour.
-- Synthetic unknown-request tests are identified as synthetic and not presented as production
-  evidence.
-- Unverified results are never promoted from notebooks into the README.
-
-See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.md) and
-[evaluation protocol](docs/EVALUATION_PROTOCOL.md).
-
-## Planned modules
-
-1. Mac/MPS foundation and evaluation contract - **complete**
-2. Immutable BANKING77 loader and split-integrity tests - **complete**
-3. TF-IDF logistic-regression baseline - **complete**
-4. Frozen RoBERTa embedding baseline - **complete**
-5. LoRA-adapted RoBERTa baseline - **complete; registered protocol underfit**
-6. Multi-seed manifests, revised development protocol and aggregation - **complete; exploratory**
-7. Temperature scaling and calibration assessment - **complete; exploratory**
-8. Uncertainty, selective prediction and possible-OOD evaluation - **complete; gates failed**
-9. PII controls, risk policy and metadata-only auditing - **complete; synthetic control evidence**
-10. FastAPI service and local MPS integration evidence - **complete; production release prohibited**
-11. Cross-platform runtime and prediction parity - **MPS/CPU verified; real CUDA run pending**
-12. Champion–challenger registry and promotion gates - **framework complete; external lock missing**
-13. Synthetic robustness evaluation - **complete; classification and safety-routing gates failed**
-14. Deployable service profiles - **native MPS verified; CPU/CUDA container execution pending**
-15. Privacy-safe OpenTelemetry observability - **native MPS emission verified; backend pending**
-16. Continuous integration and supply-chain controls - **implemented; hosted CI run pending**
-17. Governance and operational documentation - **implemented; release approval pending**
-18. Open-source release and adoption - **planned; v0.2.0 research preview not yet released**
-
-## Responsible-use limitations
-
-- BANKING77 is a public benchmark, not representative bank traffic.
-- Confidence and entropy do not prove that a request is in distribution.
-- Regex-based PII redaction cannot identify every contextual identifier.
-- Banking operations, fraud, privacy and compliance specialists must review any real deployment.
+Evidence-changing contributions should preserve data separation, deterministic policies, artifact
+hashes and the claims register. Open a
+[GitHub issue](https://github.com/BenjaminAkyen/governed-banking-intent-router/issues) before a
+substantial model, policy or governance change.
 
 ## Licence
 
-Project code is released under the [MIT License](LICENSE). The pinned RoBERTa model and BANKING77
-dataset have separate upstream terms and attribution requirements. See
-[Third-party notices](THIRD_PARTY_NOTICES.md) before redistributing data, model files or adapters.
-
-Before publishing a release, run the repository's
-[publication-hygiene check](docs/PUBLICATION_HYGIENE.md) to detect machine-specific paths,
-credential signatures and accidentally tracked runtime artifacts.
+Project code is released under the [MIT License](LICENSE). BANKING77, RoBERTa and other upstream
+assets retain their own licences and redistribution terms. Review
+[Third-party notices](THIRD_PARTY_NOTICES.md) before distributing datasets, checkpoints, adapters or
+derived artifacts.
