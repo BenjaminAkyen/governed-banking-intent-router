@@ -29,6 +29,4 @@ licence. The repository does not redistribute the raw BANKING77 train or test fi
 - Project handling: the pretrained snapshot and locally trained adapters are excluded from Git;
   committed evidence records their identifiers and hashes.
 
-Before publishing adapter weights, a release owner must verify the base-model notice, BANKING77
-attribution, generated model card and the exact files included in that release. Dependency licences
-remain governed by their respective packages.
+

@@ -1,7 +1,7 @@
 {
   "artifact_type": "module11_real_hardware_runtime_report",
   "claim_scope": "hardware_runtime_verification_not_model_quality",
-  "created_at_utc": "2026-08-21T15:32:22.437738+00:00",
+  "created_at_utc": "2026-08-21T15:41:33.797340+00:00",
   "data_boundary": {
     "customer_data_access": false,
     "model_inference_performed": false,
@@ -38,7 +38,7 @@
     "require_accelerator": true,
     "schema_version": 1
   },
-  "report_sha256": "d6dc1e68fb83eb078ccba1c65c1d7eaa9aeb90c8c492fe40774c753e2b82bc35",
+  "report_sha256": "9c59a4f7dac4a36091c5a1fde031fcd6c50da3f7b02064e16fcf5bc6e450248f",
   "runtime": {
     "accelerator_name": "Apple M4",
     "compute_capability": null,

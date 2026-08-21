@@ -1134,7 +1134,7 @@
   ],
   "claim_scope": "cross_device_numerical_and_decision_parity_not_model_quality",
   "config_sha256": "ddc5bf11e6e7afaefdac5baaf815ccefaad764cae8b988370872beecb373e780",
-  "created_at_utc": "2026-08-21T15:32:26.687771+00:00",
+  "created_at_utc": "2026-08-21T15:41:37.387985+00:00",
   "data_boundary": {
     "customer_data_access": false,
     "fixture_is_synthetic": true,
@@ -1228,7 +1228,7 @@
     "verify_my_identity",
     "country_support"
   ],
-  "report_sha256": "afbe52bff60cc62b3e3a3fdc51c4efae264728984b7dd9e553e9550c307ecead",
+  "report_sha256": "9373e1c1193304bbb9341f9664de855a82ac0ca56687ab4aef49e2e8f2050667",
   "runtime": {
     "accelerator_name": "Apple M4",
     "compute_capability": null,
