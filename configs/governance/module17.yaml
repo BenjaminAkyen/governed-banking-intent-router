@@ -1,0 +1,66 @@
+schema_version: 1
+governance_version: module17-research-preview-v1
+effective_date: 2026-08-21
+accountable_organisation: INNETWORK Technology Limited
+release_target: v0.2.0
+release_classification: research_preview
+approval_status: pending_release_approval
+production_approved: false
+operating_assumptions:
+  operating_mode: shadow_review_only
+  autonomous_routing_permitted: false
+  banking_actions_permitted: false
+  real_customer_data_permitted: false
+  permitted_data:
+    - pinned_public_banking77
+    - labelled_synthetic_fixtures
+  public_internet_origin_permitted: false
+  deployment_boundary: local_or_private_gateway_only
+  tenancy: single_organisation_research
+  current_champion: tfidf-word-char-c4
+  currently_served_shadow_model: lora-roberta-r8-revised
+  champion_service_aligned: false
+roles:
+  accountable_system_owner:
+    organisation: INNETWORK Technology Limited
+    release_veto: true
+  model_risk_reviewer:
+    independent_from_change_author_for_high_risk_changes: true
+    release_veto: true
+  security_and_privacy_reviewer:
+    incident_authority: true
+    release_veto: true
+  service_operator:
+    may_disable_service: true
+    may_change_model_or_policy_without_approval: false
+  human_queue_reviewer:
+    may_override_advisory_output: true
+    may_execute_banking_action_from_router_output_alone: false
+review:
+  governance_review_interval_days: 90
+  validation_required_every_release: true
+  revalidation_required_after_material_change: true
+  incident_exercises_interval_days: 180
+mandatory_documents:
+  model_card: docs/MODEL_CARD.md
+  data_card: docs/DATA_CARD.md
+  system_card: docs/SYSTEM_CARD.md
+  intended_use: docs/governance/INTENDED_USE.md
+  risk_register: docs/governance/RISK_REGISTER.md
+  threat_model: docs/governance/governed-banking-intent-router-threat-model.md
+  human_oversight: docs/governance/HUMAN_OVERSIGHT.md
+  incident_response: docs/governance/INCIDENT_RESPONSE.md
+  rollback: docs/governance/ROLLBACK_PROCEDURE.md
+  change_approval: docs/governance/CHANGE_APPROVAL.md
+  monitoring: docs/governance/MONITORING_PLAN.md
+  validation: docs/governance/VALIDATION_REVALIDATION_POLICY.md
+  nist_ai_rmf_mapping: docs/governance/NIST_AI_RMF_MAPPING.md
+release_blockers:
+  - representative_external_evaluation_missing
+  - uncertainty_operating_point_gates_failed
+  - robustness_classification_and_security_routing_gates_failed
+  - served_model_is_not_registered_champion
+  - real_cuda_evidence_missing
+  - linux_serving_container_runtime_evidence_missing
+  - identity_provider_not_configured
+  - release_change_approval_pending

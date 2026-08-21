@@ -1,5 +1,16 @@
 # BANKING77 Data Card
 
+## Module 17 governance status
+
+The v0.2.0 research preview permits only the pinned public BANKING77 source and labelled synthetic
+fixtures. Real customer or bank data is prohibited. Any proposal to introduce operational data is
+a material scope change requiring provenance, lawful-basis, privacy, access-control, retention,
+representativeness, leakage and independent approval records before collection or access.
+
+Data owner role: `model_risk_reviewer`. Accountable organisation: INNETWORK Technology Limited.
+Review is required every release, after any source or split change, after a data-related incident
+and at least every 90 days while the project remains active.
+
 ## Intended use in this project
 
 BANKING77 is used as a public benchmark for research into governed intent routing. It supports

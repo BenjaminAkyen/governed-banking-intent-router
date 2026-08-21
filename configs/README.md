@@ -85,3 +85,8 @@ container, trusted-gateway origin authentication and an immutable rollback refer
 accelerator requests fail when unavailable. Every profile preserves shadow-review-only mode, binds
 the Module 10 research adapter and records that the served model is not the champion, Module 13
 gates failed and production use is not approved.
+
+`governance/module17.yaml` registers the confirmed research-preview assumptions, INNETWORK
+Technology Limited's role-based accountability, review cadence, mandatory governance inventory and
+release blockers. It does not approve v0.2.0 or production use; the separate change record remains
+pending until real accountable roles record their decisions.
