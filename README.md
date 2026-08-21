@@ -158,7 +158,7 @@ The development service binds to `127.0.0.1:8000` and exposes:
 - `POST /v1/route`
 
 Deployment-specific authentication and runtime profiles are documented in
-[Deployable service profiles](docs/DEPLOYMENT_PROFILES.md).
+[Operations](docs/OPERATIONS.md).
 
 ## Runtime profiles
 
@@ -190,11 +190,9 @@ MPS runs natively on macOS; it is not presented as available inside a standard L
 
 | Area | Start here |
 |---|---|
-| System and model | [System card](docs/SYSTEM_CARD.md) · [Model card](docs/MODEL_CARD.md) · [System boundary](docs/SYSTEM_BOUNDARY.md) |
-| Data and evaluation | [Data card](docs/DATA_CARD.md) · [Evaluation protocol](docs/EVALUATION_PROTOCOL.md) · [Champion–challenger card](docs/CHAMPION_CHALLENGER_CARD.md) |
-| Safety evidence | [Calibration](docs/CALIBRATION_CARD.md) · [Uncertainty and OOD](docs/UNCERTAINTY_OOD_CARD.md) · [Robustness](docs/ROBUSTNESS_EVALUATION_CARD.md) |
-| Privacy and service | [Privacy and audit](docs/PRIVACY_AUDIT_CARD.md) · [Routing policy](docs/RISK_ROUTING_POLICY.md) · [Service boundary](docs/SERVICE_BOUNDARY.md) |
-| Operations | [Deployment profiles](docs/DEPLOYMENT_PROFILES.md) · [Observability](docs/OBSERVABILITY.md) · [Continuous integration](docs/CONTINUOUS_INTEGRATION.md) |
+| Overview | [Documentation index](docs/README.md) · [Architecture](docs/ARCHITECTURE.md) · [Operations](docs/OPERATIONS.md) |
+| Models and data | [Model card](docs/MODEL_CARD.md) · [Data card](docs/DATA_CARD.md) · [System card](docs/SYSTEM_CARD.md) |
+| Evaluation and claims | [Evaluation](docs/EVALUATION.md) · [Claims register](docs/CLAIMS_REGISTER.md) |
 | Governance | [Governance inventory](docs/governance/README.md) · [Threat model](docs/governance/governed-banking-intent-router-threat-model.md) · [NIST AI RMF mapping](docs/governance/NIST_AI_RMF_MAPPING.md) |
 
 ## Project status

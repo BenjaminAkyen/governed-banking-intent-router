@@ -1,6 +1,6 @@
 # BANKING77 Data Card
 
-## Module 17 governance status
+## Governance status
 
 The v0.2.0 research preview permits only the pinned public BANKING77 source and labelled synthetic
 fixtures. Real customer or bank data is prohibited. Any proposal to introduce operational data is
@@ -72,7 +72,7 @@ manifest and automated tests.
   risk appetite.
 - This project does not redistribute the raw data. Users must review upstream terms before use.
 
-## Module 8 synthetic possible-OOD fixture
+## Synthetic possible-OOD fixture
 
 `data/fixtures/synthetic-possible-ood.jsonl` contains 96 authored messages across 12 non-banking
 domains and 48 scenario groups. It contains no customer data. Scenario groups—not individual
@@ -84,7 +84,7 @@ production OOD detection, reflect unknown-request prevalence or represent real l
 adversarial diversity. Every published result derived from it must be labelled synthetic and use
 the term “possible OOD.”
 
-## Module 9 synthetic control fixtures
+## Synthetic control fixtures
 
 `data/fixtures/pii-redaction-cases.jsonl` contains 23 authored positive and negative cases covering
 the 11 registered structured-PII detectors. Values use documentation ranges and synthetic examples;
@@ -100,7 +100,7 @@ Neither fixture estimates production prevalence, precision, recall, demographic 
 adversarial robustness. Real evaluation requires lawfully sourced, representative and access-
 controlled data with privacy and domain-owner approval.
 
-## Module 10 synthetic API fixture
+## Synthetic API fixture
 
 `data/fixtures/api-shadow-cases.jsonl` contains 12 authored requests for local end-to-end service
 checks. It includes synthetic structured identifiers and controlled robustness categories; it

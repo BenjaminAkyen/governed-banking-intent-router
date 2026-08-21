@@ -21,7 +21,7 @@ operational or independent element is missing), or **gap** (required evidence do
 | Outcome | Status | Project evidence and remaining work |
 |---|---|---|
 | GOVERN 1.1 legal/regulatory requirements | Gap | Prohibited-use and privacy boundaries exist, but no jurisdiction-specific banking/privacy/legal assessment is approved. |
-| GOVERN 1.2 trustworthy-AI policies | Partial | Module 17 cards, risk, validation, monitoring, incident and change procedures exist; operational adoption is untested. |
+| GOVERN 1.2 trustworthy-AI policies | Partial | System cards plus risk, validation, monitoring, incident and change procedures exist; operational adoption is untested. |
 | GOVERN 1.3 risk tolerance | Implemented for research | `governance/risk-register.yaml` defines scoring and prohibits accepting high/critical residual risk for production. |
 | GOVERN 1.4 transparent risk documentation | Implemented | Claims register, evidence cards, limitations and machine-readable governance contract. |
 | GOVERN 1.5 monitoring and periodic review | Partial | Cadence, indicators, incident and override procedures exist; live backend, alerts and pilot baselines are absent. |

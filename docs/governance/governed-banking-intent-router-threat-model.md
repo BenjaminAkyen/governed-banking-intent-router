@@ -12,7 +12,8 @@ operational evidence are absent. Production use remains prohibited.
 
 In scope: runtime code under `src/governed_banking/`; registered `configs/`; container, gateway,
 Kubernetes and observability templates under `deploy/`; CI workflows; model/data evidence and the
-human operational processes in Module 17. Runtime threats are distinguished from CI/developer
+human operational processes in the research-preview governance boundary. Runtime threats are
+distinguished from CI/developer
 threats and synthetic test inputs.
 
 Confirmed assumptions:
@@ -78,7 +79,7 @@ assumed control.
 - Developer/Dependabot → CI → release artifacts: source and dependency changes enter GitHub-hosted
   jobs; SHA-pinned Actions, least privilege, tests, CodeQL, dependency/secret scanning and SBOM exist,
   while signed release provenance and hash-locked dependencies do not
-  (`.github/workflows/quality.yml`, `docs/CONTINUOUS_INTEGRATION.md`).
+  (`.github/workflows/quality.yml`, `docs/OPERATIONS.md`).
 
 #### Diagram
 
@@ -184,8 +185,8 @@ flowchart LR
 | TM-005 | Remote attacker | Reachable endpoint and sufficient identities/sources | Flood expensive inference and fill per-process queues | Denial of advisory service and reviewer delay | Availability, human workflow | Body limit, timeouts, bounded queue/concurrency, local rate limiter (`deployment_service.py`) | Limiter is per-process; no verified gateway/global quota or load test | Enforce distributed gateway quota, autoscaling/circuit breakers and registered capacity tests | Queue rejection, timeout, concurrency and latency alerts | Medium | Medium | Medium |
 | TM-006 | Attacker or infrastructure failure | Audit/telemetry backend unavailable or compromised | Suppress, poison or delete operational evidence | Detection and forensic gaps; audit failure also denies service | Audit, telemetry, availability | Audit append fail-closed; versioned allowlisted metrics (`api.py`, `observability.py`) | Local JSONL is mutable; real backend/alerts unverified | Append-only/WORM central store, authenticated encrypted export, redundancy and access audit | Missing-event reconciliation, exporter/append failure and version discontinuity alerts | Medium | Medium | Medium |
 | TM-007 | Local user/container escape | Filesystem or volume write access | Replace model/config or tamper with audit records | Misrouting, false evidence or lost traceability | Models, policy, audit | Non-root/read-only templates, hashes, immutable revision strategy (`deploy/kubernetes/router.yaml.template`) | Model/audit volumes require writes/trust; runtime signing absent | Separate read-only signed model mount from append-only audit service; least-privilege service account | File-integrity/signature and audit-chain verification | Low under private single-tenant assumption | High | Medium |
-| TM-008 | Operator error | Templates treated as deployment-ready | Leave placeholders, expose origin, use mutable image or wrong champion | Broad control bypass or misleading production claim | Service, identity, models, users | Templates declare `production_approved: false`; deployment validation and docs (`DEPLOYMENT_PROFILES.md`) | No admission policy or deployed configuration evidence | Policy-as-code reject placeholders/mutable images/public service; deployment review checklist | CI manifest scan and cluster posture alerts | Medium | High | High |
-| TM-009 | Insider or overloaded reviewer | Reviewer access plus weak separation/capacity | Rubber-stamp model output or feed unreviewed corrections into training | Unsafe decisions, bias reinforcement or poisoning | Human decisions, future data/model | Override authority, feedback quarantine, approval roles (`HUMAN_OVERSIGHT.md`, `SYSTEM_BOUNDARY.md`) | Named assignments, training, workload and independent-review evidence absent | Train reviewers, enforce separation, monitor workload/overrides, approve feedback dataset separately | Override distribution, queue age, reviewer agreement and feedback provenance checks | Medium | High | High |
+| TM-008 | Operator error | Templates treated as deployment-ready | Leave placeholders, expose origin, use mutable image or wrong champion | Broad control bypass or misleading production claim | Service, identity, models, users | Templates declare `production_approved: false`; deployment validation and `docs/OPERATIONS.md` | No admission policy or deployed configuration evidence | Policy-as-code reject placeholders/mutable images/public service; deployment review checklist | CI manifest scan and cluster posture alerts | Medium | High | High |
+| TM-009 | Insider or overloaded reviewer | Reviewer access plus weak separation/capacity | Rubber-stamp model output or feed unreviewed corrections into training | Unsafe decisions, bias reinforcement or poisoning | Human decisions, future data/model | Override authority, feedback quarantine, approval roles (`HUMAN_OVERSIGHT.md`, `docs/ARCHITECTURE.md`) | Named assignments, training, workload and independent-review evidence absent | Train reviewers, enforce separation, monitor workload/overrides, approve feedback dataset separately | Override distribution, queue age, reviewer agreement and feedback provenance checks | Medium | High | High |
 
 ## Criticality calibration
 

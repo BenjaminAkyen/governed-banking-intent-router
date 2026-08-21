@@ -8,8 +8,8 @@ message hashes.
 
 ## Registered telemetry
 
-Module 15 registers request/error counts, latency, model-loading duration, selected device, model
-and policy versions, human-review rate, security-escalation rate, redaction-category counts,
+The service registers request/error counts, latency, model-loading duration, selected device,
+model and policy versions, human-review rate, security-escalation rate, redaction-category counts,
 uncertainty distribution and routing-distribution change. Attribute values are fixed and
 allowlisted in `configs/observability.yaml`.
 

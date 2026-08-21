@@ -2,8 +2,9 @@
 
 ## Status and decision
 
-This card describes the model inventory at Module 17. The target release is **v0.2.0 research
-preview**. No model is approved for production banking use.
+This card describes the model inventory for the **v0.2.0 research preview**.
+
+**No model is approved for production banking use.**
 
 TF-IDF word-and-character logistic regression (`tfidf-word-char-c4`) is the registered champion.
 The shadow API currently serves the revised rank-8 LoRA-RoBERTa challenger
@@ -51,8 +52,8 @@ or threshold access.
 | Revised LoRA three-seed validation macro-F1 | 0.8974 mean | Post-test development evidence, not independent confirmation |
 | Revised LoRA scaled calibration-assessment ECE | 0.0280 mean | Improved selected measures on reused validation pools |
 | Revised LoRA synthetic possible-OOD AUROC | 0.9611 mean | Ranking evidence only; operating thresholds failed |
-| Module 13 acceptable-intent accuracy | 68.52% | Failed the registered 80% synthetic robustness gate |
-| Module 13 expected-security routing recall | 78.57% | Failed the registered 100% gate |
+| Synthetic robustness acceptable-intent accuracy | 68.52% | Failed the registered 80% gate |
+| Synthetic robustness expected-security routing recall | 78.57% | Failed the registered 100% gate |
 
 Uncertainty is diagnostic only. All seeds exceeded the registered 5% selective-risk ceiling; two
 seeds also missed the synthetic possible-OOD recall target. The policy therefore cannot use these
@@ -94,11 +95,13 @@ Use is permitted only under `docs/governance/INTENDED_USE.md` and
 Operational risks and monitoring requirements are recorded in `governance/risk-register.yaml` and
 `docs/governance/MONITORING_PLAN.md`.
 
+The consolidated experimental protocol and results are maintained in `docs/EVALUATION.md`.
+
 ## Card maintenance
 
 - Owner: `model_risk_reviewer`
 - Accountable organisation: INNETWORK Technology Limited
 - Review: every release, after a material model/data/policy change, after a relevant incident and
   at least every 90 days while active
-- Version: `module17-research-preview-v1`
+- Version: `v0.2.0-research-preview`
 - Effective date: 2026-08-21

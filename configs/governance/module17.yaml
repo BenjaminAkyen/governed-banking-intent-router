@@ -1,5 +1,5 @@
 schema_version: 1
-governance_version: module17-research-preview-v1
+governance_version: v0.2.0-research-preview-v2
 effective_date: 2026-08-21
 accountable_organisation: INNETWORK Technology Limited
 release_target: v0.2.0
@@ -63,5 +63,4 @@ release_blockers:
   - real_cuda_evidence_missing
   - linux_serving_container_runtime_evidence_missing
   - identity_provider_not_configured
-  - publication_hygiene_failed_on_committed_notebook_output
   - release_change_approval_pending

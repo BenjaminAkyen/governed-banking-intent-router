@@ -1,5 +1,5 @@
 schema_version: 1
-register_version: module17-risk-register-v1
+register_version: v0.2.0-risk-register-v1
 as_of: 2026-08-21
 accountable_organisation: INNETWORK Technology Limited
 scoring:
@@ -26,7 +26,7 @@ risks:
     treatment: avoid_production_use_and_obtain_governed_representative_external_evaluation
     evidence:
       - docs/DATA_CARD.md
-      - docs/CHAMPION_CHALLENGER_CARD.md
+      - docs/EVALUATION.md
   - id: R-002
     title: Uncertainty thresholds permit unsafe confident errors
     category: model
@@ -40,7 +40,7 @@ risks:
     residual: {likelihood: 3, impact: 4, score: 12, band: high}
     treatment: retain_human_review_and_revalidate_thresholds_on_external_data
     evidence:
-      - docs/UNCERTAINTY_OOD_CARD.md
+      - docs/EVALUATION.md
       - configs/routing_policy.yaml
   - id: R-003
     title: Served LoRA challenger is not the registered champion
@@ -56,7 +56,7 @@ risks:
     treatment: deploy_only_an_approved_registry_model_after_external_validation
     evidence:
       - reports/champion/champion-registry.json
-      - docs/CHAMPION_CHALLENGER_CARD.md
+      - docs/EVALUATION.md
   - id: R-004
     title: Security-sensitive request is routed incorrectly
     category: customer_safety
@@ -71,8 +71,8 @@ risks:
     residual: {likelihood: 3, impact: 5, score: 15, band: high}
     treatment: require_human_triage_and_representative_security_case_validation
     evidence:
-      - docs/RISK_ROUTING_POLICY.md
-      - docs/ROBUSTNESS_EVALUATION_CARD.md
+      - docs/ARCHITECTURE.md
+      - docs/EVALUATION.md
   - id: R-005
     title: Customer or credential data leaks through processing or telemetry
     category: privacy_security
@@ -87,8 +87,8 @@ risks:
     residual: {likelihood: 2, impact: 5, score: 10, band: high}
     treatment: add_production_dlp_and_adversarial_privacy_validation_before_any_pilot
     evidence:
-      - docs/PRIVACY_AUDIT_CARD.md
-      - docs/OBSERVABILITY.md
+      - docs/ARCHITECTURE.md
+      - docs/OPERATIONS.md
   - id: R-006
     title: Ambiguous adversarial or multi-intent text causes misrouting
     category: robustness
@@ -102,7 +102,7 @@ risks:
     residual: {likelihood: 3, impact: 4, score: 12, band: high}
     treatment: expand_external_multilingual_and_adversarial_evaluation
     evidence:
-      - docs/ROBUSTNESS_EVALUATION_CARD.md
+      - docs/EVALUATION.md
   - id: R-007
     title: Model policy or configuration artifact is tampered with
     category: integrity
@@ -118,7 +118,7 @@ risks:
     treatment: sign_release_artifacts_and_enforce_protected_branch_reviews
     evidence:
       - src/governed_banking/deployment_config.py
-      - docs/CONTINUOUS_INTEGRATION.md
+      - docs/OPERATIONS.md
   - id: R-008
     title: Gateway or authentication misconfiguration exposes the origin
     category: access_control
@@ -149,7 +149,7 @@ risks:
     treatment: enforce_distributed_gateway_limits_and_load_test_before_pilot
     evidence:
       - src/governed_banking/deployment_service.py
-      - docs/DEPLOYMENT_PROFILES.md
+      - docs/OPERATIONS.md
   - id: R-010
     title: Audit or telemetry failure prevents detection and reconstruction
     category: observability
@@ -194,7 +194,7 @@ risks:
     treatment: train_reviewers_measure_overrides_and_test_workload_before_pilot
     evidence:
       - docs/governance/HUMAN_OVERSIGHT.md
-      - docs/SYSTEM_BOUNDARY.md
+      - docs/ARCHITECTURE.md
   - id: R-013
     title: Dependency or CI compromise alters build or release artifacts
     category: supply_chain

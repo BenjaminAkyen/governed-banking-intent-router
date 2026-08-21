@@ -1,24 +1,58 @@
-# Module 17 governance inventory
+# Governance and assurance
 
-The canonical machine-readable contract is `configs/governance/module17.yaml`.
+The governance set defines the current research boundary, accountable roles, release vetoes and
+operational procedures. It is evidence of documented controls—not regulatory certification,
+production approval or proof that the controls are operational in a bank.
 
-| Artifact | Purpose |
+## Current decision
+
+| Attribute | Value |
 |---|---|
-| `docs/MODEL_CARD.md` | Model inventory, evidence, limitations and decision status |
-| `docs/DATA_CARD.md` | Dataset provenance, permitted data and representativeness limits |
-| `docs/SYSTEM_CARD.md` | End-to-end system, components, evidence and deployment boundary |
-| `docs/governance/INTENDED_USE.md` | Permitted and prohibited uses plus scope-change rule |
-| `governance/risk-register.yaml` | Canonical risks, scores, controls, owners and treatments |
-| `docs/governance/RISK_REGISTER.md` | Risk methodology and current summary |
-| `docs/governance/governed-banking-intent-router-threat-model.md` | Repository-grounded AppSec threat model |
-| `docs/governance/HUMAN_OVERSIGHT.md` | Reviewer authority, escalation and feedback quarantine |
-| `docs/governance/INCIDENT_RESPONSE.md` | AI incident severity, containment, recovery and learning |
-| `docs/governance/ROLLBACK_PROCEDURE.md` | Immutable revision rollback and verification |
-| `docs/governance/CHANGE_APPROVAL.md` | Change classes, required reviews and decision rules |
-| `governance/change-approvals/module17.yaml` | Honest pending Module 17 approval record |
-| `docs/governance/MONITORING_PLAN.md` | Privacy-safe indicators, triggers and current gaps |
-| `docs/governance/VALIDATION_REVALIDATION_POLICY.md` | Validation layers, gates and revalidation triggers |
-| `docs/governance/NIST_AI_RMF_MAPPING.md` | Current-state Govern, Map, Measure and Manage mapping |
+| Release target | v0.2.0 research preview |
+| Production approved | No |
+| Real customer data permitted | No |
+| Autonomous routing permitted | No |
+| Current mode | `shadow_review_only` |
+| Release approval | Pending |
 
-These artifacts permit research governance review. They do not create production, legal,
-regulatory or release approval. Module 18 must preserve all failed gates and unresolved blockers.
+The machine-readable contract is `configs/governance/module17.yaml`. The filename is retained as a
+stable historical identifier; the maintained public documentation is organised by concern rather
+than development module.
+
+## Documents
+
+| Document | Control objective |
+|---|---|
+| [Intended and prohibited use](INTENDED_USE.md) | Define the allowed research scope and stop conditions |
+| [Risk register](RISK_REGISTER.md) | Explain scoring, ownership, treatments and release impact |
+| [Threat model](governed-banking-intent-router-threat-model.md) | Record assets, trust boundaries, abuse paths and mitigations |
+| [Human oversight](HUMAN_OVERSIGHT.md) | Preserve human authority, escalation and reviewer-capacity requirements |
+| [Incident response](INCIDENT_RESPONSE.md) | Define detection, containment, evidence preservation and closure |
+| [Rollback](ROLLBACK_PROCEDURE.md) | Restore an immutable prior release without hot mutation |
+| [Monitoring](MONITORING_PLAN.md) | Define privacy-safe indicators, responses and review cadence |
+| [Validation and revalidation](VALIDATION_REVALIDATION_POLICY.md) | Define evidence layers, release gates and revalidation triggers |
+| [Change approval](CHANGE_APPROVAL.md) | Define change classes, required reviewers and decision records |
+| [NIST AI RMF mapping](NIST_AI_RMF_MAPPING.md) | Map current evidence and gaps to Govern, Map, Measure and Manage |
+
+The formal [system](../SYSTEM_CARD.md), [model](../MODEL_CARD.md) and
+[data](../DATA_CARD.md) cards are mandatory release documents. The
+[claims register](../CLAIMS_REGISTER.md) constrains public statements.
+
+## Accountable roles
+
+| Role | Authority |
+|---|---|
+| Accountable system owner | Own scope and resources; veto or stop release |
+| Model-risk reviewer | Challenge model, data and evaluation evidence; veto promotion |
+| Security and privacy reviewer | Challenge security/privacy controls; initiate incident response |
+| Service operator | Disable or roll back an approved revision; cannot silently alter policy or model |
+| Human queue reviewer | Override advisory output; cannot act on router output alone |
+
+Named assignments and independent review are not yet recorded. An empty approval list is
+intentional and must remain empty until real reviewers make attributable decisions.
+
+## Maintenance
+
+Review this set before every release, after material changes or incidents, and at least every 90
+days while the project remains active. A lower risk score, broader intended use or removed release
+blocker requires new evidence and a change record; prose changes alone cannot create approval.

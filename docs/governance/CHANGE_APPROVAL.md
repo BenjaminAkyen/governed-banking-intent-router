@@ -40,14 +40,16 @@ behalf of an absent reviewer.
 - Release approval does not create production approval; that is a separate scope/high-risk decision.
 - Emergency action may reduce service but may not silently expand use or data access.
 
-## Module 17 record
+## Current release record
 
-`governance/change-approvals/module17.yaml` truthfully records that Module 17 changes documentation
-and governance contracts, not runtime behaviour. It remains `pending_release_approval` with an empty
-approval list. This prevents the repository from fabricating independent review and blocks v0.2.0
-release until accountable roles record decisions. The clean-clone Module 17 check also found that
-the committed Module 11A notebook retains a local Mac path in saved output; publication hygiene is
-therefore explicitly failed until Module 18 sanitises and revalidates that notebook.
+`governance/change-approvals/module17.yaml` is retained as the stable identifier for the current
+governance change. It changes documentation and governance contracts, not runtime behaviour. The
+record remains `pending_release_approval` with an empty approval list; no independent reviewer
+decision has been fabricated.
+
+The current clean-clone suite, hosted CI and publication-hygiene gate pass. That resolves the
+earlier local-path finding but does not approve v0.2.0: the failed safety gates, missing external
+evaluation, deployment gaps and accountable approvals remain release blockers.
 
 ## Verification and retention
 

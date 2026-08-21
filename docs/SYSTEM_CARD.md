@@ -73,12 +73,14 @@ These are implemented properties, not proof that all failures or personal data w
 
 ## Evidence status
 
-Real MPS runtime, service and in-memory observability tests have passed on the documented Mac.
-Cross-platform CPU CI, CodeQL and container jobs are configured but require GitHub-hosted evidence.
-The current system still has nine explicit release blockers in
-`configs/governance/module17.yaml`, including representative data, uncertainty, robustness,
-champion alignment, deployment-infrastructure gaps and a committed notebook output that fails the
-publication-hygiene gate.
+Real MPS runtime, service and in-memory observability tests have passed on the documented Mac. The
+hosted CPU matrix, CodeQL, package build, lightweight container smoke, dependency audit, SBOM and
+secret scan are passing. Publication hygiene also passes for the current public tree.
+
+Production blockers remain: representative data, failed uncertainty and robustness gates, service
+and champion misalignment, missing real CUDA and Linux serving evidence, an unconfigured identity
+provider and pending accountable approval. The canonical list is
+`configs/governance/module17.yaml`.
 
 ## External dependencies
 
@@ -88,14 +90,14 @@ at each release. Model and data artefacts are not redistributed by this reposito
 
 ## System limitations
 
-See `docs/MODEL_CARD.md`, `docs/DATA_CARD.md`, `docs/governance/RISK_REGISTER.md` and the repository
-threat model. No statement in this card supersedes the prohibited uses or creates regulatory,
-security or production approval.
+See `docs/ARCHITECTURE.md`, `docs/EVALUATION.md`, `docs/MODEL_CARD.md`, `docs/DATA_CARD.md`,
+`docs/governance/RISK_REGISTER.md` and the repository threat model. No statement in this card
+supersedes the prohibited uses or creates regulatory, security or production approval.
 
 ## Card maintenance
 
 - Owner: `accountable_system_owner`
 - Accountable organisation: INNETWORK Technology Limited
-- Version: `module17-research-preview-v1`
+- Version: `v0.2.0-research-preview`
 - Effective date: 2026-08-21
 - Review: every release, material change, relevant incident and at least every 90 days
