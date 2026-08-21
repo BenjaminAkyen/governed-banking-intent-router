@@ -190,6 +190,12 @@ def main() -> None:
             "banking77_text_used_only_for_leakage_detection": True,
             "production_validation": False,
         },
+        "implementation_sha256": {
+            "build_robustness_pack.py": sha256_file(Path(__file__)),
+            "data.py": sha256_file(Path("src/governed_banking/data.py")),
+            "privacy.py": sha256_file(Path("src/governed_banking/privacy.py")),
+            "robustness.py": sha256_file(Path("src/governed_banking/robustness.py")),
+        },
         "acceptance_gate": gates,
         "limitations": [
             "Synthetic cases do not estimate production accuracy, safety, fairness, drift, "

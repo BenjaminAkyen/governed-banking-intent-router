@@ -75,6 +75,12 @@
     "production_data_access": false,
     "production_validation": false
   },
+  "implementation_sha256": {
+    "build_robustness_pack.py": "048d7646e77608de9e6e19fd27d743288a266406e2e5aa24efb64b4665aca4d1",
+    "data.py": "f5f728612d18ab103fb9500301a4a3395e672a30206c9278fd0fa6a88f9fa544",
+    "privacy.py": "02dcf1cfdfeda6b34b1b3a3740f8a53145f7348ba54ed99d29adebb9bb4b8bd2",
+    "robustness.py": "d7508509d734c419e1f4af7df563f13a6081a4bde9f83070a9c6fc8e1b6741f4"
+  },
   "leakage_evidence": {
     "banking77_exact_match_count": 0,
     "banking77_near_duplicate_count": 0,
@@ -103,7 +109,7 @@
     "The character-ngram near-duplicate check detects high lexical overlap but not every semantic derivation.",
     "Representative claims require lawfully obtained, appropriately governed real-world evaluation data."
   ],
-  "manifest_sha256": "6282f88729bada9d9f7bb072eafef36bd43e4e233eb1b4541f53c6c5db40e4e3",
+  "manifest_sha256": "bc02b8d545453a40338efd374aff56bd24db7ab857a00888b518bd9c72df9787",
   "pack_sha256": "51a22f67c54dd957b422288266701b6442bf7f5b8157946b76d0e25f8f7a1e49",
   "pack_version": "module13-synthetic-v1",
   "privacy_config_sha256": "9ba23db0048af8f74b298e76a4c7e2ab0b54f7e2f379e113b525e1556f301fea",

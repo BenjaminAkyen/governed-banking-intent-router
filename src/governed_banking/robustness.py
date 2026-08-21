@@ -107,6 +107,7 @@ class RobustnessEvaluationConfig:
     taxonomy_manifest_path: Path
     dataset_config_path: Path
     raw_directory: Path
+    model_role: str
     service_config_path: Path
     runtime_profile_path: Path
     report_path: Path
@@ -303,6 +304,7 @@ class RobustnessEvaluationConfig:
             raw_directory=_repository_path(
                 project_root, leakage.get("raw_directory"), "leakage_checks.raw_directory"
             ),
+            model_role="module10_lora_research_service_not_champion",
             service_config_path=_repository_path(
                 project_root,
                 evaluation.get("service_config_path"),

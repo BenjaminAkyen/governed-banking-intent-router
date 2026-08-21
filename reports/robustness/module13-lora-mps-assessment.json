@@ -1,0 +1,1791 @@
+{
+  "artifact_type": "module13_lora_mps_synthetic_robustness_assessment",
+  "assessment_gate": {
+    "all_passed": false,
+    "all_pii_expectations_matched": true,
+    "expected_security_routing_recall": false,
+    "in_scope_acceptable_intent_rate": false,
+    "overall_routing_action_match_rate": false,
+    "text_free_report": true,
+    "zero_suggestion_actions": true
+  },
+  "by_primary_family": {
+    "code_switching": {
+      "acceptable_intent_count": 4,
+      "acceptable_intent_rate": 0.6666666667,
+      "case_count": 6,
+      "in_scope_case_count": 6,
+      "routing_action_match_count": 5,
+      "routing_action_match_rate": 0.8333333333
+    },
+    "high_risk_security": {
+      "acceptable_intent_count": 5,
+      "acceptable_intent_rate": 0.8333333333,
+      "case_count": 6,
+      "in_scope_case_count": 6,
+      "routing_action_match_count": 5,
+      "routing_action_match_rate": 0.8333333333
+    },
+    "multi_intent": {
+      "acceptable_intent_count": 6,
+      "acceptable_intent_rate": 1.0,
+      "case_count": 6,
+      "in_scope_case_count": 6,
+      "routing_action_match_count": 6,
+      "routing_action_match_rate": 1.0
+    },
+    "non_banking_adversarial": {
+      "acceptable_intent_count": 0,
+      "acceptable_intent_rate": null,
+      "case_count": 6,
+      "in_scope_case_count": 0,
+      "routing_action_match_count": 3,
+      "routing_action_match_rate": 0.5
+    },
+    "paraphrase": {
+      "acceptable_intent_count": 4,
+      "acceptable_intent_rate": 0.6666666667,
+      "case_count": 6,
+      "in_scope_case_count": 6,
+      "routing_action_match_count": 6,
+      "routing_action_match_rate": 1.0
+    },
+    "pii_bearing": {
+      "acceptable_intent_count": 3,
+      "acceptable_intent_rate": 0.5,
+      "case_count": 6,
+      "in_scope_case_count": 6,
+      "routing_action_match_count": 6,
+      "routing_action_match_rate": 1.0
+    },
+    "prompt_like_manipulation": {
+      "acceptable_intent_count": 4,
+      "acceptable_intent_rate": 0.6666666667,
+      "case_count": 6,
+      "in_scope_case_count": 6,
+      "routing_action_match_count": 6,
+      "routing_action_match_rate": 1.0
+    },
+    "short_ambiguous": {
+      "acceptable_intent_count": 5,
+      "acceptable_intent_rate": 0.8333333333,
+      "case_count": 6,
+      "in_scope_case_count": 6,
+      "routing_action_match_count": 6,
+      "routing_action_match_rate": 1.0
+    },
+    "speech_transcription_error": {
+      "acceptable_intent_count": 5,
+      "acceptable_intent_rate": 0.8333333333,
+      "case_count": 6,
+      "in_scope_case_count": 6,
+      "routing_action_match_count": 6,
+      "routing_action_match_rate": 1.0
+    },
+    "typographical_error": {
+      "acceptable_intent_count": 1,
+      "acceptable_intent_rate": 0.1666666667,
+      "case_count": 6,
+      "in_scope_case_count": 6,
+      "routing_action_match_count": 5,
+      "routing_action_match_rate": 0.8333333333
+    }
+  },
+  "cases": [
+    {
+      "acceptable_intents": [
+        "lost_or_stolen_card"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-code-001",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "request_refund",
+      "primary_family": "code_switching",
+      "risk_severity": "critical",
+      "routing_action_match": false,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.10770658742909295,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "lost_or_stolen_phone"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-code-002",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "lost_or_stolen_phone",
+      "primary_family": "code_switching",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.7902676081834339,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "pending_transfer"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-code-003",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "pending_transfer",
+      "primary_family": "code_switching",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.8397961199438974,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "declined_cash_withdrawal"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-code-004",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "declined_cash_withdrawal",
+      "primary_family": "code_switching",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.7321117224205983,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "terminate_account"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-code-005",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "balance_not_updated_after_bank_transfer",
+      "primary_family": "code_switching",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.2492186720719628,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "contactless_not_working",
+        "card_not_working"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-code-006",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "contactless_not_working",
+      "primary_family": "code_switching",
+      "risk_severity": "low",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.5640288340934789,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "lost_or_stolen_card"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-highrisk-001",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "contactless_not_working",
+      "primary_family": "high_risk_security",
+      "risk_severity": "critical",
+      "routing_action_match": false,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.641765689567188,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "card_payment_not_recognised",
+        "compromised_card"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-highrisk-002",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "compromised_card",
+      "primary_family": "high_risk_security",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.4870142594387213,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "cash_withdrawal_not_recognised",
+        "compromised_card"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-highrisk-003",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "cash_withdrawal_not_recognised",
+      "primary_family": "high_risk_security",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.9026706180953579,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "direct_debit_payment_not_recognised"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-highrisk-004",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "direct_debit_payment_not_recognised",
+      "primary_family": "high_risk_security",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.9958004454937137,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "lost_or_stolen_phone"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-highrisk-005",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "lost_or_stolen_phone",
+      "primary_family": "high_risk_security",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.9867725128938409,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "pin_blocked"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-highrisk-006",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "pin_blocked",
+      "primary_family": "high_risk_security",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.9711007538477312,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "card_swallowed",
+        "pending_cash_withdrawal"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-multi-001",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "pending_cash_withdrawal",
+      "primary_family": "multi_intent",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.9987422206204968,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "cancel_transfer",
+        "transfer_fee_charged"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-multi-002",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "transfer_fee_charged",
+      "primary_family": "multi_intent",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.8137081303785255,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "card_arrival",
+        "card_delivery_estimate",
+        "virtual_card_not_working"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-multi-003",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "virtual_card_not_working",
+      "primary_family": "multi_intent",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.866503692906842,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "transaction_charged_twice",
+        "Refund_not_showing_up"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-multi-004",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "transaction_charged_twice",
+      "primary_family": "multi_intent",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.8816131918129003,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "change_pin",
+        "contactless_not_working"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-multi-005",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "contactless_not_working",
+      "primary_family": "multi_intent",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.6275583022180141,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "transfer_not_received_by_recipient",
+        "balance_not_updated_after_bank_transfer"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-multi-006",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "balance_not_updated_after_bank_transfer",
+      "primary_family": "multi_intent",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.5411788278055086,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-nonbank-001",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": null,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": true,
+      "pii_expectation_match": true,
+      "predicted_intent": "age_limit",
+      "primary_family": "non_banking_adversarial",
+      "risk_severity": "low",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.1061650419519585,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-nonbank-002",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": null,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": true,
+      "pii_expectation_match": true,
+      "predicted_intent": "request_refund",
+      "primary_family": "non_banking_adversarial",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.15781344887583837,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-nonbank-003",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": null,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": true,
+      "pii_expectation_match": true,
+      "predicted_intent": "compromised_card",
+      "primary_family": "non_banking_adversarial",
+      "risk_severity": "critical",
+      "routing_action_match": false,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.7400218762370471,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-nonbank-004",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": null,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": true,
+      "pii_expectation_match": true,
+      "predicted_intent": "pin_blocked",
+      "primary_family": "non_banking_adversarial",
+      "risk_severity": "low",
+      "routing_action_match": false,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.22657400815360276,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-nonbank-005",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": null,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": true,
+      "pii_expectation_match": true,
+      "predicted_intent": "exchange_rate",
+      "primary_family": "non_banking_adversarial",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.2004701619149565,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-nonbank-006",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": null,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": true,
+      "pii_expectation_match": true,
+      "predicted_intent": "passcode_forgotten",
+      "primary_family": "non_banking_adversarial",
+      "risk_severity": "medium",
+      "routing_action_match": false,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.6235327907242737,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "reverted_card_payment?",
+        "Refund_not_showing_up"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-paraphrase-001",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "reverted_card_payment?",
+      "primary_family": "paraphrase",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.9787895220051062,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "atm_support"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-paraphrase-002",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "atm_support",
+      "primary_family": "paraphrase",
+      "risk_severity": "low",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.9475221995671297,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "balance_not_updated_after_bank_transfer"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-paraphrase-003",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "balance_not_updated_after_cheque_or_cash_deposit",
+      "primary_family": "paraphrase",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.9801252969137287,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "get_disposable_virtual_card"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-paraphrase-004",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "card_linking",
+      "primary_family": "paraphrase",
+      "risk_severity": "low",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.45909475117464466,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "wrong_amount_of_cash_received"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-paraphrase-005",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "wrong_amount_of_cash_received",
+      "primary_family": "paraphrase",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.9365771063342804,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "supported_cards_and_currencies",
+        "topping_up_by_card"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-paraphrase-006",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "supported_cards_and_currencies",
+      "primary_family": "paraphrase",
+      "risk_severity": "low",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.9333662029594565,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "transaction_charged_twice"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-pii-001",
+      "expected_pii_types": [
+        "payment_card"
+      ],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [
+        "payment_card"
+      ],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "transaction_charged_twice",
+      "primary_family": "pii_bearing",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SENSITIVE_PII_REVIEW",
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.987091344811151,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "balance_not_updated_after_bank_transfer",
+        "transfer_into_account"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-pii-002",
+      "expected_pii_types": [
+        "iban",
+        "email"
+      ],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [
+        "email",
+        "iban"
+      ],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "transfer_not_received_by_recipient",
+      "primary_family": "pii_bearing",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SENSITIVE_PII_REVIEW",
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.7271271640895459,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "edit_personal_details"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-pii-003",
+      "expected_pii_types": [
+        "national_insurance_number",
+        "date_of_birth"
+      ],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [
+        "date_of_birth",
+        "national_insurance_number"
+      ],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "why_verify_identity",
+      "primary_family": "pii_bearing",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SENSITIVE_PII_REVIEW",
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.3713677095362678,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "balance_not_updated_after_bank_transfer"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-pii-004",
+      "expected_pii_types": [
+        "uk_sort_code",
+        "uk_bank_account"
+      ],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [
+        "uk_bank_account",
+        "uk_sort_code"
+      ],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "transfer_not_received_by_recipient",
+      "primary_family": "pii_bearing",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SENSITIVE_PII_REVIEW",
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.299978962619275,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "verify_my_identity",
+        "unable_to_verify_identity"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-pii-005",
+      "expected_pii_types": [
+        "phone",
+        "uk_postcode"
+      ],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [
+        "phone",
+        "uk_postcode"
+      ],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "verify_my_identity",
+      "primary_family": "pii_bearing",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.4475490083886506,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "compromised_card",
+        "passcode_forgotten"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-pii-006",
+      "expected_pii_types": [
+        "authentication_secret",
+        "ip_address"
+      ],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [
+        "authentication_secret",
+        "ip_address"
+      ],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "passcode_forgotten",
+      "primary_family": "pii_bearing",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPOSED_AUTHENTICATION_SECRET",
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.9150410860512873,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "card_arrival",
+        "transfer_into_account"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-prompt-001",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "cancel_transfer",
+      "primary_family": "prompt_like_manipulation",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.2338729764788142,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "lost_or_stolen_phone"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-prompt-002",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "lost_or_stolen_phone",
+      "primary_family": "prompt_like_manipulation",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.7501017820027123,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "card_payment_not_recognised",
+        "compromised_card"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-prompt-003",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "card_payment_not_recognised",
+      "primary_family": "prompt_like_manipulation",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.5168455022583892,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "cancel_transfer"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-prompt-004",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "cancel_transfer",
+      "primary_family": "prompt_like_manipulation",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.5712644701254026,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "terminate_account"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-prompt-005",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "terminate_account",
+      "primary_family": "prompt_like_manipulation",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.5928385200154214,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "activate_my_card"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-prompt-006",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "verify_top_up",
+      "primary_family": "prompt_like_manipulation",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.6283071375378116,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "pending_card_payment",
+        "pending_cash_withdrawal",
+        "pending_top_up",
+        "pending_transfer"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-short-001",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "pending_card_payment",
+      "primary_family": "short_ambiguous",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.7319908298469383,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "failed_transfer",
+        "top_up_failed",
+        "card_not_working",
+        "virtual_card_not_working"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-short-002",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "declined_cash_withdrawal",
+      "primary_family": "short_ambiguous",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.2808548548008487,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "card_payment_wrong_exchange_rate",
+        "wrong_exchange_rate_for_cash_withdrawal",
+        "exchange_rate"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-short-003",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "card_payment_wrong_exchange_rate",
+      "primary_family": "short_ambiguous",
+      "risk_severity": "low",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.3458884118265441,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "card_arrival",
+        "card_delivery_estimate",
+        "transfer_not_received_by_recipient",
+        "Refund_not_showing_up"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-short-004",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "card_arrival",
+      "primary_family": "short_ambiguous",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.18956040629626547,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "extra_charge_on_statement",
+        "card_payment_fee_charged",
+        "cash_withdrawal_charge",
+        "transfer_fee_charged",
+        "top_up_by_card_charge"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-short-005",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "extra_charge_on_statement",
+      "primary_family": "short_ambiguous",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.7159795586205903,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "card_payment_not_recognised",
+        "cash_withdrawal_not_recognised",
+        "direct_debit_payment_not_recognised",
+        "compromised_card"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-short-006",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "card_payment_not_recognised",
+      "primary_family": "short_ambiguous",
+      "risk_severity": "critical",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.2613348956787816,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "declined_cash_withdrawal"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-speech-001",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "declined_cash_withdrawal",
+      "primary_family": "speech_transcription_error",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.4490060301183628,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "card_swallowed"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-speech-002",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "top_up_reverted",
+      "primary_family": "speech_transcription_error",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.19733152745067223,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "transfer_fee_charged"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-speech-003",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "transfer_fee_charged",
+      "primary_family": "speech_transcription_error",
+      "risk_severity": "low",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.9708982409086281,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "exchange_via_app"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-speech-004",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "exchange_via_app",
+      "primary_family": "speech_transcription_error",
+      "risk_severity": "low",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.7209377995598656,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "passcode_forgotten"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-speech-005",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "security_queue",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "passcode_forgotten",
+      "primary_family": "speech_transcription_error",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "SECURITY_INTENT_OVERRIDE"
+      ],
+      "uncertainty_score": 0.5895382816749319,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "transfer_not_received_by_recipient"
+      ],
+      "at_or_above_experimental_threshold": true,
+      "case_id": "m13-speech-006",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "transfer_not_received_by_recipient",
+      "primary_family": "speech_transcription_error",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.8513107403510577,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "declined_card_payment",
+        "card_not_working"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-typo-001",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "reverted_card_payment?",
+      "primary_family": "typographical_error",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.4835309316249193,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "transfer_not_received_by_recipient"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-typo-002",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": true,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "transfer_not_received_by_recipient",
+      "primary_family": "typographical_error",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.4720652181632932,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "contactless_not_working"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-typo-003",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "top_up_failed",
+      "primary_family": "typographical_error",
+      "risk_severity": "low",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.37673388107536787,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "transaction_charged_twice"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-typo-004",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "top_up_failed",
+      "primary_family": "typographical_error",
+      "risk_severity": "medium",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.32181437595496487,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "lost_or_stolen_phone"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-typo-005",
+      "expected_pii_types": [],
+      "expected_routing_action": "security_queue",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "pending_top_up",
+      "primary_family": "typographical_error",
+      "risk_severity": "critical",
+      "routing_action_match": false,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.15359241281375252,
+      "uncertainty_signal": "max_probability"
+    },
+    {
+      "acceptable_intents": [
+        "wrong_amount_of_cash_received"
+      ],
+      "at_or_above_experimental_threshold": false,
+      "case_id": "m13-typo-006",
+      "expected_pii_types": [],
+      "expected_routing_action": "human_review",
+      "experimental_threshold": 0.591639969,
+      "intent_acceptable": false,
+      "observed_pii_types": [],
+      "observed_routing_action": "human_review",
+      "out_of_scope": false,
+      "pii_expectation_match": true,
+      "predicted_intent": "card_swallowed",
+      "primary_family": "typographical_error",
+      "risk_severity": "high",
+      "routing_action_match": true,
+      "routing_reason_codes": [
+        "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD",
+        "SHADOW_MODE_REQUIRES_REVIEW"
+      ],
+      "uncertainty_score": 0.2481741433958163,
+      "uncertainty_signal": "max_probability"
+    }
+  ],
+  "champion_model_evaluated": false,
+  "claim_scope": "synthetic_stress_test_not_production_validation",
+  "contains_input_text": false,
+  "contains_message_hash": false,
+  "contains_redacted_text": false,
+  "created_at_utc": "2026-08-21T16:23:34.890329+00:00",
+  "data_boundary": {
+    "banking77_access_during_model_assessment": false,
+    "customer_data_access": false,
+    "fixture_is_synthetic": true,
+    "official_test_access": false,
+    "production_data_access": false,
+    "production_validation": false,
+    "uncertainty_status": "experimental_review_only"
+  },
+  "implementation_sha256": {
+    "policy.py": "96205c7eaa90782a290e1a14d04f5cce8c441dce565620f7e11d718d52882692",
+    "portable_inference.py": "8cc9d6d5f67b49ccbd7b0613b4f746aa38d8d632021b8fabb3b78f5b178afe1c",
+    "privacy.py": "02dcf1cfdfeda6b34b1b3a3740f8a53145f7348ba54ed99d29adebb9bb4b8bd2",
+    "robustness.py": "d7508509d734c419e1f4af7df563f13a6081a4bde9f83070a9c6fc8e1b6741f4",
+    "run_robustness_evaluation.py": "97103257a47ffc90d5c62d7f5ca3e7333ff67fad2aa34ea6377f819ccae81ad9"
+  },
+  "limitations": [
+    "This evaluates the Module 10 LoRA research service, not the retained TF-IDF champion.",
+    "The authored synthetic pack is a stress test and cannot establish production performance.",
+    "Out-of-scope cases have no acceptable BANKING77 intent; their closed-set predictions are reported but not scored as classification errors.",
+    "The uncertainty threshold remains experimental and cannot authorize automated suggestions.",
+    "Representative claims require appropriately governed real-world banking messages and independent evaluation."
+  ],
+  "metrics": {
+    "at_or_above_experimental_threshold_count": 31,
+    "at_or_above_experimental_threshold_rate": 0.5166666667,
+    "case_count": 60,
+    "expected_security_case_count": 14,
+    "expected_security_routed_count": 11,
+    "expected_security_routing_recall": 0.7857142857,
+    "in_scope_acceptable_intent_count": 37,
+    "in_scope_acceptable_intent_rate": 0.6851851852,
+    "in_scope_case_count": 54,
+    "out_of_scope_case_count": 6,
+    "pii_expectation_match_count": 60,
+    "pii_expectation_match_rate": 1.0,
+    "routing_action_match_count": 54,
+    "routing_action_match_rate": 0.9,
+    "suggest_queue_count": 0
+  },
+  "model_role": "module10_lora_research_service_not_champion",
+  "observed_prediction_counts": {
+    "age_limit": 1,
+    "atm_support": 1,
+    "balance_not_updated_after_bank_transfer": 2,
+    "balance_not_updated_after_cheque_or_cash_deposit": 1,
+    "cancel_transfer": 2,
+    "card_arrival": 1,
+    "card_linking": 1,
+    "card_payment_not_recognised": 2,
+    "card_payment_wrong_exchange_rate": 1,
+    "card_swallowed": 1,
+    "cash_withdrawal_not_recognised": 1,
+    "compromised_card": 2,
+    "contactless_not_working": 3,
+    "declined_cash_withdrawal": 3,
+    "direct_debit_payment_not_recognised": 1,
+    "exchange_rate": 1,
+    "exchange_via_app": 1,
+    "extra_charge_on_statement": 1,
+    "lost_or_stolen_phone": 3,
+    "passcode_forgotten": 3,
+    "pending_card_payment": 1,
+    "pending_cash_withdrawal": 1,
+    "pending_top_up": 1,
+    "pending_transfer": 1,
+    "pin_blocked": 2,
+    "request_refund": 2,
+    "reverted_card_payment?": 2,
+    "supported_cards_and_currencies": 1,
+    "terminate_account": 1,
+    "top_up_failed": 2,
+    "top_up_reverted": 1,
+    "transaction_charged_twice": 2,
+    "transfer_fee_charged": 2,
+    "transfer_not_received_by_recipient": 4,
+    "verify_my_identity": 1,
+    "verify_top_up": 1,
+    "virtual_card_not_working": 1,
+    "why_verify_identity": 1,
+    "wrong_amount_of_cash_received": 1
+  },
+  "observed_routing_action_counts": {
+    "human_review": 46,
+    "security_queue": 14
+  },
+  "report_sha256": "fb4d9b6581a91fc5449281098ecec8ec5e84a2925615fb86cfc2648f1bef3f51",
+  "runtime": {
+    "accelerator_name": "Apple M4",
+    "compute_capability": null,
+    "cuda_available": false,
+    "cuda_build_version": null,
+    "cuda_device_count": 0,
+    "cudnn_version": null,
+    "device": "mps",
+    "device_index": 0,
+    "machine": "arm64",
+    "memory_allocated_bytes": 0,
+    "memory_free_bytes": null,
+    "memory_reserved_bytes": 475136,
+    "memory_semantics": "metal_recommended_max_working_set_unified_memory",
+    "memory_total_bytes": 19069665280,
+    "mps_available": true,
+    "mps_built": true,
+    "operating_system": "Darwin",
+    "operating_system_release": "25.5.0",
+    "processor": "arm",
+    "python_version": "3.12.14",
+    "real_hardware_observed": true,
+    "requested": "mps",
+    "selected": "mps",
+    "torch_version": "2.13.0"
+  },
+  "runtime_profile": {
+    "allow_mps_cpu_fallback": false,
+    "claim_scope": "hardware_runtime_verification_not_model_quality",
+    "config_path": "configs/runtime/mps.yaml",
+    "config_sha256": "abf0eaf54a3f1858b06727495d74ebb48a12ce3f7296ee6dfba65f8675e66c9d",
+    "cuda_device_index": 0,
+    "device_preference": "mps",
+    "precision": "float32",
+    "profile_name": "module11-mps-fp32",
+    "require_accelerator": true,
+    "schema_version": 1
+  },
+  "schema_version": 1,
+  "source_evidence": {
+    "checkpoint_files_sha256": {
+      "README.md": "0b5a527d7c8ad39b8025c1fac0fc9865093e3b8f5686193127c7a0f57a8eecde",
+      "adapter_config.json": "3d2863d402107e9d0516fcb0e7c4a148cbe2a447777bbca63381d7458cb40bdc",
+      "adapter_model.safetensors": "b78b2dafce23a633c86b962cb672b8b91c8e07c5308debf124a73ffbcb21cca8"
+    },
+    "config_sha256": "f117c420a0df41477d540b665f002ecfd68c4ce24ca13e526f6d4029000ed117",
+    "pack_manifest_sha256": "bc02b8d545453a40338efd374aff56bd24db7ab857a00888b518bd9c72df9787",
+    "pack_sha256": "51a22f67c54dd957b422288266701b6442bf7f5b8157946b76d0e25f8f7a1e49",
+    "privacy_config_sha256": "9ba23db0048af8f74b298e76a4c7e2ab0b54f7e2f379e113b525e1556f301fea",
+    "routing_config_sha256": "4ab12420a49100e27fb05f794f10d38d5911c2ff87d79c171490d240c4576225",
+    "runtime_profile_sha256": "abf0eaf54a3f1858b06727495d74ebb48a12ce3f7296ee6dfba65f8675e66c9d",
+    "service_config_sha256": "5004282b8af9364c1efbe10bb5a4a8abcbd734b459258a8ac18f94a41faa29d7"
+  }
+}
