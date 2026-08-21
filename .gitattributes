@@ -1,0 +1,3 @@
+# Integrity registrations hash repository bytes, so tracked text must retain
+# the same LF representation on Linux, macOS, and Windows checkouts.
+* text=auto eol=lf
