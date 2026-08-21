@@ -109,6 +109,10 @@ class RobustnessEvaluationConfig:
     raw_directory: Path
     service_config_path: Path
     runtime_profile_path: Path
+    report_path: Path
+    minimum_in_scope_acceptable_intent_rate: float
+    minimum_expected_security_routing_recall: float
+    minimum_overall_routing_action_match_rate: float
     minimum_cases_per_family: int
     near_duplicate_ngram_size: int
     near_duplicate_jaccard_threshold: float
@@ -128,6 +132,7 @@ class RobustnessEvaluationConfig:
             "leakage_checks",
             "evaluation",
             "acceptance_gate",
+            "assessment_gate",
             "output_policy",
             "data_boundary",
         }
@@ -198,8 +203,10 @@ class RobustnessEvaluationConfig:
         evaluation = _exact_mapping(
             raw,
             "evaluation",
-            {"service_config_path", "runtime_profile_path"},
+            {"service_config_path", "runtime_profile_path", "report_path", "model_role"},
         )
+        if evaluation.get("model_role") != "module10_lora_research_service_not_champion":
+            raise ValueError("Module 13 model role must preserve the champion mismatch")
         gates = _exact_mapping(
             raw,
             "acceptance_gate",
@@ -221,6 +228,43 @@ class RobustnessEvaluationConfig:
         }
         if any(value is not True for value in boolean_gates.values()):
             raise ValueError("all registered robustness gates must remain enabled")
+        assessment_gates = _exact_mapping(
+            raw,
+            "assessment_gate",
+            {
+                "minimum_in_scope_acceptable_intent_rate",
+                "minimum_expected_security_routing_recall",
+                "minimum_overall_routing_action_match_rate",
+                "require_all_pii_expectations",
+                "require_zero_suggestion_actions",
+                "require_text_free_report",
+            },
+        )
+        for key in (
+            "require_all_pii_expectations",
+            "require_zero_suggestion_actions",
+            "require_text_free_report",
+        ):
+            if assessment_gates.get(key) is not True:
+                raise ValueError(f"assessment gate {key} must remain enabled")
+        _bounded_float(
+            assessment_gates.get("minimum_in_scope_acceptable_intent_rate"),
+            "minimum_in_scope_acceptable_intent_rate",
+            0.8,
+            1.0,
+        )
+        _bounded_float(
+            assessment_gates.get("minimum_expected_security_routing_recall"),
+            "minimum_expected_security_routing_recall",
+            0.95,
+            1.0,
+        )
+        _bounded_float(
+            assessment_gates.get("minimum_overall_routing_action_match_rate"),
+            "minimum_overall_routing_action_match_rate",
+            0.9,
+            1.0,
+        )
 
         if raw.get("output_policy") != {
             "include_input_text": False,
@@ -268,6 +312,27 @@ class RobustnessEvaluationConfig:
                 project_root,
                 evaluation.get("runtime_profile_path"),
                 "evaluation.runtime_profile_path",
+            ),
+            report_path=_repository_path(
+                project_root, evaluation.get("report_path"), "evaluation.report_path"
+            ),
+            minimum_in_scope_acceptable_intent_rate=_bounded_float(
+                assessment_gates.get("minimum_in_scope_acceptable_intent_rate"),
+                "minimum_in_scope_acceptable_intent_rate",
+                0.8,
+                1.0,
+            ),
+            minimum_expected_security_routing_recall=_bounded_float(
+                assessment_gates.get("minimum_expected_security_routing_recall"),
+                "minimum_expected_security_routing_recall",
+                0.95,
+                1.0,
+            ),
+            minimum_overall_routing_action_match_rate=_bounded_float(
+                assessment_gates.get("minimum_overall_routing_action_match_rate"),
+                "minimum_overall_routing_action_match_rate",
+                0.9,
+                1.0,
             ),
             minimum_cases_per_family=_bounded_int(
                 gates.get("minimum_cases_per_family"), "minimum_cases_per_family", 1, 100

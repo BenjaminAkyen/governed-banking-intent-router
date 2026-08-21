@@ -20,6 +20,8 @@ leakage_checks:
 evaluation:
   service_config_path: configs/service.yaml
   runtime_profile_path: configs/runtime/mps.yaml
+  report_path: reports/robustness/module13-lora-mps-assessment.json
+  model_role: module10_lora_research_service_not_champion
 acceptance_gate:
   minimum_cases_per_family: 6
   require_all_families: true
@@ -29,6 +31,13 @@ acceptance_gate:
   require_zero_banking77_near_duplicates: true
   require_all_pii_expectations: true
   require_zero_suggestion_actions: true
+assessment_gate:
+  minimum_in_scope_acceptable_intent_rate: 0.80
+  minimum_expected_security_routing_recall: 1.00
+  minimum_overall_routing_action_match_rate: 0.95
+  require_all_pii_expectations: true
+  require_zero_suggestion_actions: true
+  require_text_free_report: true
 output_policy:
   include_input_text: false
   include_redacted_text: false

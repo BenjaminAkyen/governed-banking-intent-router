@@ -13,7 +13,7 @@
   },
   "artifact_type": "module13_synthetic_robustness_pack_manifest",
   "claim_scope": "synthetic_stress_test_not_production_validation",
-  "config_sha256": "5d63176fe942ba3ac8a44b5ab25bb4426e88921a3b138b2e7cfc35299b6a0e1d",
+  "config_sha256": "f117c420a0df41477d540b665f002ecfd68c4ce24ca13e526f6d4029000ed117",
   "coverage": {
     "all_cases_require_escalation": true,
     "ambiguous_label_case_count": 23,
@@ -103,7 +103,7 @@
     "The character-ngram near-duplicate check detects high lexical overlap but not every semantic derivation.",
     "Representative claims require lawfully obtained, appropriately governed real-world evaluation data."
   ],
-  "manifest_sha256": "1810ac632bcbf8d69764e988503fd659a0c6ab32937a1748aebc88abe01d5eab",
+  "manifest_sha256": "6282f88729bada9d9f7bb072eafef36bd43e4e233eb1b4541f53c6c5db40e4e3",
   "pack_sha256": "51a22f67c54dd957b422288266701b6442bf7f5b8157946b76d0e25f8f7a1e49",
   "pack_version": "module13-synthetic-v1",
   "privacy_config_sha256": "9ba23db0048af8f74b298e76a4c7e2ab0b54f7e2f379e113b525e1556f301fea",
