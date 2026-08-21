@@ -1,0 +1,57 @@
+schema_version: 1
+experiment_name: lora_multiseed_validation_only
+claim_scope: post_test_exploratory
+seeds:
+  - 17
+  - 42
+  - 73
+thread_limit: 1
+manifests:
+  path_pattern: data/manifests/banking77-seed-{seed}.json
+  registry_path: data/manifests/banking77-multiseed-index.json
+model:
+  repository: FacebookAI/roberta-base
+  revision: e2da8e2f811d1448a5b465c236feacd80ffbac7b
+  license: MIT
+  max_length: 96
+  train_batch_size: 32
+  evaluation_batch_size: 64
+  gradient_accumulation_steps: 2
+  device: mps
+  attention_implementation: eager
+  snapshot_files:
+    - config.json
+    - merges.txt
+    - model.safetensors
+    - tokenizer.json
+    - tokenizer_config.json
+    - vocab.json
+training:
+  minimum_epochs: 4
+  maximum_epochs: 8
+  early_stopping_patience: 2
+  early_stopping_min_delta: 0.002
+  monitored_metric: macro_f1
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  max_gradient_norm: 1.0
+candidate:
+  name: lora_r8_lr2e4_revised_stopping
+  rank: 8
+  alpha: 16
+  dropout: 0.1
+  learning_rate: 0.0002
+  target_modules:
+    - query
+    - value
+  modules_to_save:
+    - classifier
+boundary:
+  permitted_model_splits:
+    - train
+    - validation
+  prohibited_model_splits:
+    - test
+  official_test_access_history: observed_in_module_5
+  official_test_evaluation_in_this_module: false
+  confirmatory_claims_permitted: false

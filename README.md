@@ -29,10 +29,10 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 5 evaluates two pinned LoRA-RoBERTa candidates on MPS under the same row and evidence
-contract. The registered three-epoch run did not outperform either baseline, and both validation
-curves were still improving at the training-budget boundary. This negative result is preserved
-rather than hidden or tuned after test access. These remain single-seed engineering results.
+Module 6 evaluates the revised rank-8 LoRA training protocol across seeds 17, 42 and 73 using only
+train and validation data. It is explicitly post-test exploratory because Module 5's BANKING77 test
+result is already known. The runner has no test-evaluation mode and cannot support a new test
+improvement claim.
 
 Run the local checks:
 
@@ -43,17 +43,31 @@ ruff check .
 pytest --cov=governed_banking --cov-report=term-missing
 ```
 
-Prepare the dataset and reproduce Module 5 (about 23 minutes on the documented Mac):
+Prepare the multi-seed manifests and reproduce Module 6 (about 85 minutes on the documented Mac):
 
 ```bash
 python scripts/prepare_banking77.py --offline
-python scripts/run_lora_roberta.py run --offline
-python scripts/compare_module5_models.py
+python scripts/prepare_multiseed_manifests.py
+python scripts/run_multiseed_lora.py --offline --resume
 ```
 
 Then open
-[`05-lora-adapted-roberta.ipynb`](output/jupyter-notebook/05-lora-adapted-roberta.ipynb) in VS
-Code and run it with the `Governed Banking AI (MPS)` kernel.
+[`06-multiseed-validation-only-lora.ipynb`](output/jupyter-notebook/06-multiseed-validation-only-lora.ipynb) in VS
+Code and run it with the project virtual environment's `Python 3` kernel.
+
+## Verified Module 6 validation evidence
+
+| Seed | Best epoch | Best validation macro-F1 |
+|---:|---:|---:|
+| 17 | 8 | 0.9006 |
+| 42 | 8 | 0.9026 |
+| 73 | 6 | 0.8890 |
+| **Mean ± sample SD** | — | **0.8974 ± 0.0073** |
+
+These values describe validation behaviour only. They cannot be compared with Module 5's official
+test result as evidence of improved generalisation. Seeds 17 and 42 still peaked at the eight-epoch
+boundary, so full convergence is not established. See the
+[multi-seed exploratory card](docs/MULTISEED_EXPLORATORY_CARD.md).
 
 ## Verified Module 5 comparison
 
@@ -97,8 +111,8 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 3. TF-IDF logistic-regression baseline - **complete**
 4. Frozen RoBERTa embedding baseline - **complete**
 5. LoRA-RoBERTa registered baseline - **complete; negative result preserved**
-6. Multi-seed manifests, revised development protocol and aggregation - **next**
-7. Calibration and selective prediction
+6. Multi-seed manifests, revised development protocol and aggregation - **complete; exploratory**
+7. Calibration and selective prediction - **next**
 8. Possible-OOD evaluation and robustness suites
 9. PII controls, risk policy and metadata-only auditing
 10. FastAPI service, latency evaluation and release evidence

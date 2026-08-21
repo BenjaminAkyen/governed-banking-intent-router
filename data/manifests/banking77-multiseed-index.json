@@ -1,0 +1,58 @@
+{
+  "artifact_type": "banking77_multiseed_manifest_registry",
+  "contains_message_text": false,
+  "dataset_config_sha256": "47d6406e264d79c3d5efdcc01cd1aa6c94815b7d173be243cadfd6843d626b03",
+  "implementation_sha256": {
+    "data.py": "f5f728612d18ab103fb9500301a4a3395e672a30206c9278fd0fa6a88f9fa544",
+    "multiseed.py": "7193d77e2d11621103b282639c554d21246deb093bea3ebbb39c55efff4644da",
+    "prepare_multiseed_manifests.py": "35939a289620321f3036636522d13d628b10f817814b8ddde001cc12a97a15ca"
+  },
+  "manifest_entries": [
+    {
+      "manifest_sha256": "f6f0651932b66294cb3232474af5bef3da27880df83c4137ce23d8d68091e9d3",
+      "path": "data/manifests/banking77-seed-17.json",
+      "seed": 17,
+      "train_indices_sha256": "4fab14309d52e7d5d75e072ea50ac2917f8a5483a667d6512ac66287304343f8",
+      "train_rows": 8497,
+      "validation_indices_sha256": "20b7e3f41c8d70de80a9cccb68360c37d8196345d06edd736eb02ff02506af20",
+      "validation_rows": 1499
+    },
+    {
+      "manifest_sha256": "ba4499586c47a941d70f300b41c3a0b0e624d5405cc1ec2079d6779a4577e5b2",
+      "path": "data/manifests/banking77-seed-42.json",
+      "seed": 42,
+      "train_indices_sha256": "5a4325b55dc98a638e5c8bda91be4ec621babaa8ed9300c0d6a039e25679f937",
+      "train_rows": 8495,
+      "validation_indices_sha256": "9c66b4850a185873bd7af8a1736f2c32b42c2b0aaafcd05e373119804cc632b1",
+      "validation_rows": 1501
+    },
+    {
+      "manifest_sha256": "34d28b8c791346fba5b7ce54130fa3ada135fabe014a8d309c22ef4f93d5a778",
+      "path": "data/manifests/banking77-seed-73.json",
+      "seed": 73,
+      "train_indices_sha256": "fc00a90876e613ed00fece6d307db2b70206bb8c425d250575877590c07b986a",
+      "train_rows": 8497,
+      "validation_indices_sha256": "7a9141d6134fb5c2929be10870f2ce6af2f1c04465a90d75a3ce5140fcd32768",
+      "validation_rows": 1499
+    }
+  ],
+  "model_access_boundary": {
+    "integrity_preparation_read_official_test_for_duplicate_quarantine": true,
+    "official_test_metrics_computed": false,
+    "permitted_splits": [
+      "train",
+      "validation"
+    ],
+    "prohibited_splits": [
+      "test"
+    ]
+  },
+  "multiseed_config_sha256": "1b36abffccb869df0c881f2f7202e3c28fc73238a4d4db18cde348719702ea41",
+  "registry_sha256": "1105d8d948a49ad9ebb940997b877a1d8d1736e75140cadb1e2be61c445c1334",
+  "schema_version": 1,
+  "seeds": [
+    17,
+    42,
+    73
+  ]
+}

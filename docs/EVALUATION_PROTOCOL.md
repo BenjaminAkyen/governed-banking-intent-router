@@ -42,6 +42,12 @@ Module 4 follows the same rule. Validation-search amendments are permitted befor
 when the reason, round and unchanged test-access state are recorded in the hashed configuration.
 The final search round must be declared before test embeddings are created.
 
+Module 5 completed the seed-42 official-test evaluation, so that benchmark outcome is now observed.
+Module 6 is therefore post-test exploratory: it may create seeds 17, 42 and 73, revise stopping using
+validation trajectories and aggregate validation results, but it must not compute another official-
+test score or describe validation changes as improved generalisation. A new confirmatory performance
+claim requires an independently sourced, untouched evaluation set and a frozen protocol.
+
 ## Metrics
 
 ### Classification

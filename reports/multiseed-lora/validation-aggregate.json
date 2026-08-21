@@ -1,0 +1,151 @@
+{
+  "aggregate_sha256": "85243a88f3ebcc8858a4bbbca1db28a6e31d0392ec68e46e4cc931a3b3eeac72",
+  "artifact_type": "multiseed_lora_validation_aggregate",
+  "best_epochs": {
+    "17": 8,
+    "42": 8,
+    "73": 6
+  },
+  "claim_notice": "Do not compare these revised validation results with previously observed official-test scores as evidence of a test improvement.",
+  "claim_scope": "post_test_exploratory",
+  "contains_message_text": false,
+  "data_boundary": {
+    "loaded_model_splits": [
+      "train",
+      "validation"
+    ],
+    "official_test_access_history": "observed_in_module_5",
+    "official_test_metrics_computed": false,
+    "prohibited_model_splits": [
+      "test"
+    ],
+    "test_split_loaded": false
+  },
+  "epochs_completed": {
+    "17": 8,
+    "42": 8,
+    "73": 8
+  },
+  "experiment_name": "lora_multiseed_validation_only",
+  "implementation_sha256": {
+    "baseline.py": "5cd1d1a5fe53dabb261d31355cc08b9630db46f409b1ff14a026a8027d621d4e",
+    "data.py": "f5f728612d18ab103fb9500301a4a3395e672a30206c9278fd0fa6a88f9fa544",
+    "device.py": "48cb1d2082716f440a78985c3c1e5b2d45c10d5057b863237672cb3b28277d97",
+    "frozen_baseline.py": "979177d3410e3759bb12700fa3b1ab49b1be48269c6211aff762a16ce5567c91",
+    "lora_baseline.py": "f2efe927b616a4f8e18ffbd37d62d3348ccf2f9fac47c4b1c47c77019e15bb4e",
+    "multiseed.py": "7193d77e2d11621103b282639c554d21246deb093bea3ebbb39c55efff4644da",
+    "run_multiseed_lora.py": "deb2c7c54feda9bd27f838cda3cabbd49801d99fa55eec961d55da51bd27d139"
+  },
+  "manifest_registry_sha256": "1105d8d948a49ad9ebb940997b877a1d8d1736e75140cadb1e2be61c445c1334",
+  "multiseed_config_sha256": "1b36abffccb869df0c881f2f7202e3c28fc73238a4d4db18cde348719702ea41",
+  "run_hashes": {
+    "17": "18080f3c75208b81c47451ff84db5fece325a0b62274a5b49a573f54fed4a6fa",
+    "42": "aa7c00d7aa2885b164eb7b4ba863377d14fa72987b2e810fc24db5ac86badd59",
+    "73": "f56cd1b26093d82a5ac6568ea2115d1535cfc2b637e451b4369830e93a26d921"
+  },
+  "schema_version": 1,
+  "seeds": [
+    17,
+    42,
+    73
+  ],
+  "statistical_notice": "The t intervals use only three validation seeds and are descriptive, not confirmatory or representative of production uncertainty.",
+  "stopping_reasons": {
+    "17": "maximum_epochs_reached",
+    "42": "validation_patience_exhausted",
+    "73": "validation_patience_exhausted"
+  },
+  "validation_metrics": {
+    "accuracy": {
+      "confidence_interval_95": [
+        0.878884055,
+        0.9126213338
+      ],
+      "mean": 0.8957526944,
+      "sample_standard_deviation": 0.0067905412,
+      "values_by_seed": {
+        "17": 0.8992661775,
+        "42": 0.9000666223,
+        "73": 0.8879252835
+      }
+    },
+    "balanced_accuracy": {
+      "confidence_interval_95": [
+        0.8808144081,
+        0.9114055618
+      ],
+      "mean": 0.896109985,
+      "sample_standard_deviation": 0.0061572983,
+      "values_by_seed": {
+        "17": 0.8977854457,
+        "42": 0.9012561451,
+        "73": 0.8892883641
+      }
+    },
+    "log_loss": {
+      "confidence_interval_95": [
+        0.2998980551,
+        0.4456449877
+      ],
+      "mean": 0.3727715214,
+      "sample_standard_deviation": 0.0293355179,
+      "values_by_seed": {
+        "17": 0.3485947847,
+        "42": 0.3643127084,
+        "73": 0.4054070711
+      }
+    },
+    "macro_f1": {
+      "confidence_interval_95": [
+        0.8791922729,
+        0.9156181514
+      ],
+      "mean": 0.8974052122,
+      "sample_standard_deviation": 0.0073316947,
+      "values_by_seed": {
+        "17": 0.9006331788,
+        "42": 0.9025690545,
+        "73": 0.8890134032
+      }
+    },
+    "mean_max_confidence_uncalibrated": {
+      "confidence_interval_95": [
+        0.8571950208,
+        0.8691335905
+      ],
+      "mean": 0.8631643057,
+      "sample_standard_deviation": 0.0024029605,
+      "values_by_seed": {
+        "17": 0.8637139797,
+        "42": 0.8652448058,
+        "73": 0.8605341315
+      }
+    },
+    "top_3_accuracy": {
+      "confidence_interval_95": [
+        0.9590596232,
+        0.982260647
+      ],
+      "mean": 0.9706601351,
+      "sample_standard_deviation": 0.0046698344,
+      "values_by_seed": {
+        "17": 0.9753168779,
+        "42": 0.9706862092,
+        "73": 0.9659773182
+      }
+    },
+    "weighted_f1": {
+      "confidence_interval_95": [
+        0.8777216717,
+        0.9133326348
+      ],
+      "mean": 0.8955271532,
+      "sample_standard_deviation": 0.0071676709,
+      "values_by_seed": {
+        "17": 0.8995335716,
+        "42": 0.8997958628,
+        "73": 0.8872520253
+      }
+    }
+  }
+}

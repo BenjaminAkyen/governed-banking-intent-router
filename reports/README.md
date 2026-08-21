@@ -17,3 +17,8 @@ Module 5 stores LoRA validation selection, locked test, predictions and paired c
 their SafeTensors hashes and sizes are preserved in the committed selection lock. The result is a
 documented negative finding: the registered three-epoch protocol underfit and did not beat either
 baseline.
+
+Module 6 stores three validation-only seed reports and their aggregate under `multiseed-lora/`.
+These are explicitly post-test exploratory artifacts: they contain no official-test metrics or
+predictions and cannot support an improvement claim. Local adapters remain ignored under
+`artifacts/multiseed-lora/`; their hashes are preserved in each seed report.
