@@ -1,0 +1,117 @@
+{
+  "all_checks_passed": true,
+  "artifact_type": "module15_native_mps_observability_smoke",
+  "checks": {
+    "all_registered_metrics_observed": true,
+    "authentication_error_observed": true,
+    "customer_canaries_absent": true,
+    "email_and_authentication_redactions_observed": true,
+    "human_review_and_security_actions_observed": true,
+    "liveness_healthy": true,
+    "message_hashes_absent": true,
+    "mps_selected_without_fallback": true,
+    "not_found_error_observed": true,
+    "only_allowlisted_application_attributes": true,
+    "only_registered_spans_observed": true,
+    "readiness_healthy": true,
+    "request_identifiers_absent": true,
+    "rolling_distribution_minimum_reached": true
+  },
+  "claim_scope": "synthetic_in_memory_exporter_privacy_and_signal_smoke_not_production",
+  "contains_message_hash": false,
+  "contains_message_text": false,
+  "contains_redacted_text": false,
+  "contains_request_identifiers": false,
+  "deployment_profile_sha256": "9e2f31e36f280130f95400e6044a0909465ddc0a2ebe6ea3505a199688e4f660",
+  "implementation_sha256": {
+    "observability.py": "df2930db5cfd17c361f572067600fb399660733c94a1d97aaff9748e74b65885",
+    "observability.yaml": "2b83b8b058379594d49a2fdc496c7c433c67d4dea07dd99e831f04d3a8c04aba",
+    "observability_config.py": "41be9bdb076a17a8d392cb6c66a9d7fe5d2ab7ebc9ef43b5ca0f71ea8d2e8e24",
+    "observed_deployment_service.py": "f445218a403c4cc5e2e251e2ea2656bb1da190393d40abcecbfde81b2d6a3480",
+    "run_observability_smoke.py": "3de065ad2b32e5f3bcd4713e3828fbd1730d73aacc949ec8c5f5f3ce30639804"
+  },
+  "limitations": [
+    "All requests are synthetic; no representative bank customer data was used.",
+    "The in-memory exporter proves application emission, not Collector or backend operation.",
+    "This is a single-process MPS smoke test, not a load or availability test.",
+    "Routing-distribution change remains descriptive; no production alert threshold is approved.",
+    "The service remains shadow-review-only because the registered Module 13 gates failed."
+  ],
+  "observability_config_sha256": "2b83b8b058379594d49a2fdc496c7c433c67d4dea07dd99e831f04d3a8c04aba",
+  "observations": {
+    "attribute_keys": [
+      "deployment.device",
+      "deployment.environment",
+      "error.type",
+      "http.request.method",
+      "http.response.status_code",
+      "http.route",
+      "model.uncertainty.bucket",
+      "model.version",
+      "policy.version",
+      "privacy.redaction.category",
+      "route.action",
+      "route.processing_status",
+      "service.name",
+      "service.version",
+      "telemetry.outcome"
+    ],
+    "completed_governed_routes": 20,
+    "metric_names": [
+      "banking_router.errors",
+      "banking_router.model.load.duration",
+      "banking_router.model.uncertainty",
+      "banking_router.privacy.redactions",
+      "banking_router.request.duration",
+      "banking_router.requests",
+      "banking_router.routing.decisions",
+      "banking_router.routing.distribution_shift",
+      "banking_router.routing.human_review_ratio",
+      "banking_router.routing.human_reviews",
+      "banking_router.routing.security_escalation_ratio",
+      "banking_router.routing.security_escalations",
+      "banking_router.routing.window_observations",
+      "banking_router.runtime.selected_device"
+    ],
+    "redaction_categories": [
+      "authentication_secret",
+      "email"
+    ],
+    "routing_action_counts": {
+      "human_review": 10,
+      "security_queue": 10
+    },
+    "span_names": [
+      "banking_router.http.request",
+      "banking_router.model.load"
+    ]
+  },
+  "report_sha256": "bd732f29b78b1b06b2de7a2354c09cc7afb4ea04bbec1ddf283d7c78b9357a8a",
+  "runtime": {
+    "accelerator_name": "Apple M4",
+    "compute_capability": null,
+    "cuda_available": false,
+    "cuda_build_version": null,
+    "cuda_device_count": 0,
+    "cudnn_version": null,
+    "device": "mps",
+    "device_index": 0,
+    "machine": "arm64",
+    "memory_allocated_bytes": 0,
+    "memory_free_bytes": null,
+    "memory_reserved_bytes": 475136,
+    "memory_semantics": "metal_recommended_max_working_set_unified_memory",
+    "memory_total_bytes": 19069665280,
+    "mps_available": true,
+    "mps_built": true,
+    "operating_system": "Darwin",
+    "operating_system_release": "25.5.0",
+    "processor": "arm",
+    "python_version": "3.12.14",
+    "real_hardware_observed": true,
+    "requested": "mps",
+    "selected": "mps",
+    "torch_version": "2.13.0"
+  },
+  "schema_version": 1
+}
