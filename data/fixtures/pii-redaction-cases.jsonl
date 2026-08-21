@@ -1,0 +1,23 @@
+{"case_id":"email-basic","input":"Email me at alex@example.test","expected_redacted":"Email me at [EMAIL]","expected_counts":{"email":1},"expected_detection":true}
+{"case_id":"email-plus","input":"Use alex+banking@example.test for updates","expected_redacted":"Use [EMAIL] for updates","expected_counts":{"email":1},"expected_detection":true}
+{"case_id":"authentication-password","input":"Password: DemoPass-44, please reset it","expected_redacted":"Password: [AUTHENTICATION_SECRET], please reset it","expected_counts":{"authentication_secret":1},"expected_detection":true}
+{"case_id":"authentication-token","input":"Access token = tok_test_1234","expected_redacted":"Access token = [AUTHENTICATION_SECRET]","expected_counts":{"authentication_secret":1},"expected_detection":true}
+{"case_id":"gb-iban","input":"My IBAN is GB82 WEST 1234 5698 7654 32.","expected_redacted":"My IBAN is [IBAN].","expected_counts":{"iban":1},"expected_detection":true}
+{"case_id":"payment-card-spaced","input":"The test card is 4111 1111 1111 1111.","expected_redacted":"The test card is [PAYMENT_CARD].","expected_counts":{"payment_card":1},"expected_detection":true}
+{"case_id":"payment-card-hyphenated","input":"Use 5555-5555-5555-4444 for this synthetic test","expected_redacted":"Use [PAYMENT_CARD] for this synthetic test","expected_counts":{"payment_card":1},"expected_detection":true}
+{"case_id":"sort-code","input":"My sort code is 12-34-56","expected_redacted":"My sort code is [UK_SORT_CODE]","expected_counts":{"uk_sort_code":1},"expected_detection":true}
+{"case_id":"bank-account","input":"Account number: 12345678","expected_redacted":"Account number: [UK_BANK_ACCOUNT]","expected_counts":{"uk_bank_account":1},"expected_detection":true}
+{"case_id":"nino","input":"My National Insurance reference is AB 12 34 56 C","expected_redacted":"My National Insurance reference is [NATIONAL_INSURANCE_NUMBER]","expected_counts":{"national_insurance_number":1},"expected_detection":true}
+{"case_id":"phone-international","input":"Call me on +44 7700 900123.","expected_redacted":"Call me on [PHONE].","expected_counts":{"phone":1},"expected_detection":true}
+{"case_id":"phone-local","input":"My mobile is 07700 900123","expected_redacted":"My mobile is [PHONE]","expected_counts":{"phone":1},"expected_detection":true}
+{"case_id":"ipv4","input":"The test address was 192.0.2.10","expected_redacted":"The test address was [IP_ADDRESS]","expected_counts":{"ip_address":1},"expected_detection":true}
+{"case_id":"date-of-birth","input":"DOB: 14/03/1988","expected_redacted":"DOB: [DATE_OF_BIRTH]","expected_counts":{"date_of_birth":1},"expected_detection":true}
+{"case_id":"uk-postcode","input":"The postcode is SW1A 1AA","expected_redacted":"The postcode is [UK_POSTCODE]","expected_counts":{"uk_postcode":1},"expected_detection":true}
+{"case_id":"multiple-values","input":"Email alex@example.test, sort code 12-34-56, account number 12345678","expected_redacted":"Email [EMAIL], sort code [UK_SORT_CODE], account number [UK_BANK_ACCOUNT]","expected_counts":{"email":1,"uk_bank_account":1,"uk_sort_code":1},"expected_detection":true}
+{"case_id":"card-tail-safe","input":"My card ends in 1234","expected_redacted":"My card ends in 1234","expected_counts":{},"expected_detection":false}
+{"case_id":"password-reset-safe","input":"I forgot my password and need a reset","expected_redacted":"I forgot my password and need a reset","expected_counts":{},"expected_detection":false}
+{"case_id":"invalid-luhn-safe","input":"Reference 1234 5678 9012 3456 was declined","expected_redacted":"Reference 1234 5678 9012 3456 was declined","expected_counts":{},"expected_detection":false}
+{"case_id":"invalid-ip-safe","input":"The placeholder is 999.999.999.999","expected_redacted":"The placeholder is 999.999.999.999","expected_counts":{},"expected_detection":false}
+{"case_id":"invalid-date-safe","input":"DOB: 31/02/2020","expected_redacted":"DOB: 31/02/2020","expected_counts":{},"expected_detection":false}
+{"case_id":"version-safe","input":"Release version 12-34-56 passed","expected_redacted":"Release version 12-34-56 passed","expected_counts":{},"expected_detection":false}
+{"case_id":"ordinary-message-safe","input":"Where is my replacement card?","expected_redacted":"Where is my replacement card?","expected_counts":{},"expected_detection":false}

@@ -4,8 +4,8 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: uncertainty and synthetic possible-OOD gates evaluated—and not passed; no model is
-> production approved.**
+> **Status: Module 9 privacy, routing and audit controls pass bounded synthetic checks; Module 8
+> uncertainty gates remain failed and no model or automated route is production approved.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -30,14 +30,14 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 8 evaluates whether calibrated confidence signals can support selective prediction and flag
-synthetic non-banking requests as possible OOD. Thresholds and signal choice use only development
-roles; every published gate uses disjoint assessment roles. The assessment failed the registered
-safety gates, so no confidence-based automation policy is approved.
+Module 9 implements bounded structured-PII redaction, a fail-closed deterministic routing policy
+and an allowlisted metadata-only audit contract. The policy runs in `shadow_review_only` mode: it
+may emit `security_queue` or `human_review`, but its schema cannot emit `suggest_queue`.
 
-The evidence remains post-calibration and post-test exploratory. Known rows were previously used
-for checkpoint selection and Module 7 calibration assessment. The unknown-request fixture is
-synthetic, not representative production traffic.
+The implementation is deliberately bound to Module 8's failed evidence. Its seed-specific
+thresholds remain experimental review observations and can never authorize a lower-risk route.
+Module 9's passing results come from authored synthetic controls; they do not estimate production
+PII-detector accuracy, routing safety or regulatory compliance.
 
 Run the local checks:
 
@@ -48,16 +48,32 @@ ruff check .
 pytest --cov=governed_banking --cov-report=term-missing
 ```
 
-Prepare the Module 8 role registry and reproduce the MPS evaluation from local adapters:
+Reproduce the lightweight Module 9 control evidence:
 
 ```bash
-python scripts/prepare_uncertainty_roles.py
-python scripts/run_uncertainty_evaluation.py --offline --resume
+python scripts/run_governance_controls.py
 ```
 
 Then open
-[`08-selective-prediction-possible-ood.ipynb`](output/jupyter-notebook/08-selective-prediction-possible-ood.ipynb)
+[`09-pii-routing-audit-controls.ipynb`](output/jupyter-notebook/09-pii-routing-audit-controls.ipynb)
 in VS Code and run it with the project virtual environment's `Python 3` kernel.
+
+## Verified Module 9 control evidence
+
+| Control | Registered synthetic result |
+|---|---:|
+| PII cases | 23/23 matched expected output |
+| Registered PII detector classes exercised | 11/11 |
+| Routing safety cases | 8/8 matched expected action and queue |
+| Metadata-only audit events round-tripped | 24/24 |
+| Original or redacted message values found in audit serialization | 0 |
+| `suggest_queue` actions | 0 |
+| Local audit directory/file modes | `0700` / `0600` |
+
+These results verify code behaviour only against the versioned fixtures. The recognizers do not
+detect free-form names or all contextual identifiers, and the local JSONL sink is not a production
+logging platform. See the [privacy and audit card](docs/PRIVACY_AUDIT_CARD.md) and
+[deterministic routing policy](docs/RISK_ROUTING_POLICY.md).
 
 ## Verified Module 8 assessment evidence
 
@@ -155,8 +171,8 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 6. Multi-seed manifests, revised development protocol and aggregation - **complete; exploratory**
 7. Temperature scaling and calibration assessment - **complete; exploratory**
 8. Uncertainty, selective prediction and possible-OOD evaluation - **complete; gates failed**
-9. PII controls, risk policy and metadata-only auditing - **next**
-10. FastAPI service, latency evaluation and release evidence
+9. PII controls, risk policy and metadata-only auditing - **complete; synthetic control evidence**
+10. FastAPI service, latency evaluation and release evidence - **next**
 
 ## Responsible-use limitations
 

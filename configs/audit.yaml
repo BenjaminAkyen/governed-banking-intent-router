@@ -1,0 +1,11 @@
+schema_version: 1
+audit_schema_version: 1
+sink_directory: artifacts/audit
+sink_filename: audit-events.jsonl
+directory_mode: "0700"
+file_mode: "0600"
+maximum_event_bytes: 8192
+maximum_events_on_read: 10000
+allow_message_hash: false
+allow_free_form_fields: false
+required_timezone: UTC

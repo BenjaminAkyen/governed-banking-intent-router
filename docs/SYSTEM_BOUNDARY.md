@@ -12,6 +12,10 @@ The system may recommend one of three routing actions:
 The recommendation is advisory. The receiving organisation remains responsible for every customer
 and account decision.
 
+Module 9 narrows this boundary further: `shadow_review_only` permits only `human_review` and
+`security_queue`. Although `suggest_queue` remains part of the future system vocabulary, the
+current policy schema cannot emit it. Module 8 uncertainty values are diagnostic metadata only.
+
 ## In scope
 
 - English-language research evaluation using BANKING77.
@@ -39,7 +43,8 @@ and account decision.
 2. Structured identifiers are detected and replaced before model inference.
 3. The classifier receives only the redacted representation.
 4. The policy consumes labels, scores, uncertainty signals and configured risk tiers.
-5. The audit event stores decision metadata, hashes and version identifiers, not message text.
+5. The audit event stores allowlisted decision metadata, coarse size buckets, counts, hashes and
+   version identifiers—not original text, redacted text, exact input length or a message hash.
 6. Any human correction enters a quarantined review process rather than automatic retraining.
 
 ## Failure consequences

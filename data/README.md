@@ -28,3 +28,9 @@ Module 8's `fixtures/synthetic-possible-ood.jsonl` contains 96 authored non-bank
 12 domains. It contains no customer data and is not a sample of production traffic. Scenario groups
 are kept intact when forming threshold-development and possible-OOD-assessment roles. Results from
 this fixture must always be labelled synthetic.
+
+Module 9 adds `fixtures/pii-redaction-cases.jsonl` and `fixtures/routing-safety-cases.jsonl`. The
+first contains authored synthetic strings and exact redaction expectations; the second contains
+routing metadata only. The Module 9 report stores fixture hashes and aggregate counts, never the
+source or redacted strings. These fixtures verify bounded implementation behaviour and must not be
+described as representative privacy or routing validation.

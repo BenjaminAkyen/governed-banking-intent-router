@@ -1,0 +1,100 @@
+{
+  "acceptance_gate": {
+    "all_expected_redactions_matched": true,
+    "all_expected_routes_matched": true,
+    "all_passed": true,
+    "all_registered_detectors_exercised": true,
+    "metadata_only_audit_round_trip": true,
+    "module8_thresholds_remain_review_only": true,
+    "no_original_or_redacted_values_in_audit": true,
+    "no_suggestion_actions": true,
+    "restrictive_sink_permissions": true
+  },
+  "artifact_type": "module9_governance_controls",
+  "audit": {
+    "config_sha256": "72bfb4573d9c6882b9b4c3b77e0d806d06391906ffdfa1567542f0751ebc7726",
+    "directory_mode": "0700",
+    "event_count": 24,
+    "exact_input_length_logged": false,
+    "file_mode": "0600",
+    "message_hash_logged": false,
+    "prohibited_value_matches": 0,
+    "validated_round_trip": true
+  },
+  "claim_scope": "synthetic_control_verification_not_production_validation",
+  "contains_message_hash": false,
+  "contains_message_text": false,
+  "contains_redacted_text": false,
+  "implementation_sha256": {
+    "audit.py": "fd56c74e9d6cd9e2222366f1f0883be66f6513022dda7fb159fe2291bdddf3c9",
+    "policy.py": "96205c7eaa90782a290e1a14d04f5cce8c441dce565620f7e11d718d52882692",
+    "privacy.py": "02dcf1cfdfeda6b34b1b3a3740f8a53145f7348ba54ed99d29adebb9bb4b8bd2",
+    "run_governance_controls.py": "f571190d0b448fe1ac9f2af10e4a86df0190af1b4b05e368589ad1fefb780d13"
+  },
+  "limitations": [
+    "Synthetic fixtures do not estimate production precision, recall, demographic parity, or attack resistance.",
+    "The PII recognizers are bounded controls, not a replacement for enterprise DLP or secret scanning.",
+    "Free-form names and contextual identifiers are outside the registered detector scope.",
+    "Module 8 thresholds failed their registered gates and cannot authorize automated suggestions.",
+    "The local JSONL sink demonstrates an event contract; production needs centralized access control, retention, integrity, and monitoring."
+  ],
+  "model_inference_performed": false,
+  "official_test_metrics_computed": false,
+  "privacy": {
+    "all_expected_outputs_matched": true,
+    "case_count": 23,
+    "detector_case_counts": {
+      "authentication_secret": 2,
+      "date_of_birth": 1,
+      "email": 3,
+      "iban": 1,
+      "ip_address": 1,
+      "national_insurance_number": 1,
+      "payment_card": 2,
+      "phone": 2,
+      "uk_bank_account": 2,
+      "uk_postcode": 1,
+      "uk_sort_code": 2
+    },
+    "expected_detection_cases": 16,
+    "expected_non_detection_cases": 7,
+    "missing_registered_detectors": [],
+    "policy_sha256": "9ba23db0048af8f74b298e76a4c7e2ab0b54f7e2f379e113b525e1556f301fea",
+    "policy_version": "module9-structured-pii-v1"
+  },
+  "report_sha256": "850d9cdae9efa8d4cbfacc7b9861f9e4821b129e3a15e51f52d7d1feff88067f",
+  "routing": {
+    "action_counts": {
+      "human_review": 6,
+      "security_queue": 2
+    },
+    "all_expected_decisions_matched": true,
+    "case_count": 8,
+    "operating_mode": "shadow_review_only",
+    "policy_sha256": "4ab12420a49100e27fb05f794f10d38d5911c2ff87d79c171490d240c4576225",
+    "policy_version": "module9-shadow-review-v1",
+    "reason_counts": {
+      "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD": 1,
+      "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED": 4,
+      "EXPOSED_AUTHENTICATION_SECRET": 1,
+      "REDACTION_FAILURE": 1,
+      "SECURITY_INTENT_OVERRIDE": 1,
+      "SENSITIVE_PII_REVIEW": 1,
+      "SHADOW_MODE_REQUIRES_REVIEW": 6,
+      "UNCERTAINTY_METADATA_INVALID": 1,
+      "UNSUPPORTED_INTENT": 1
+    },
+    "suggest_queue_count": 0,
+    "uncertainty_authorized_suggestion": false,
+    "uncertainty_evidence_status": "failed_registered_gates",
+    "uncertainty_use": "review_signal_only"
+  },
+  "schema_version": 1,
+  "source_evidence": {
+    "calibration_report_sha256": "9573a7c838121c8631327852c7f2201da0c667f986131ee0711646da816bf3e9",
+    "model_adapter_sha256": "b78b2dafce23a633c86b962cb672b8b91c8e07c5308debf124a73ffbcb21cca8",
+    "pii_fixture_sha256": "d1aefc47f72e8f64e78070392d540b2e15a653270c75c478deb5d6057b0cf563",
+    "provenance": "synthetic_authored_non_customer_data",
+    "routing_fixture_sha256": "5d9f0fbbab1a10da998f56660e6a6c259bd86e238157fa40acd77d8a41b8c36b"
+  }
+}

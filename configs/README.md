@@ -37,3 +37,13 @@ Changing this file invalidates the Module 8 role registry, seed reports and aggr
 Module 8 aggregate and its seed-specific signals and thresholds, fixes risk precedence and records
 that uncertainty is review-only. The schema cannot authorize `suggest_queue`; enabling that action
 requires a new policy version and independently approved evidence.
+
+`privacy.yaml` registers Module 9's ordered structured-PII detectors, replacement tokens, 4,096-
+character limit, null-byte rejection and mandatory residual scan. Its limitations explicitly state
+that free-form names and contextual identifiers are not covered, GB formatting is the registered
+IBAN scope, and the control is not an enterprise DLP replacement.
+
+`audit.yaml` registers a fixed local JSONL location, exact metadata-only event schema, bounded event
+and read sizes, UTC timestamps and `0700/0600` permissions. Message hashes and free-form fields are
+explicitly disabled. A production audit service requires a new reviewed configuration and
+operational controls; changing this file invalidates Module 9 evidence.

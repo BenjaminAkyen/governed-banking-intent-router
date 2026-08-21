@@ -1,0 +1,34 @@
+schema_version: 1
+policy_version: module9-structured-pii-v1
+maximum_input_characters: 4096
+reject_null_bytes: true
+residual_scan_required: true
+detector_order:
+  - authentication_secret
+  - email
+  - iban
+  - national_insurance_number
+  - payment_card
+  - uk_sort_code
+  - uk_bank_account
+  - phone
+  - ip_address
+  - date_of_birth
+  - uk_postcode
+replacements:
+  authentication_secret: "[AUTHENTICATION_SECRET]"
+  email: "[EMAIL]"
+  iban: "[IBAN]"
+  national_insurance_number: "[NATIONAL_INSURANCE_NUMBER]"
+  payment_card: "[PAYMENT_CARD]"
+  uk_sort_code: "[UK_SORT_CODE]"
+  uk_bank_account: "[UK_BANK_ACCOUNT]"
+  phone: "[PHONE]"
+  ip_address: "[IP_ADDRESS]"
+  date_of_birth: "[DATE_OF_BIRTH]"
+  uk_postcode: "[UK_POSTCODE]"
+limitations:
+  detects_free_form_names: false
+  detects_contextual_identifiers: false
+  iban_scope: gb_format
+  production_dlp_replacement: false

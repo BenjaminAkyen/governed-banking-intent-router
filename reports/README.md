@@ -34,3 +34,8 @@ Development evidence records signal and threshold selection; assessment evidence
 risk-coverage, selective risk, possible-OOD recall, ranking metrics, per-domain failures and
 bootstrap intervals. Reports contain no source message text or official-test metrics. The failed
 acceptance gates are preserved as evidence rather than relaxed after assessment.
+
+Module 9 stores `governance/module9-controls.json`. It summarizes 23 synthetic redaction cases,
+eight metadata-only routing cases and a 24-event audit round trip. The report contains fixture and
+implementation hashes, aggregate counts, permission checks and limitations—but no source message,
+redacted message, message hash, exact input length, model inference or official-test metric.

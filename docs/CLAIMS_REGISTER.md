@@ -24,5 +24,8 @@
 | High possible-OOD AUROC establishes a safe operating threshold | Refuted | Strong ranking coexisted with failed locked-threshold gates |
 | The selected uncertainty signal is stable across seeds | Refuted | Entropy was selected for seeds 17/73 and maximum probability for seed 42 |
 | The system detects OOD requests | Overstated | Representative external evaluation; use "possible-OOD" meanwhile |
-| Audit events exclude message text | Pending control implementation | Schema, privacy tests and log inspection |
+| Module 9 synthetic controls match 23 redaction and 8 routing expectations | Verified, bounded synthetic evidence | Versioned fixtures, executable report and tests |
+| Module 9 audit serialization excludes fixture source and redacted values | Verified for registered fixtures | 24-event validated round trip and zero prohibited-value matches |
+| Audit events exclude all personal data in production | Prohibited | Representative adversarial evaluation, production DLP and operational log inspection |
+| Module 8 uncertainty can authorize an automated suggestion | Refuted by current policy | Failed gates are hash-bound as `review_signal_only`; Module 9 emits zero suggestions |
 | The system is production ready | Prohibited | Representative deployment evidence and organisational approval |

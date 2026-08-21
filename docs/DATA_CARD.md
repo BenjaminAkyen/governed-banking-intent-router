@@ -72,3 +72,19 @@ This fixture is a controlled challenge set rather than an external dataset. It c
 production OOD detection, reflect unknown-request prevalence or represent real linguistic and
 adversarial diversity. Every published result derived from it must be labelled synthetic and use
 the term “possible OOD.”
+
+## Module 9 synthetic control fixtures
+
+`data/fixtures/pii-redaction-cases.jsonl` contains 23 authored positive and negative cases covering
+the 11 registered structured-PII detectors. Values use documentation ranges and synthetic examples;
+they are not customer records. The fixture is deliberately committed because exact expected
+redactions must be reproducible, but its text is never copied into audit events or the summary
+report.
+
+`data/fixtures/routing-safety-cases.jsonl` contains eight metadata-only policy cases covering high
+and low confidence, missing uncertainty, security intent, exposed authentication secret, sensitive
+PII, redaction failure and unsupported intent. It contains no message text.
+
+Neither fixture estimates production prevalence, precision, recall, demographic performance or
+adversarial robustness. Real evaluation requires lawfully sourced, representative and access-
+controlled data with privacy and domain-owner approval.

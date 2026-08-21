@@ -65,6 +65,14 @@ Risk-coverage, operating-point metrics and acceptance gates may use only the two
 This prevents direct threshold resubstitution but does not erase the known rows' earlier selection
 and calibration-assessment history.
 
+Module 9 evaluates controls independently of model inference using versioned, authored synthetic
+fixtures. Exact redacted strings and type counts are checked during execution, but neither source
+nor redacted strings enter the summary report or audit sink. Routing cases assert expected action,
+queue and precedence. The policy is hash-bound to Module 8's failed aggregate and treats its
+thresholds as review-only observations. An allowlisted audit schema records coarse input-size
+buckets, PII type counts, model and policy hashes, decisions and reason codes; it prohibits message
+text, redacted text, message hashes, exact lengths and free-form fields.
+
 ## Metrics
 
 ### Classification
@@ -130,6 +138,11 @@ and calibration-assessment history.
 | Policy safety | Every configured security-sensitive fixture goes to review or security |
 | Privacy | No original or redacted message text in audit events |
 | Evidence | Every public number maps to a versioned result artifact |
+
+Module 9 additionally requires all 11 registered detector classes to be exercised, every synthetic
+expected redaction and route to match, zero `suggest_queue` actions, a validated audit round trip
+and local evidence-sink permissions of `0700` for the directory and `0600` for the file. These are
+control-verification gates, not estimates of real-world detector or policy effectiveness.
 
 The gates are hypotheses and engineering targets, not achieved results.
 
