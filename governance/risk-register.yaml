@@ -1,0 +1,213 @@
+schema_version: 1
+register_version: module17-risk-register-v1
+as_of: 2026-08-21
+accountable_organisation: INNETWORK Technology Limited
+scoring:
+  likelihood: 1_rare_to_5_almost_certain
+  impact: 1_negligible_to_5_severe
+  score: likelihood_times_impact
+  bands:
+    low: 1-4
+    medium: 5-9
+    high: 10-16
+    critical: 17-25
+risks:
+  - id: R-001
+    title: Benchmark data does not represent real banking traffic
+    category: data
+    owner_role: model_risk_reviewer
+    status: open_release_blocker
+    inherent: {likelihood: 5, impact: 5, score: 25, band: critical}
+    controls:
+      - public_and_synthetic_evidence_is_explicitly_labelled
+      - production_claims_are_prohibited
+      - new_external_locked_evaluation_is_required_for_promotion
+    residual: {likelihood: 4, impact: 5, score: 20, band: critical}
+    treatment: avoid_production_use_and_obtain_governed_representative_external_evaluation
+    evidence:
+      - docs/DATA_CARD.md
+      - docs/CHAMPION_CHALLENGER_CARD.md
+  - id: R-002
+    title: Uncertainty thresholds permit unsafe confident errors
+    category: model
+    owner_role: model_risk_reviewer
+    status: open_release_blocker
+    inherent: {likelihood: 4, impact: 5, score: 20, band: critical}
+    controls:
+      - uncertainty_is_review_signal_only
+      - shadow_policy_cannot_emit_suggest_queue
+      - failed_gates_are_hash_bound
+    residual: {likelihood: 3, impact: 4, score: 12, band: high}
+    treatment: retain_human_review_and_revalidate_thresholds_on_external_data
+    evidence:
+      - docs/UNCERTAINTY_OOD_CARD.md
+      - configs/routing_policy.yaml
+  - id: R-003
+    title: Served LoRA challenger is not the registered champion
+    category: model_governance
+    owner_role: accountable_system_owner
+    status: open_release_blocker
+    inherent: {likelihood: 5, impact: 4, score: 20, band: critical}
+    controls:
+      - research_shadow_mode_only
+      - champion_challenger_registry
+      - production_release_is_prohibited
+    residual: {likelihood: 4, impact: 3, score: 12, band: high}
+    treatment: deploy_only_an_approved_registry_model_after_external_validation
+    evidence:
+      - reports/champion/champion-registry.json
+      - docs/CHAMPION_CHALLENGER_CARD.md
+  - id: R-004
+    title: Security-sensitive request is routed incorrectly
+    category: customer_safety
+    owner_role: security_and_privacy_reviewer
+    status: open_release_blocker
+    inherent: {likelihood: 4, impact: 5, score: 20, band: critical}
+    controls:
+      - deterministic_security_intent_override
+      - authentication_secret_override
+      - human_review_default
+      - synthetic_security_routing_tests
+    residual: {likelihood: 3, impact: 5, score: 15, band: high}
+    treatment: require_human_triage_and_representative_security_case_validation
+    evidence:
+      - docs/RISK_ROUTING_POLICY.md
+      - docs/ROBUSTNESS_EVALUATION_CARD.md
+  - id: R-005
+    title: Customer or credential data leaks through processing or telemetry
+    category: privacy_security
+    owner_role: security_and_privacy_reviewer
+    status: open
+    inherent: {likelihood: 4, impact: 5, score: 20, band: critical}
+    controls:
+      - pre_inference_structured_pii_redaction
+      - metadata_only_audit_schema
+      - telemetry_attribute_allowlist
+      - privacy_and_secret_scanning_tests
+    residual: {likelihood: 2, impact: 5, score: 10, band: high}
+    treatment: add_production_dlp_and_adversarial_privacy_validation_before_any_pilot
+    evidence:
+      - docs/PRIVACY_AUDIT_CARD.md
+      - docs/OBSERVABILITY.md
+  - id: R-006
+    title: Ambiguous adversarial or multi-intent text causes misrouting
+    category: robustness
+    owner_role: model_risk_reviewer
+    status: open
+    inherent: {likelihood: 4, impact: 4, score: 16, band: high}
+    controls:
+      - synthetic_robustness_pack
+      - unsupported_requests_default_to_review
+      - no_autonomous_action
+    residual: {likelihood: 3, impact: 4, score: 12, band: high}
+    treatment: expand_external_multilingual_and_adversarial_evaluation
+    evidence:
+      - docs/ROBUSTNESS_EVALUATION_CARD.md
+  - id: R-007
+    title: Model policy or configuration artifact is tampered with
+    category: integrity
+    owner_role: security_and_privacy_reviewer
+    status: controlled_monitor
+    inherent: {likelihood: 3, impact: 5, score: 15, band: high}
+    controls:
+      - expected_sha256_validation
+      - immutable_release_strategy
+      - pinned_ci_actions
+      - change_approval_required
+    residual: {likelihood: 2, impact: 5, score: 10, band: high}
+    treatment: sign_release_artifacts_and_enforce_protected_branch_reviews
+    evidence:
+      - src/governed_banking/deployment_config.py
+      - docs/CONTINUOUS_INTEGRATION.md
+  - id: R-008
+    title: Gateway or authentication misconfiguration exposes the origin
+    category: access_control
+    owner_role: security_and_privacy_reviewer
+    status: open_release_blocker
+    inherent: {likelihood: 3, impact: 5, score: 15, band: high}
+    controls:
+      - trusted_gateway_origin_mode
+      - issuer_allowlist_contract
+      - private_clusterip_and_network_policy_template
+    residual: {likelihood: 3, impact: 5, score: 15, band: high}
+    treatment: configure_and_test_real_identity_gateway_and_network_policy
+    evidence:
+      - deploy/gateway/identity-gateway-contract.yaml
+      - deploy/kubernetes/router.yaml.template
+  - id: R-009
+    title: Request flooding exhausts model-serving capacity
+    category: availability
+    owner_role: service_operator
+    status: controlled_monitor
+    inherent: {likelihood: 4, impact: 3, score: 12, band: high}
+    controls:
+      - request_and_queue_timeouts
+      - bounded_concurrency_and_queue_depth
+      - in_process_rate_limit
+      - readiness_and_liveness_endpoints
+    residual: {likelihood: 3, impact: 3, score: 9, band: medium}
+    treatment: enforce_distributed_gateway_limits_and_load_test_before_pilot
+    evidence:
+      - src/governed_banking/deployment_service.py
+      - docs/DEPLOYMENT_PROFILES.md
+  - id: R-010
+    title: Audit or telemetry failure prevents detection and reconstruction
+    category: observability
+    owner_role: service_operator
+    status: open
+    inherent: {likelihood: 3, impact: 4, score: 12, band: high}
+    controls:
+      - audit_failure_rejects_route_response
+      - telemetry_schema_allowlist
+      - model_and_policy_versions_in_events
+    residual: {likelihood: 2, impact: 4, score: 8, band: medium}
+    treatment: deploy_durable_audit_storage_and_alert_on_export_or_append_failures
+    evidence:
+      - src/governed_banking/api.py
+      - src/governed_banking/observability.py
+  - id: R-011
+    title: Data or routing distribution changes without revalidation
+    category: drift
+    owner_role: model_risk_reviewer
+    status: open
+    inherent: {likelihood: 4, impact: 4, score: 16, band: high}
+    controls:
+      - routing_distribution_change_metric
+      - versioned_model_policy_and_data_evidence
+      - revalidation_triggers
+    residual: {likelihood: 3, impact: 4, score: 12, band: high}
+    treatment: establish_representative_baselines_and_review_alert_thresholds
+    evidence:
+      - configs/observability.yaml
+      - docs/governance/VALIDATION_REVALIDATION_POLICY.md
+  - id: R-012
+    title: Human reviewers over-rely on advisory model output
+    category: human_factors
+    owner_role: accountable_system_owner
+    status: open
+    inherent: {likelihood: 4, impact: 4, score: 16, band: high}
+    controls:
+      - advisory_output_boundary
+      - reviewer_override_authority
+      - prohibited_banking_actions
+    residual: {likelihood: 3, impact: 4, score: 12, band: high}
+    treatment: train_reviewers_measure_overrides_and_test_workload_before_pilot
+    evidence:
+      - docs/governance/HUMAN_OVERSIGHT.md
+      - docs/SYSTEM_BOUNDARY.md
+  - id: R-013
+    title: Dependency or CI compromise alters build or release artifacts
+    category: supply_chain
+    owner_role: security_and_privacy_reviewer
+    status: controlled_monitor
+    inherent: {likelihood: 3, impact: 5, score: 15, band: high}
+    controls:
+      - sha_pinned_github_actions
+      - codeql_and_dependency_review
+      - vulnerability_and_secret_scanning
+      - sbom_generation
+    residual: {likelihood: 2, impact: 5, score: 10, band: high}
+    treatment: add_hash_locked_dependencies_signed_release_attestations_and_branch_protection
+    evidence:
+      - .github/workflows/quality.yml
+      - .github/workflows/codeql.yml
