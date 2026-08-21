@@ -88,3 +88,14 @@ PII, redaction failure and unsupported intent. It contains no message text.
 Neither fixture estimates production prevalence, precision, recall, demographic performance or
 adversarial robustness. Real evaluation requires lawfully sourced, representative and access-
 controlled data with privacy and domain-owner approval.
+
+## Module 10 synthetic API fixture
+
+`data/fixtures/api-shadow-cases.jsonl` contains 12 authored requests for local end-to-end service
+checks. It includes synthetic structured identifiers and controlled robustness categories; it
+contains no customer data. Only the authentication-secret case registers a mandatory routing
+override because the other cases intentionally test the real model without treating its predictions
+as ground truth.
+
+The fixture measures integration behaviour and machine-local latency. It does not measure intent
+accuracy, production traffic mix, throughput, concurrency capacity or a real attack distribution.

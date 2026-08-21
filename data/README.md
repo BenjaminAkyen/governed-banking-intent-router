@@ -34,3 +34,7 @@ first contains authored synthetic strings and exact redaction expectations; the 
 routing metadata only. The Module 9 report stores fixture hashes and aggregate counts, never the
 source or redacted strings. These fixtures verify bounded implementation behaviour and must not be
 described as representative privacy or routing validation.
+
+Module 10's `fixtures/api-shadow-cases.jsonl` contains 12 authored non-customer requests used only
+for local MPS/API integration and latency checks. Reports derived from it retain hashes and aggregate
+metadata rather than source or redacted message strings.

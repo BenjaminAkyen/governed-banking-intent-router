@@ -73,6 +73,18 @@ thresholds as review-only observations. An allowlisted audit schema records coar
 buckets, PII type counts, model and policy hashes, decisions and reason codes; it prohibits message
 text, redacted text, message hashes, exact lengths and free-form fields.
 
+Module 10 evaluates the local FastAPI integration with the hash-bound seed-42 adapter on MPS. A
+versioned synthetic fixture covers known, ambiguous, possible-OOD, multi-intent, typographical,
+code-switching, security-language and PII-bearing requests. Three warm-up calls precede three
+measured repetitions of every fixture case. The registered local engineering targets are startup
+at or below 30 seconds and p95 in-process API latency at or below 750 milliseconds.
+
+The service evaluation also checks bearer authentication, trusted hosts, request-size limits,
+schema rejection, disabled documentation, security headers, audit persistence and the absence of
+source and redacted message values in API responses and audit events. These thresholds describe
+one documented Mac and synthetic traffic; they are not service-level objectives or production
+capacity evidence.
+
 ## Metrics
 
 ### Classification

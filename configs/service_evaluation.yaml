@@ -1,0 +1,26 @@
+schema_version: 1
+experiment_name: module10_local_shadow_api_evaluation
+claim_scope: synthetic_local_integration_not_production_validation
+service_config_path: configs/service.yaml
+fixture_path: data/fixtures/api-shadow-cases.jsonl
+expected_fixture_sha256: 9fa170477296993eda0d4b19aef2ad76af37acc885b20ae5288a6f170932b030
+warmup_requests: 3
+measurement_repetitions: 3
+latency:
+  statistic: p95
+  maximum_milliseconds: 750
+  maximum_startup_seconds: 30
+acceptance_gate:
+  require_mps: true
+  require_all_http_responses_successful: true
+  require_zero_suggestion_actions: true
+  require_all_required_overrides: true
+  require_metadata_only_audit: true
+  require_restrictive_audit_permissions: true
+  require_security_boundary_checks: true
+boundary:
+  fixture_provenance: synthetic_authored_non_customer_data
+  model_inference_performed: true
+  official_test_access: false
+  production_validation: false
+  uncertainty_status: experimental_review_only

@@ -47,3 +47,12 @@ IBAN scope, and the control is not an enterprise DLP replacement.
 and read sizes, UTC timestamps and `0700/0600` permissions. Message hashes and free-form fields are
 explicitly disabled. A production audit service requires a new reviewed configuration and
 operational controls; changing this file invalidates Module 9 evidence.
+
+`service.yaml` registers Module 10's loopback-only, bearer-authenticated shadow API. It pins the
+seed-42 manifest, adapter, calibration report, temperature and offline model source; disables docs
+and CORS; fixes request and response minimisation; and requires fail-closed redaction, inference and
+audit behaviour.
+
+`service_evaluation.yaml` registers the synthetic local integration protocol before measurement. It
+fixes the fixture hash, warm-up and repetition counts, Mac-local startup and p95 latency targets,
+security checks and the explicit non-production claim boundary.

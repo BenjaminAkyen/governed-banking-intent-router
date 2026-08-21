@@ -1,0 +1,12 @@
+{"case_id":"known-card-arrival","message":"How long will my replacement card take to arrive?","required_action":null,"required_reason":null}
+{"case_id":"email-pii","message":"Please email updates to alex@example.test about my card","required_action":null,"required_reason":null}
+{"case_id":"authentication-secret","message":"Password: DemoPass-9001, my account may be compromised","required_action":"security_queue","required_reason":"EXPOSED_AUTHENTICATION_SECRET"}
+{"case_id":"gb-iban-pii","message":"Why is transfer to GB82 WEST 1234 5698 7654 32 pending?","required_action":null,"required_reason":null}
+{"case_id":"payment-card-pii","message":"The synthetic card 4111 1111 1111 1111 was charged twice","required_action":null,"required_reason":null}
+{"case_id":"short-ambiguous","message":"It failed","required_action":null,"required_reason":null}
+{"case_id":"possible-ood","message":"Will it rain during my hiking trip tomorrow?","required_action":null,"required_reason":null}
+{"case_id":"multi-intent","message":"My transfer is pending and I also need a replacement card","required_action":null,"required_reason":null}
+{"case_id":"typographical-corruption","message":"why iz my card paymnt declind","required_action":null,"required_reason":null}
+{"case_id":"code-switching","message":"Mi tarjeta is not working, can you help?","required_action":null,"required_reason":null}
+{"case_id":"security-language","message":"I do not recognize this cash withdrawal","required_action":null,"required_reason":null}
+{"case_id":"postcode-and-dob","message":"DOB: 14/03/1988 and postcode SW1A 1AA need updating","required_action":null,"required_reason":null}
