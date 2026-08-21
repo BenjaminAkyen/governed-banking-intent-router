@@ -34,6 +34,7 @@ dev = [
   "build>=1.5,<2",
   "detect-secrets>=1.5,<2",
   "httpx>=0.28,<1",
+  "matplotlib>=3.10,<4",
   "mypy>=2.3,<3",
   "pip-audit>=2.10,<3",
   "pytest>=8.4,<10",
