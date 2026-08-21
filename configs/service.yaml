@@ -1,0 +1,52 @@
+schema_version: 1
+service_version: module10-shadow-api-v1
+environment: local_research
+operating_mode: shadow_review_only
+network:
+  bind_host: 127.0.0.1
+  default_port: 8000
+  allowed_hosts:
+    - 127.0.0.1
+    - localhost
+    - testserver
+  docs_enabled: false
+  cors_enabled: false
+  maximum_request_body_bytes: 8192
+authentication:
+  scheme: bearer
+  token_environment_variable: GOVERNED_BANKING_API_TOKEN
+  minimum_token_characters: 32
+model:
+  seed: 42
+  device: mps
+  offline_only: true
+  multiseed_config_path: configs/multiseed_lora.yaml
+  expected_multiseed_config_sha256: 1b36abffccb869df0c881f2f7202e3c28fc73238a4d4db18cde348719702ea41
+  manifest_path: data/manifests/banking77-seed-42.json
+  expected_manifest_file_sha256: 244c1a5c5d6abfa224f0263bbf11576201f3fa63e0077a73fd528ae0b7e3a19e
+  expected_manifest_sha256: ba4499586c47a941d70f300b41c3a0b0e624d5405cc1ec2079d6779a4577e5b2
+  checkpoint_directory: artifacts/multiseed-lora/seed-42
+  expected_checkpoint_files_sha256:
+    README.md: 0b5a527d7c8ad39b8025c1fac0fc9865093e3b8f5686193127c7a0f57a8eecde
+    adapter_config.json: 3d2863d402107e9d0516fcb0e7c4a148cbe2a447777bbca63381d7458cb40bdc
+    adapter_model.safetensors: b78b2dafce23a633c86b962cb672b8b91c8e07c5308debf124a73ffbcb21cca8
+  calibration_report_path: reports/calibration/seed-42-temperature-scaling.json
+  expected_calibration_file_sha256: 1dbfb2e235fc776505294600814e0a4c67026862eb5ab5f48c02e56903214d34
+  expected_calibration_report_sha256: 9573a7c838121c8631327852c7f2201da0c667f986131ee0711646da816bf3e9
+  temperature: 0.8909817718
+  uncertainty_signal: max_probability
+  uncertainty_status: experimental_review_only
+  model_cache_directory: artifacts/huggingface
+controls:
+  privacy_config_path: configs/privacy.yaml
+  routing_config_path: configs/routing_policy.yaml
+  audit_config_path: configs/audit.yaml
+failure_policy:
+  redaction_failure: human_review
+  inference_failure: human_review
+  audit_failure: reject_response
+response_policy:
+  include_message_text: false
+  include_redacted_text: false
+  include_uncertainty_score: false
+  cache_control: no-store
