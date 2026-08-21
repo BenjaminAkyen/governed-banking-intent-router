@@ -4,10 +4,11 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: Module 15 adds privacy-allowlisted OpenTelemetry metrics and traces. A real Apple M4
-> MPS emission test passed, but the Collector/backend path and CPU/CUDA containers remain
-> unverified. Module 13's locked robustness gates failed for the served LoRA model. TF-IDF remains
-> champion; production deployment and real-CUDA claims are not approved.**
+> **Status: Module 16 adds cross-platform CPU CI, safety-suite coverage gates, CodeQL, dependency
+> review, vulnerability and secret scanning, SBOM generation, Dependabot, packaging checks and a
+> real lightweight container build. GitHub-hosted runs are pending. The Collector/backend path and
+> CPU/CUDA serving containers remain unverified. TF-IDF remains champion; production deployment
+> and real-CUDA claims are not approved.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -31,6 +32,15 @@ The service recommends a queue. It never moves money, freezes an account, approv
 authenticates a customer or provides financial advice.
 
 ## Current module
+
+Module 16 adds an auditable continuous-integration and supply-chain boundary without changing any
+registered model or safety evidence. The CPU matrix covers Ubuntu, macOS and Windows on supported
+Python 3.12 and 3.13. Separate privacy, policy, integration and unit reports feed registered
+per-module coverage floors. Package, container, CodeQL, dependency-review, vulnerability, SBOM and
+provider-aware secret controls are configured with least-privilege permissions and commit-pinned
+Actions. GitHub repository settings still need to be enabled by an administrator, and a hosted run
+is required before these controls can be claimed as externally verified. See the
+[Module 16 CI and supply-chain card](docs/CONTINUOUS_INTEGRATION.md).
 
 Module 15 wraps the immutable Module 14 service with manual OpenTelemetry instrumentation. It
 records request, error and latency signals; model-load duration; selected device; model and policy
@@ -341,6 +351,8 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 12. Champion–challenger registry and promotion gates - **framework complete; external lock missing**
 13. Synthetic robustness evaluation - **complete; classification and safety-routing gates failed**
 14. Deployable service profiles - **native MPS verified; CPU/CUDA container execution pending**
+15. Privacy-safe OpenTelemetry observability - **native MPS emission verified; backend pending**
+16. Continuous integration and supply-chain controls - **implemented; hosted CI run pending**
 
 ## Responsible-use limitations
 
