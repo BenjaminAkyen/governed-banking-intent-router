@@ -9,7 +9,7 @@ from pathlib import Path
 import uvicorn
 
 from governed_banking.deployment_config import DeploymentProfile
-from governed_banking.deployment_service import create_deployment_app
+from governed_banking.observed_deployment_service import create_observed_deployment_app
 
 
 def parse_args() -> argparse.Namespace:
@@ -25,7 +25,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     profile = DeploymentProfile.from_yaml(parse_args().profile)
-    app = create_deployment_app(profile)
+    app = create_observed_deployment_app(profile)
     uvicorn.run(
         app,
         host=profile.bind_host,

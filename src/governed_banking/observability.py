@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import math
 import threading
+import time
 from collections import Counter, deque
 from collections.abc import Callable, Iterator, Mapping
 from contextlib import contextmanager
@@ -13,6 +14,7 @@ from typing import Any
 from opentelemetry import trace
 from opentelemetry.metrics import Meter, Observation
 from opentelemetry.trace import Span, Status, StatusCode, Tracer
+from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
 from governed_banking.audit_store import AuditStore
 from governed_banking.observability_config import ObservabilityConfig
@@ -435,6 +437,58 @@ class ObservingAuditStore:
 
     def close(self) -> None:
         self._delegate.close()
+
+
+class ObservabilityMiddleware:
+    """Measure completed HTTP work using fixed categories, never request-derived labels."""
+
+    def __init__(self, app: ASGIApp, *, telemetry: GovernedTelemetry) -> None:
+        self.app = app
+        self._telemetry = telemetry
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        if scope["type"] != "http":
+            await self.app(scope, receive, send)
+            return
+        endpoint = bounded_endpoint(str(scope.get("path", "")))
+        method = bounded_method(str(scope.get("method", "")))
+        status_code = 500
+        response_started = False
+        started = time.perf_counter()
+
+        async def observe_status(message: Message) -> None:
+            nonlocal response_started, status_code
+            if message["type"] == "http.response.start":
+                response_started = True
+                status_code = int(message["status"])
+            await send(message)
+
+        with self._telemetry.request_span(endpoint, method) as span:
+            try:
+                await self.app(scope, receive, observe_status)
+            except Exception:
+                if not response_started:
+                    status_code = 500
+                self._finish(span, endpoint, method, status_code, started)
+                raise
+            self._finish(span, endpoint, method, status_code, started)
+
+    def _finish(
+        self,
+        span: Span,
+        endpoint: str,
+        method: str,
+        status_code: int,
+        started: float,
+    ) -> None:
+        self._telemetry.finish_request(
+            span,
+            endpoint=endpoint,
+            method=method,
+            status_code=status_code,
+            duration_seconds=time.perf_counter() - started,
+            error_type=bounded_http_error(status_code),
+        )
 
 
 def bounded_endpoint(path: str) -> str:
