@@ -32,3 +32,8 @@ known and synthetic possible-OOD development/assessment roles, three uncertainty
 development-only selection rule, operating-point gates and 2,000 assessment bootstrap resamples.
 The minimum-coverage constraint prevents selecting the trivial reject-everything threshold.
 Changing this file invalidates the Module 8 role registry, seed reports and aggregate.
+
+`routing_policy.yaml` registers Module 9's deterministic shadow policy. It hash-binds the failed
+Module 8 aggregate and its seed-specific signals and thresholds, fixes risk precedence and records
+that uncertainty is review-only. The schema cannot authorize `suggest_queue`; enabling that action
+requires a new policy version and independently approved evidence.
