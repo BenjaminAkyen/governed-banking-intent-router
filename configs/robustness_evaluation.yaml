@@ -1,0 +1,43 @@
+schema_version: 1
+experiment_name: module13-synthetic-robustness-v1
+claim_scope: synthetic_stress_test_not_production_validation
+pack:
+  version: module13-synthetic-v1
+  path: data/robustness/v1/cases.jsonl
+  expected_sha256: 51a22f67c54dd957b422288266701b6442bf7f5b8157946b76d0e25f8f7a1e49
+  manifest_path: data/robustness/v1/manifest.json
+  licence_spdx: MIT
+taxonomy:
+  manifest_path: data/manifests/banking77-seed-42.json
+  expected_label_count: 77
+leakage_checks:
+  dataset_config_path: configs/dataset.yaml
+  raw_directory: data/raw/banking77
+  normalization: unicode_nfkc_casefold_whitespace_v1
+  near_duplicate_ngram_size: 5
+  near_duplicate_jaccard_threshold: 0.85
+  minimum_near_duplicate_characters: 12
+evaluation:
+  service_config_path: configs/service.yaml
+  runtime_profile_path: configs/runtime/mps.yaml
+acceptance_gate:
+  minimum_cases_per_family: 6
+  require_all_families: true
+  require_zero_exact_duplicates: true
+  require_zero_unregistered_near_duplicates: true
+  require_zero_banking77_exact_matches: true
+  require_zero_banking77_near_duplicates: true
+  require_all_pii_expectations: true
+  require_zero_suggestion_actions: true
+output_policy:
+  include_input_text: false
+  include_redacted_text: false
+  include_message_hash: false
+  include_case_level_prediction_metadata: true
+data_boundary:
+  fixture_is_synthetic: true
+  customer_data_access: false
+  production_data_access: false
+  official_test_used_for_model_scoring: false
+  banking77_text_used_only_for_leakage_detection: true
+  production_validation: false

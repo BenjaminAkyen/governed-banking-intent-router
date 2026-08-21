@@ -1,0 +1,137 @@
+{
+  "acceptance_gate": {
+    "all_cases_require_escalation": true,
+    "all_passed": true,
+    "all_pii_expectations_matched": true,
+    "all_registered_families_present": true,
+    "minimum_cases_per_family_met": true,
+    "no_suggestion_actions_registered": true,
+    "zero_banking77_exact_matches": true,
+    "zero_banking77_near_duplicates": true,
+    "zero_internal_exact_duplicates": true,
+    "zero_internal_near_duplicates": true
+  },
+  "artifact_type": "module13_synthetic_robustness_pack_manifest",
+  "claim_scope": "synthetic_stress_test_not_production_validation",
+  "config_sha256": "5d63176fe942ba3ac8a44b5ab25bb4426e88921a3b138b2e7cfc35299b6a0e1d",
+  "coverage": {
+    "all_cases_require_escalation": true,
+    "ambiguous_label_case_count": 23,
+    "case_count": 60,
+    "expected_pii_type_case_counts": {
+      "authentication_secret": 1,
+      "date_of_birth": 1,
+      "email": 1,
+      "iban": 1,
+      "ip_address": 1,
+      "national_insurance_number": 1,
+      "payment_card": 1,
+      "phone": 1,
+      "uk_bank_account": 1,
+      "uk_postcode": 1,
+      "uk_sort_code": 1
+    },
+    "expected_routing_action_counts": {
+      "human_review": 46,
+      "security_queue": 14
+    },
+    "out_of_scope_case_count": 6,
+    "primary_family_counts": {
+      "code_switching": 6,
+      "high_risk_security": 6,
+      "multi_intent": 6,
+      "non_banking_adversarial": 6,
+      "paraphrase": 6,
+      "pii_bearing": 6,
+      "prompt_like_manipulation": 6,
+      "short_ambiguous": 6,
+      "speech_transcription_error": 6,
+      "typographical_error": 6
+    },
+    "risk_severity_counts": {
+      "critical": 17,
+      "high": 15,
+      "low": 10,
+      "medium": 18
+    },
+    "robustness_tag_counts": {
+      "code_switching": 6,
+      "high_risk_security": 14,
+      "multi_intent": 7,
+      "non_banking_adversarial": 6,
+      "paraphrase": 6,
+      "pii_bearing": 6,
+      "prompt_like_manipulation": 8,
+      "short_ambiguous": 6,
+      "speech_transcription_error": 6,
+      "typographical_error": 6
+    }
+  },
+  "data_boundary": {
+    "banking77_text_used_only_for_leakage_detection": true,
+    "customer_data_access": false,
+    "fixture_is_synthetic": true,
+    "official_test_used_for_model_scoring": false,
+    "production_data_access": false,
+    "production_validation": false
+  },
+  "leakage_evidence": {
+    "banking77_exact_match_count": 0,
+    "banking77_near_duplicate_count": 0,
+    "banking77_rows_scanned": 13083,
+    "banking77_source_commit": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+    "banking77_source_hashes": {
+      "official_test": "d12d6e3bc4c3103966ae786dc435913c0c563dfa328f5a3646d0e62cfeeb474d",
+      "official_train": "b06e26ac675513959a63135f11b94ea7786ed02da65db93a5650d8838cbc664b"
+    },
+    "finding_metadata": [],
+    "internal_exact_match_count": 0,
+    "internal_near_duplicate_count": 0,
+    "minimum_near_duplicate_characters": 12,
+    "near_duplicate_jaccard_threshold": 0.85,
+    "near_duplicate_method": "character_5gram_jaccard",
+    "normalization": "unicode_nfkc_casefold_whitespace_v1"
+  },
+  "licence": {
+    "case_level_licence_present": true,
+    "copyright": "Copyright (c) 2026 Benjamin Akyen",
+    "spdx_id": "MIT"
+  },
+  "limitations": [
+    "Synthetic cases do not estimate production accuracy, safety, fairness, drift, or attack resistance.",
+    "BANKING77 train and test text were read only to detect fixture leakage; no model score was computed on those rows.",
+    "The character-ngram near-duplicate check detects high lexical overlap but not every semantic derivation.",
+    "Representative claims require lawfully obtained, appropriately governed real-world evaluation data."
+  ],
+  "manifest_sha256": "1810ac632bcbf8d69764e988503fd659a0c6ab32937a1748aebc88abe01d5eab",
+  "pack_sha256": "51a22f67c54dd957b422288266701b6442bf7f5b8157946b76d0e25f8f7a1e49",
+  "pack_version": "module13-synthetic-v1",
+  "privacy_config_sha256": "9ba23db0048af8f74b298e76a4c7e2ab0b54f7e2f379e113b525e1556f301fea",
+  "privacy_expectations": {
+    "detectors_exercised": [
+      "authentication_secret",
+      "date_of_birth",
+      "email",
+      "iban",
+      "ip_address",
+      "national_insurance_number",
+      "payment_card",
+      "phone",
+      "uk_bank_account",
+      "uk_postcode",
+      "uk_sort_code"
+    ],
+    "mismatch_count": 0,
+    "registered_detector_count": 11
+  },
+  "provenance": {
+    "case_level_provenance_present": true,
+    "contains_customer_data": false,
+    "creation_method": "human_directed_ai_assisted_scenario_authoring",
+    "derived_from_banking77_text": false,
+    "derived_from_production_data": false,
+    "origin": "project_authored_synthetic"
+  },
+  "schema_version": 1,
+  "taxonomy_manifest_sha256": "ba4499586c47a941d70f300b41c3a0b0e624d5405cc1ec2079d6779a4577e5b2"
+}
