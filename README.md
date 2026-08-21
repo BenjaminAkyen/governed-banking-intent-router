@@ -216,5 +216,10 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 
 ## Licence
 
-Project code is released under the [MIT License](LICENSE). Dataset and model licences must be
-reviewed and documented separately before redistribution.
+Project code is released under the [MIT License](LICENSE). The pinned RoBERTa model and BANKING77
+dataset have separate upstream terms and attribution requirements. See
+[Third-party notices](THIRD_PARTY_NOTICES.md) before redistributing data, model files or adapters.
+
+Before publishing a release, run the repository's
+[publication-hygiene check](docs/PUBLICATION_HYGIENE.md) to detect machine-specific paths,
+credential signatures and accidentally tracked runtime artifacts.

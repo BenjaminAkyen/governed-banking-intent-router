@@ -308,6 +308,8 @@ def test_audit_failure_rejects_the_route_response(tmp_path: Path) -> None:
 
 def test_service_configuration_is_hash_bound_and_token_is_environment_only() -> None:
     config = ServiceConfig.from_yaml(Path("configs/service.yaml"))
+    if not config.predictor.checkpoint_directory.is_dir():
+        pytest.skip("registered Module 10 adapter checkpoint is a local, unredistributed artifact")
 
     experiment, labels = config.predictor.validate_sources()
 
