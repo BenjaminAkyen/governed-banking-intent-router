@@ -10,6 +10,8 @@ from governed_banking.policy import (
     route_request,
 )
 
+pytestmark = pytest.mark.policy
+
 
 def _config() -> RoutingPolicyConfig:
     return RoutingPolicyConfig.from_yaml(Path("configs/routing_policy.yaml"))

@@ -3,12 +3,16 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
 from governed_banking.data import sha256_file, stable_json_sha256
 from governed_banking.privacy import PrivacyConfig, redact_pii
 from governed_banking.service_evaluation import (
     ServiceEvaluationConfig,
     validate_service_evaluation_report,
 )
+
+pytestmark = pytest.mark.integration
 
 
 def _implementation_hashes() -> dict[str, str]:

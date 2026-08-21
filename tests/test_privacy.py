@@ -7,6 +7,8 @@ import pytest
 
 from governed_banking.privacy import PrivacyConfig, input_size_bucket, redact_pii
 
+pytestmark = pytest.mark.privacy
+
 
 def _config() -> PrivacyConfig:
     return PrivacyConfig.from_yaml(Path("configs/privacy.yaml"))

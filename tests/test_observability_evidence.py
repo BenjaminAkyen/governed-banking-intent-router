@@ -1,8 +1,12 @@
 import json
 from pathlib import Path
 
+import pytest
+
 from governed_banking.data import sha256_file, stable_json_sha256
 from governed_banking.observability_config import METRIC_NAMES, SPAN_NAMES
+
+pytestmark = pytest.mark.integration
 
 
 def test_native_mps_observability_evidence_is_hash_bound_and_passed() -> None:

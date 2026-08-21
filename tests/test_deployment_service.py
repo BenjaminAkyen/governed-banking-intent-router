@@ -29,6 +29,8 @@ from governed_banking.inference import Prediction
 from governed_banking.policy import RoutingPolicyConfig
 from governed_banking.privacy import PrivacyConfig
 
+pytestmark = pytest.mark.integration
+
 DEV_TOKEN = "module14-development-token-000000000001"
 GATEWAY_ASSERTION = "module14-gateway-assertion-0000000001"
 
@@ -363,15 +365,19 @@ def test_route_rate_limit_returns_retry_after() -> None:
 
     with TestClient(app) as client:
         headers = {"Authorization": f"Bearer {DEV_TOKEN}"}
-        assert client.post(
-            "/v1/route", json={"message": "Where is my card?"}, headers=headers
-        ).status_code == 200
-        assert client.post(
-            "/v1/route", json={"message": "Where is my card?"}, headers=headers
-        ).status_code == 200
-        limited = client.post(
-            "/v1/route", json={"message": "Where is my card?"}, headers=headers
+        assert (
+            client.post(
+                "/v1/route", json={"message": "Where is my card?"}, headers=headers
+            ).status_code
+            == 200
         )
+        assert (
+            client.post(
+                "/v1/route", json={"message": "Where is my card?"}, headers=headers
+            ).status_code
+            == 200
+        )
+        limited = client.post("/v1/route", json={"message": "Where is my card?"}, headers=headers)
 
     assert limited.status_code == 429
     assert limited.json() == {"detail": "rate_limited"}

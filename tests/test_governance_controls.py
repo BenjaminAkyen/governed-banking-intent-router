@@ -3,7 +3,11 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
 from governed_banking.data import stable_json_sha256
+
+pytestmark = pytest.mark.policy
 
 
 def _report() -> dict[str, object]:

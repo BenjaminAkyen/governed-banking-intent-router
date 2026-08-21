@@ -19,6 +19,8 @@ from governed_banking.inference import Prediction
 from governed_banking.policy import RoutingPolicyConfig
 from governed_banking.privacy import PrivacyConfig
 
+pytestmark = pytest.mark.integration
+
 TEST_TOKEN = "test-only-bearer-token-000000000001"
 AUTHORIZATION = {"Authorization": f"Bearer {TEST_TOKEN}"}
 

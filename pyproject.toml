@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=75", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "A privacy-aware banking support router with calibrated LoRA-RoBERTa and deterministic escalation"
 readme = "README.md"
 requires-python = ">=3.12,<3.14"
-license = { text = "MIT" }
+license = "MIT"
 authors = [{ name = "Benjamin Akyen" }]
 dependencies = [
   "accelerate>=1.10,<2",
@@ -31,7 +31,11 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+  "build>=1.5,<2",
+  "detect-secrets>=1.5,<2",
   "httpx>=0.28,<1",
+  "mypy>=2.3,<3",
+  "pip-audit>=2.10,<3",
   "pytest>=8.4,<10",
   "pytest-cov>=6,<8",
   "ruff>=0.12,<1",
@@ -49,6 +53,12 @@ where = ["src"]
 [tool.pytest.ini_options]
 addopts = "-ra --strict-markers"
 testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+  "integration: governed service and deployment-boundary integration tests",
+  "policy: deterministic routing and governance-policy tests",
+  "privacy: PII minimisation and privacy-control tests",
+]
 
 [tool.ruff]
 line-length = 100
@@ -56,3 +66,21 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["B", "E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+warn_unused_configs = true
+show_error_codes = true
+files = [
+  "src/governed_banking/api.py",
+  "src/governed_banking/audit.py",
+  "src/governed_banking/audit_store.py",
+  "src/governed_banking/deployment_config.py",
+  "src/governed_banking/observability.py",
+  "src/governed_banking/observability_config.py",
+  "src/governed_banking/otel_runtime.py",
+  "src/governed_banking/policy.py",
+  "src/governed_banking/privacy.py",
+]

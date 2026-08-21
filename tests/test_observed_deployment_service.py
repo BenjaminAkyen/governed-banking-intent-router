@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+import pytest
 from fastapi.testclient import TestClient
 
 from governed_banking.api import GovernedService, ServiceConfig
@@ -17,6 +18,8 @@ from governed_banking.inference import Prediction
 from governed_banking.observed_deployment_service import create_observed_deployment_app
 from governed_banking.policy import RoutingPolicyConfig
 from governed_banking.privacy import PrivacyConfig
+
+pytestmark = pytest.mark.integration
 
 DEV_TOKEN = "module15-development-token-000000000001"
 

@@ -1,0 +1,38 @@
+schema_version: 1
+contract_version: module16-safety-coverage-v1
+measurement: line_percent_covered
+rounding: no_rounding_before_comparison
+modules:
+  src/governed_banking/privacy.py:
+    minimum_percent: 90
+    rationale: PII detection and fail-closed redaction
+  src/governed_banking/policy.py:
+    minimum_percent: 84
+    rationale: deterministic risk precedence and escalation
+  src/governed_banking/audit.py:
+    minimum_percent: 82
+    rationale: metadata-only audit event construction
+  src/governed_banking/audit_store.py:
+    minimum_percent: 84
+    rationale: pluggable audit persistence boundary
+  src/governed_banking/api.py:
+    minimum_percent: 84
+    rationale: authenticated governed inference boundary
+  src/governed_banking/deployment_config.py:
+    minimum_percent: 80
+    rationale: fail-fast deployment profile validation
+  src/governed_banking/deployment_service.py:
+    minimum_percent: 84
+    rationale: concurrency, rate-limit and readiness controls
+  src/governed_banking/observability.py:
+    minimum_percent: 84
+    rationale: privacy-safe telemetry instruments
+  src/governed_banking/observability_config.py:
+    minimum_percent: 85
+    rationale: telemetry allowlist and exporter validation
+  src/governed_banking/observed_deployment_service.py:
+    minimum_percent: 80
+    rationale: observed service composition boundary
+  src/governed_banking/otel_runtime.py:
+    minimum_percent: 55
+    rationale: OpenTelemetry provider and exporter setup
