@@ -9,7 +9,7 @@ import secrets
 from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Annotated, Any, Literal
+from typing import Any, Literal
 
 import yaml
 from fastapi import APIRouter, Depends, FastAPI, HTTPException, Request, status
@@ -327,7 +327,7 @@ class RequestBodyLimitMiddleware:
             return
         declared = _content_length(scope)
         if declared is not None and declared > self.maximum_bytes:
-            await _send_problem(send, status.HTTP_413_REQUEST_ENTITY_TOO_LARGE, "request_too_large")
+            await _send_problem(send, status.HTTP_413_CONTENT_TOO_LARGE, "request_too_large")
             return
         messages: list[Message] = []
         total = 0
@@ -338,9 +338,7 @@ class RequestBodyLimitMiddleware:
             body = message.get("body", b"")
             total += len(body)
             if total > self.maximum_bytes:
-                await _send_problem(
-                    send, status.HTTP_413_REQUEST_ENTITY_TOO_LARGE, "request_too_large"
-                )
+                await _send_problem(send, status.HTTP_413_CONTENT_TOO_LARGE, "request_too_large")
                 return
             messages.append(message)
             if not message.get("more_body", False):
@@ -518,7 +516,7 @@ def create_app(service: GovernedService, *, api_token: str) -> FastAPI:
     bearer = HTTPBearer(auto_error=False)
 
     def authenticate(
-        credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer)],
+        credentials: HTTPAuthorizationCredentials | None = Depends(bearer),  # noqa: B008
     ) -> None:
         if (
             credentials is None
