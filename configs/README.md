@@ -26,3 +26,9 @@ For each seed, it partitions the Module 6 validation pool into disjoint normaliz
 temperature fitting and calibration assessment. It fixes the scalar-temperature bounds, 15-bin
 metrics, 2,000 paired bootstrap resamples and the point-estimate acceptance gate. Changing it
 invalidates the calibration registry, all seed reports and the aggregate.
+
+`uncertainty.yaml` registers Module 8's post-calibration, post-test exploratory protocol. It fixes
+known and synthetic possible-OOD development/assessment roles, three uncertainty signals, a
+development-only selection rule, operating-point gates and 2,000 assessment bootstrap resamples.
+The minimum-coverage constraint prevents selecting the trivial reject-everything threshold.
+Changing this file invalidates the Module 8 role registry, seed reports and aggregate.

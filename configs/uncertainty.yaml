@@ -1,0 +1,66 @@
+schema_version: 1
+experiment_name: multiseed_selective_prediction_possible_ood
+claim_scope: post_calibration_post_test_exploratory
+seeds:
+  - 17
+  - 42
+  - 73
+source:
+  calibration_config: configs/calibration.yaml
+  calibration_registry: data/manifests/banking77-calibration-index.json
+  calibration_report_pattern: reports/calibration/seed-{seed}-temperature-scaling.json
+  manifest_pattern: data/manifests/banking77-seed-{seed}.json
+  checkpoint_pattern: artifacts/multiseed-lora/seed-{seed}
+  known_source_role: calibration_assessment
+  known_source_role_history: used_for_module6_checkpoint_selection_and_module7_calibration_assessment
+known_partition:
+  development_role: threshold_known_development
+  assessment_role: selective_known_assessment
+  development_fraction: 0.5
+  seed_offset: 11000
+  group_by_normalized_text: true
+possible_ood:
+  fixture_path: data/fixtures/synthetic-possible-ood.jsonl
+  provenance: synthetic_authored_non_customer_data
+  development_role: threshold_ood_development
+  assessment_role: possible_ood_assessment
+  development_fraction: 0.5
+  random_seed: 12008
+  group_field: scenario_group
+  stratum_field: domain
+  registry_path: data/manifests/banking77-uncertainty-index.json
+signals:
+  candidates:
+    - max_probability
+    - top_two_margin
+    - inverse_normalized_entropy
+  direction: higher_is_more_in_distribution
+selection:
+  target_possible_ood_recall: 0.90
+  target_selective_risk: 0.05
+  minimum_known_coverage: 0.70
+  objective: maximize_known_coverage
+  tie_breakers:
+    - maximize_possible_ood_recall
+    - minimize_selective_risk
+    - signal_registration_order
+metrics:
+  include_risk_coverage_curve: true
+  include_aurc: true
+  include_auroc: true
+  include_average_precision: true
+  include_error_capture: true
+bootstrap:
+  resamples: 2000
+  confidence_level: 0.95
+  seed_offset: 13000
+boundary:
+  permitted_model_sources:
+    - validation
+    - synthetic_fixture
+  prohibited_model_splits:
+    - train
+    - test
+  official_test_access_history: observed_in_module_5
+  official_test_evaluation_in_this_module: false
+  independent_model_evaluation: false

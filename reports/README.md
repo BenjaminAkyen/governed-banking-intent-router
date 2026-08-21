@@ -28,3 +28,9 @@ report fits temperature on `temperature_fit` and calculates the published metric
 `calibration_assessment` rows. Reports include fixed-width reliability bins and paired bootstrap
 intervals but no message text, logits or official-test metrics. These artifacts are post-selection,
 post-test exploratory evidence—not independent model evaluation.
+
+Module 8 stores three locked-threshold assessments and their aggregate under `uncertainty/`.
+Development evidence records signal and threshold selection; assessment evidence records
+risk-coverage, selective risk, possible-OOD recall, ranking metrics, per-domain failures and
+bootstrap intervals. Reports contain no source message text or official-test metrics. The failed
+acceptance gates are preserved as evidence rather than relaxed after assessment.

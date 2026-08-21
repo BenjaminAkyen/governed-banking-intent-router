@@ -1,0 +1,199 @@
+{
+  "acceptance_gate": {
+    "all_seeds_passed": false,
+    "by_seed": {
+      "17": {
+        "all_passed": false,
+        "known_coverage_at_or_above_minimum": true,
+        "possible_ood_recall_at_or_above_target": false,
+        "registered_maximum_selective_risk": 0.05,
+        "registered_minimum_known_coverage": 0.7,
+        "registered_minimum_possible_ood_recall": 0.9,
+        "selective_risk_at_or_below_target": false
+      },
+      "42": {
+        "all_passed": false,
+        "known_coverage_at_or_above_minimum": true,
+        "possible_ood_recall_at_or_above_target": false,
+        "registered_maximum_selective_risk": 0.05,
+        "registered_minimum_known_coverage": 0.7,
+        "registered_minimum_possible_ood_recall": 0.9,
+        "selective_risk_at_or_below_target": false
+      },
+      "73": {
+        "all_passed": false,
+        "known_coverage_at_or_above_minimum": true,
+        "possible_ood_recall_at_or_above_target": true,
+        "registered_maximum_selective_risk": 0.05,
+        "registered_minimum_known_coverage": 0.7,
+        "registered_minimum_possible_ood_recall": 0.9,
+        "selective_risk_at_or_below_target": false
+      }
+    }
+  },
+  "aggregate_sha256": "69d14aca45fee7f14c357db34c49d75878e3655c7722d4bd62a946281215098e",
+  "artifact_type": "multiseed_selective_prediction_possible_ood_aggregate",
+  "assessment_metrics": {
+    "aurc": {
+      "confidence_interval_95": [
+        0.002973444,
+        0.0306750285
+      ],
+      "mean": 0.0168242363,
+      "sample_standard_deviation": 0.0055756942,
+      "values_by_seed": {
+        "17": 0.0143467696,
+        "42": 0.0129166131,
+        "73": 0.0232093261
+      }
+    },
+    "error_capture_rate": {
+      "confidence_interval_95": [
+        0.2744533657,
+        0.5924576255
+      ],
+      "mean": 0.4334554956,
+      "sample_standard_deviation": 0.0640069708,
+      "values_by_seed": {
+        "17": 0.4473684211,
+        "42": 0.3636363636,
+        "73": 0.4893617021
+      }
+    },
+    "false_automation_rate": {
+      "confidence_interval_95": [
+        0.0470349998,
+        0.0701990428
+      ],
+      "mean": 0.0586170213,
+      "sample_standard_deviation": 0.0046623911,
+      "values_by_seed": {
+        "17": 0.056,
+        "42": 0.0558510638,
+        "73": 0.064
+      }
+    },
+    "known_coverage": {
+      "confidence_interval_95": [
+        0.8447796701,
+        0.9811115829
+      ],
+      "mean": 0.9129456265,
+      "sample_standard_deviation": 0.0274404902,
+      "values_by_seed": {
+        "17": 0.92,
+        "42": 0.9361702128,
+        "73": 0.8826666667
+      }
+    },
+    "possible_ood_auroc": {
+      "confidence_interval_95": [
+        0.9412972667,
+        0.9808133519
+      ],
+      "mean": 0.9610553093,
+      "sample_standard_deviation": 0.0079536825,
+      "values_by_seed": {
+        "17": 0.9546111111,
+        "42": 0.9586103723,
+        "73": 0.9699444444
+      }
+    },
+    "possible_ood_average_precision": {
+      "confidence_interval_95": [
+        0.8166307488,
+        0.9519769549
+      ],
+      "mean": 0.8843038519,
+      "sample_standard_deviation": 0.02724209,
+      "values_by_seed": {
+        "17": 0.8592703224,
+        "42": 0.8803244574,
+        "73": 0.9133167758
+      }
+    },
+    "possible_ood_false_acceptance_rate": {
+      "confidence_interval_95": [
+        0.0033789234,
+        0.2188432988
+      ],
+      "mean": 0.1111111111,
+      "sample_standard_deviation": 0.0433680416,
+      "values_by_seed": {
+        "17": 0.1458333333,
+        "42": 0.125,
+        "73": 0.0625
+      }
+    },
+    "possible_ood_recall": {
+      "confidence_interval_95": [
+        0.7811567012,
+        0.9966210766
+      ],
+      "mean": 0.8888888889,
+      "sample_standard_deviation": 0.0433680416,
+      "values_by_seed": {
+        "17": 0.8541666667,
+        "42": 0.875,
+        "73": 0.9375
+      }
+    },
+    "selective_risk": {
+      "confidence_interval_95": [
+        0.0467217055,
+        0.0819691005
+      ],
+      "mean": 0.064345403,
+      "sample_standard_deviation": 0.007094493,
+      "values_by_seed": {
+        "17": 0.0608695652,
+        "42": 0.0596590909,
+        "73": 0.0725075529
+      }
+    }
+  },
+  "claim_scope": "post_calibration_post_test_exploratory",
+  "contains_message_text": false,
+  "data_boundary": {
+    "development_and_assessment_roles_disjoint": true,
+    "independent_model_evaluation": false,
+    "known_source_role_history": "used_for_module6_checkpoint_selection_and_module7_calibration_assessment",
+    "official_test_metrics_computed": false,
+    "possible_ood_provenance": "synthetic_authored_non_customer_data",
+    "test_split_loaded": false
+  },
+  "experiment_name": "multiseed_selective_prediction_possible_ood",
+  "implementation_sha256": {
+    "calibration.py": "814267dfca0b710b84b9c9cc227e1c2e8d8c50ad5786b556bb67ad89a72ede96",
+    "data.py": "f5f728612d18ab103fb9500301a4a3395e672a30206c9278fd0fa6a88f9fa544",
+    "device.py": "48cb1d2082716f440a78985c3c1e5b2d45c10d5057b863237672cb3b28277d97",
+    "frozen_baseline.py": "979177d3410e3759bb12700fa3b1ab49b1be48269c6211aff762a16ce5567c91",
+    "lora_baseline.py": "f2efe927b616a4f8e18ffbd37d62d3348ccf2f9fac47c4b1c47c77019e15bb4e",
+    "run_uncertainty_evaluation.py": "171567ad3a3f2c3b8bf4f3775b403b7fcf676bed76562ff75e8bb6781e1bdb7a",
+    "uncertainty.py": "3c4eb099c11ae3f977d7e3b6f91b34c0cb48f33d9798bd4e0335e8fbfaa33575"
+  },
+  "interpretation_notice": "Aggregate assessment is post-selection and post-test exploratory. Synthetic possible-OOD results are a controlled challenge test, not evidence of real-world OOD coverage.",
+  "partition_registry_sha256": "ace165c143e542d69ce567f6790ed9052aa3f87fcdb8391cf938f2e617e68514",
+  "report_hashes": {
+    "17": "62518fe2d5ef0944ac8c5528cbd977167a5b478133ed7816f3f27ee5568c3d8f",
+    "42": "ee3c24df58f5ac37e08ee73569c4d781c2632497718447f32b8ed1114e729885",
+    "73": "f928284d948d28c5e1d5bb2c4c1af7a14c4aa918060c492d331f07bd0b5a8bbf"
+  },
+  "schema_version": 1,
+  "seeds": [
+    17,
+    42,
+    73
+  ],
+  "selected_signals": {
+    "17": "inverse_normalized_entropy",
+    "42": "max_probability",
+    "73": "inverse_normalized_entropy"
+  },
+  "selected_thresholds": {
+    "17": 0.7377879892,
+    "42": 0.591639969,
+    "73": 0.7666177452
+  },
+  "uncertainty_config_sha256": "f492c26352bfc75d4d606e8bc741647a4f4a5829c4db31f828e6491661daeeee"
+}

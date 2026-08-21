@@ -57,6 +57,14 @@ prevents temperature-fit resubstitution, but it does not undo the validation poo
 checkpoint selection. Module 7 therefore cannot establish independent generalisation or production
 calibration.
 
+Module 8 partitions Module 7's `calibration_assessment` role again by normalized-text group into
+`threshold_known_development` and `selective_known_assessment`. It separately partitions a
+synthetic, non-customer possible-OOD fixture by scenario group into `threshold_ood_development` and
+`possible_ood_assessment`. Signal choice and thresholds may use only the two development roles.
+Risk-coverage, operating-point metrics and acceptance gates may use only the two assessment roles.
+This prevents direct threshold resubstitution but does not erase the known rows' earlier selection
+and calibration-assessment history.
+
 ## Metrics
 
 ### Classification
@@ -78,15 +86,18 @@ calibration.
 ### Selective routing
 
 - risk-coverage curve;
+- area under the risk-coverage curve;
 - known-request coverage at the locked threshold;
+- selective risk;
 - false-automation rate;
+- error-capture rate among abstained known requests;
 - high-risk routing recall.
 
 ### Possible-OOD evaluation
 
 - unknown-request recall;
 - false acceptance rate;
-- area under the in-vs-out detection curve where appropriate;
+- AUROC and average precision for known-vs-possible-OOD ranking;
 - separate reporting for synthetic, adversarial and external sources.
 
 ### Efficiency

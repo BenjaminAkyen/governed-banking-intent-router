@@ -19,6 +19,10 @@
 | Module 7 changes predicted intent labels | Refuted | Positive scalar temperature changed 0 assessment predictions across all seeds |
 | Temperature scaling improves independent or production calibration | Prohibited | The assessment roles came from validation pools already used for checkpoint selection; representative untouched data are required |
 | Temperature scaling improves every calibration statistic | Refuted | Seed-17 maximum calibration error increased and ECE improvement uncertainty includes zero for seed 73 |
+| Module 8 uncertainty ranking separates known from synthetic possible-OOD requests with mean AUROC 0.9611 | Verified, synthetic/post-selection exploratory | Disjoint assessment roles and three seed reports |
+| Module 8 meets the registered selective-routing safety gates | Refuted | All seeds exceeded 5% selective risk; seeds 17 and 42 also missed 90% possible-OOD recall |
+| High possible-OOD AUROC establishes a safe operating threshold | Refuted | Strong ranking coexisted with failed locked-threshold gates |
+| The selected uncertainty signal is stable across seeds | Refuted | Entropy was selected for seeds 17/73 and maximum probability for seed 42 |
 | The system detects OOD requests | Overstated | Representative external evaluation; use "possible-OOD" meanwhile |
 | Audit events exclude message text | Pending control implementation | Schema, privacy tests and log inspection |
 | The system is production ready | Prohibited | Representative deployment evidence and organisational approval |

@@ -23,3 +23,8 @@ side and recorded as hashed quarantine events.
 
 Small synthetic fixtures may be committed when they contain no customer or confidential data.
 See [`docs/DATA_CARD.md`](../docs/DATA_CARD.md) for provenance, limitations and the verified audit.
+
+Module 8's `fixtures/synthetic-possible-ood.jsonl` contains 96 authored non-banking messages across
+12 domains. It contains no customer data and is not a sample of production traffic. Scenario groups
+are kept intact when forming threshold-development and possible-OOD-assessment roles. Results from
+this fixture must always be labelled synthetic.

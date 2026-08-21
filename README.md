@@ -4,7 +4,7 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: three-seed LoRA calibration assessed on disjoint validation roles; no model is
+> **Status: uncertainty and synthetic possible-OOD gates evaluated—and not passed; no model is
 > production approved.**
 
 ![System architecture](docs/images/system-architecture.svg)
@@ -30,15 +30,14 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 7 fits one positive scalar temperature per Module 6 seed and assesses it on different rows.
-Each seed's validation pool is divided 50:50 into `temperature_fit` and
-`calibration_assessment`; normalized-text duplicate groups cannot cross that boundary. This fixes
-the immediate resubstitution error of scoring calibration on the probabilities used to fit the
-temperature.
+Module 8 evaluates whether calibrated confidence signals can support selective prediction and flag
+synthetic non-banking requests as possible OOD. Thresholds and signal choice use only development
+roles; every published gate uses disjoint assessment roles. The assessment failed the registered
+safety gates, so no confidence-based automation policy is approved.
 
-The evidence remains explicitly post-selection and post-test exploratory. Both roles came from the
-validation pool previously used to select the Module 6 checkpoint, so the assessment is not an
-independent model-evaluation set.
+The evidence remains post-calibration and post-test exploratory. Known rows were previously used
+for checkpoint selection and Module 7 calibration assessment. The unknown-request fixture is
+synthetic, not representative production traffic.
 
 Run the local checks:
 
@@ -49,16 +48,34 @@ ruff check .
 pytest --cov=governed_banking --cov-report=term-missing
 ```
 
-Prepare the calibration registry and reproduce Module 7 from the local Module 6 adapters:
+Prepare the Module 8 role registry and reproduce the MPS evaluation from local adapters:
 
 ```bash
-python scripts/prepare_calibration_splits.py
-python scripts/run_temperature_scaling.py --offline --resume
+python scripts/prepare_uncertainty_roles.py
+python scripts/run_uncertainty_evaluation.py --offline --resume
 ```
 
 Then open
-[`07-temperature-scaling-calibration.ipynb`](output/jupyter-notebook/07-temperature-scaling-calibration.ipynb)
+[`08-selective-prediction-possible-ood.ipynb`](output/jupyter-notebook/08-selective-prediction-possible-ood.ipynb)
 in VS Code and run it with the project virtual environment's `Python 3` kernel.
+
+## Verified Module 8 assessment evidence
+
+The selected signal and threshold differ by seed because selection was performed independently on
+each seed's development roles. None may be changed after assessment.
+
+| Seed | Selected signal | Known coverage | Selective risk | Synthetic possible-OOD recall | AUROC | Gate |
+|---:|---|---:|---:|---:|---:|---|
+| 17 | Inverse normalized entropy | 0.9200 | 0.0609 | 0.8542 | 0.9546 | Fail |
+| 42 | Maximum probability | 0.9362 | 0.0597 | 0.8750 | 0.9586 | Fail |
+| 73 | Inverse normalized entropy | 0.8827 | 0.0725 | 0.9375 | 0.9699 | Fail |
+| **Mean** | — | **0.9129** | **0.0643** | **0.8889** | **0.9611** | **Fail** |
+
+The ranking result is strong but operational performance is insufficient. AUROC around 0.96 does
+not imply a safe threshold: seeds 17 and 42 missed the 90% synthetic possible-OOD recall target,
+and every seed exceeded the 5% selective-risk ceiling. Public-services and shopping/delivery
+requests were recurring false accepts. See the
+[uncertainty and possible-OOD card](docs/UNCERTAINTY_OOD_CARD.md).
 
 ## Verified Module 7 calibration evidence
 
@@ -111,7 +128,8 @@ results suggest complementarity, but not that generic frozen embeddings beat the
 The rank-8 LoRA candidate trained 944,717 parameters (0.7519%) and won validation, but finished
 0.0851 macro-F1 below TF-IDF and 0.0762 below frozen RoBERTa. Its validation curve improved in every
 epoch, so the defensible conclusion is that this registered protocol underfit—not that LoRA is
-generally inferior. Probabilities remain uncalibrated. See the
+generally inferior. Its Module 5 probabilities were uncalibrated; Module 7 later evaluated scalar
+temperature scaling on the revised multi-seed checkpoints. See the
 [LoRA baseline card](docs/LORA_BASELINE_CARD.md).
 
 ## Evidence contract
@@ -136,8 +154,8 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 5. LoRA-RoBERTa registered baseline - **complete; negative result preserved**
 6. Multi-seed manifests, revised development protocol and aggregation - **complete; exploratory**
 7. Temperature scaling and calibration assessment - **complete; exploratory**
-8. Uncertainty, selective prediction and possible-OOD evaluation - **next**
-9. PII controls, risk policy and metadata-only auditing
+8. Uncertainty, selective prediction and possible-OOD evaluation - **complete; gates failed**
+9. PII controls, risk policy and metadata-only auditing - **next**
 10. FastAPI service, latency evaluation and release evidence
 
 ## Responsible-use limitations

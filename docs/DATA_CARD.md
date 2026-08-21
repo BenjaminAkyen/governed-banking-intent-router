@@ -61,5 +61,14 @@ manifest and automated tests.
   risk appetite.
 - This project does not redistribute the raw data. Users must review upstream terms before use.
 
-The next module may train only on the manifest-selected training indices, tune on validation
-indices and evaluate on official test indices after all modelling choices are locked.
+## Module 8 synthetic possible-OOD fixture
+
+`data/fixtures/synthetic-possible-ood.jsonl` contains 96 authored messages across 12 non-banking
+domains and 48 scenario groups. It contains no customer data. Scenario groups—not individual
+messages—are stratified by domain into 48 threshold-development and 48 assessment messages, with
+zero group overlap.
+
+This fixture is a controlled challenge set rather than an external dataset. It cannot establish
+production OOD detection, reflect unknown-request prevalence or represent real linguistic and
+adversarial diversity. Every published result derived from it must be labelled synthetic and use
+the term “possible OOD.”

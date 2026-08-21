@@ -1,0 +1,96 @@
+{"id":"travel-01a","domain":"travel","scenario_group":"travel-flight-booking","text":"Can you find me a direct flight from London to Lisbon next Friday?"}
+{"id":"travel-01b","domain":"travel","scenario_group":"travel-flight-booking","text":"I need to book two seats to Toronto for the first week of October."}
+{"id":"travel-02a","domain":"travel","scenario_group":"travel-flight-status","text":"Is flight BA281 expected to leave on time tonight?"}
+{"id":"travel-02b","domain":"travel","scenario_group":"travel-flight-status","text":"My departure gate disappeared from the airline app; where should I go?"}
+{"id":"travel-03a","domain":"travel","scenario_group":"travel-accommodation","text":"Which hotels near Edinburgh Waverley allow a late check-in?"}
+{"id":"travel-03b","domain":"travel","scenario_group":"travel-accommodation","text":"Please change my room booking from one night to three nights."}
+{"id":"travel-04a","domain":"travel","scenario_group":"travel-local-transit","text":"What is the fastest train from Manchester Airport to the city centre?"}
+{"id":"travel-04b","domain":"travel","scenario_group":"travel-local-transit","text":"Does the underground still run after midnight on Saturday?"}
+{"id":"weather-01a","domain":"weather","scenario_group":"weather-forecast","text":"Will it rain in Bristol tomorrow afternoon?"}
+{"id":"weather-01b","domain":"weather","scenario_group":"weather-forecast","text":"What temperature should I expect in Glasgow this weekend?"}
+{"id":"weather-02a","domain":"weather","scenario_group":"weather-warning","text":"Is there a flood warning for my area today?"}
+{"id":"weather-02b","domain":"weather","scenario_group":"weather-warning","text":"Has the amber wind alert for Cornwall been extended?"}
+{"id":"weather-03a","domain":"weather","scenario_group":"weather-history","text":"How much rain fell in Leeds last month?"}
+{"id":"weather-03b","domain":"weather","scenario_group":"weather-history","text":"Was this July hotter than the average for London?"}
+{"id":"weather-04a","domain":"weather","scenario_group":"weather-activity","text":"Is the weather suitable for hiking in Snowdonia on Sunday?"}
+{"id":"weather-04b","domain":"weather","scenario_group":"weather-activity","text":"What is the best time today to dry clothes outside?"}
+{"id":"healthcare-01a","domain":"healthcare","scenario_group":"healthcare-appointment","text":"Can I move my dental appointment to Thursday morning?"}
+{"id":"healthcare-01b","domain":"healthcare","scenario_group":"healthcare-appointment","text":"I need to cancel tomorrow's physiotherapy session."}
+{"id":"healthcare-02a","domain":"healthcare","scenario_group":"healthcare-medication","text":"Should this antibiotic be taken before or after food?"}
+{"id":"healthcare-02b","domain":"healthcare","scenario_group":"healthcare-medication","text":"I forgot one dose of my prescription; what should I do?"}
+{"id":"healthcare-03a","domain":"healthcare","scenario_group":"healthcare-symptoms","text":"I have had a high temperature and sore throat since yesterday."}
+{"id":"healthcare-03b","domain":"healthcare","scenario_group":"healthcare-symptoms","text":"Why does my wrist hurt whenever I type?"}
+{"id":"healthcare-04a","domain":"healthcare","scenario_group":"healthcare-records","text":"How can I obtain a copy of my vaccination record?"}
+{"id":"healthcare-04b","domain":"healthcare","scenario_group":"healthcare-records","text":"The clinic portal shows the wrong allergy information."}
+{"id":"workplace-01a","domain":"workplace","scenario_group":"workplace-leave","text":"How many annual leave days do I have remaining?"}
+{"id":"workplace-01b","domain":"workplace","scenario_group":"workplace-leave","text":"Please approve my holiday request for the final week of August."}
+{"id":"workplace-02a","domain":"workplace","scenario_group":"workplace-payroll","text":"My overtime hours are missing from this month's payslip."}
+{"id":"workplace-02b","domain":"workplace","scenario_group":"workplace-payroll","text":"When will my employer issue the corrected tax document?"}
+{"id":"workplace-03a","domain":"workplace","scenario_group":"workplace-access","text":"I cannot sign in to the staff scheduling portal."}
+{"id":"workplace-03b","domain":"workplace","scenario_group":"workplace-access","text":"Reset my company email password because the account is locked."}
+{"id":"workplace-04a","domain":"workplace","scenario_group":"workplace-policy","text":"Where can I find the remote-working policy?"}
+{"id":"workplace-04b","domain":"workplace","scenario_group":"workplace-policy","text":"Am I allowed to carry unused leave into next year?"}
+{"id":"education-01a","domain":"education","scenario_group":"education-enrolment","text":"How do I enrol in the evening machine-learning class?"}
+{"id":"education-01b","domain":"education","scenario_group":"education-enrolment","text":"The course registration page says my seminar is full."}
+{"id":"education-02a","domain":"education","scenario_group":"education-assignment","text":"When is the database assignment due?"}
+{"id":"education-02b","domain":"education","scenario_group":"education-assignment","text":"Can I submit my coursework again after fixing the references?"}
+{"id":"education-03a","domain":"education","scenario_group":"education-results","text":"My exam result is not visible in the student portal."}
+{"id":"education-03b","domain":"education","scenario_group":"education-results","text":"When will the final project marks be released?"}
+{"id":"education-04a","domain":"education","scenario_group":"education-library","text":"Renew my library book for another two weeks."}
+{"id":"education-04b","domain":"education","scenario_group":"education-library","text":"Does the university library provide access to this journal?"}
+{"id":"entertainment-01a","domain":"entertainment","scenario_group":"entertainment-streaming","text":"Why does the television app keep buffering during every episode?"}
+{"id":"entertainment-01b","domain":"entertainment","scenario_group":"entertainment-streaming","text":"Turn on subtitles for the documentary I am watching."}
+{"id":"entertainment-02a","domain":"entertainment","scenario_group":"entertainment-music","text":"Build a playlist of calm instrumental music for studying."}
+{"id":"entertainment-02b","domain":"entertainment","scenario_group":"entertainment-music","text":"What album did this artist release before their latest one?"}
+{"id":"entertainment-03a","domain":"entertainment","scenario_group":"entertainment-cinema","text":"What time is the last screening at the cinema tonight?"}
+{"id":"entertainment-03b","domain":"entertainment","scenario_group":"entertainment-cinema","text":"Are there any accessible seats left for the afternoon film?"}
+{"id":"entertainment-04a","domain":"entertainment","scenario_group":"entertainment-games","text":"My saved game vanished after the console update."}
+{"id":"entertainment-04b","domain":"entertainment","scenario_group":"entertainment-games","text":"How do I invite another player to this online match?"}
+{"id":"home-services-01a","domain":"home_services","scenario_group":"home-services-energy","text":"The boiler pressure keeps dropping even after I refill it."}
+{"id":"home-services-01b","domain":"home_services","scenario_group":"home-services-energy","text":"Book an engineer because my heating will not switch on."}
+{"id":"home-services-02a","domain":"home_services","scenario_group":"home-services-broadband","text":"My home internet disconnects every few minutes."}
+{"id":"home-services-02b","domain":"home_services","scenario_group":"home-services-broadband","text":"The new router has arrived but I cannot activate it."}
+{"id":"home-services-03a","domain":"home_services","scenario_group":"home-services-water","text":"There is no cold water coming from the kitchen tap."}
+{"id":"home-services-03b","domain":"home_services","scenario_group":"home-services-water","text":"Report a leaking pipe under the bathroom sink."}
+{"id":"home-services-04a","domain":"home_services","scenario_group":"home-services-waste","text":"Why was my recycling bin not collected this morning?"}
+{"id":"home-services-04b","domain":"home_services","scenario_group":"home-services-waste","text":"Which day should I put out the garden-waste container?"}
+{"id":"shopping-delivery-01a","domain":"shopping_delivery","scenario_group":"shopping-delivery-order","text":"The shoes I ordered are the wrong size and need exchanging."}
+{"id":"shopping-delivery-01b","domain":"shopping_delivery","scenario_group":"shopping-delivery-order","text":"Can I add another item to the parcel before it is dispatched?"}
+{"id":"shopping-delivery-02a","domain":"shopping_delivery","scenario_group":"shopping-delivery-tracking","text":"My parcel tracking has not updated for four days."}
+{"id":"shopping-delivery-02b","domain":"shopping_delivery","scenario_group":"shopping-delivery-tracking","text":"The courier says delivered, but nothing is outside my door."}
+{"id":"shopping-delivery-03a","domain":"shopping_delivery","scenario_group":"shopping-delivery-product","text":"Does this laptop stand fit a seventeen-inch computer?"}
+{"id":"shopping-delivery-03b","domain":"shopping_delivery","scenario_group":"shopping-delivery-product","text":"Is the blue jacket available in a smaller size?"}
+{"id":"shopping-delivery-04a","domain":"shopping_delivery","scenario_group":"shopping-delivery-return","text":"Where should I send a damaged lamp for replacement?"}
+{"id":"shopping-delivery-04b","domain":"shopping_delivery","scenario_group":"shopping-delivery-return","text":"Print another returns label because the first one is unreadable."}
+{"id":"public-services-01a","domain":"public_services","scenario_group":"public-services-licence","text":"How do I renew a driving licence that expires next month?"}
+{"id":"public-services-01b","domain":"public_services","scenario_group":"public-services-licence","text":"My replacement licence has not arrived yet."}
+{"id":"public-services-02a","domain":"public_services","scenario_group":"public-services-council","text":"The streetlight outside number twenty has stopped working."}
+{"id":"public-services-02b","domain":"public_services","scenario_group":"public-services-council","text":"Where can I report a dangerous pothole?"}
+{"id":"public-services-03a","domain":"public_services","scenario_group":"public-services-passport","text":"What documents are required for a first passport application?"}
+{"id":"public-services-03b","domain":"public_services","scenario_group":"public-services-passport","text":"Can I change the delivery address on my passport application?"}
+{"id":"public-services-04a","domain":"public_services","scenario_group":"public-services-register","text":"How can I update my address on the electoral register?"}
+{"id":"public-services-04b","domain":"public_services","scenario_group":"public-services-register","text":"The council has spelled my surname incorrectly on the record."}
+{"id":"device-support-01a","domain":"device_support","scenario_group":"device-support-phone","text":"My phone battery drains completely before lunchtime."}
+{"id":"device-support-01b","domain":"device_support","scenario_group":"device-support-phone","text":"The latest mobile update made the camera stop opening."}
+{"id":"device-support-02a","domain":"device_support","scenario_group":"device-support-computer","text":"My laptop freezes whenever I connect the external display."}
+{"id":"device-support-02b","domain":"device_support","scenario_group":"device-support-computer","text":"Why is the computer fan running loudly while nothing is open?"}
+{"id":"device-support-03a","domain":"device_support","scenario_group":"device-support-printer","text":"The printer says paper jam even though the tray is empty."}
+{"id":"device-support-03b","domain":"device_support","scenario_group":"device-support-printer","text":"How do I connect this wireless printer to my MacBook?"}
+{"id":"device-support-04a","domain":"device_support","scenario_group":"device-support-account","text":"I cannot recover the password for my photo-storage account."}
+{"id":"device-support-04b","domain":"device_support","scenario_group":"device-support-account","text":"Someone changed the email address on my gaming profile."}
+{"id":"food-dining-01a","domain":"food_dining","scenario_group":"food-dining-reservation","text":"Reserve a table for four at seven o'clock tomorrow evening."}
+{"id":"food-dining-01b","domain":"food_dining","scenario_group":"food-dining-reservation","text":"Move my restaurant booking from indoors to the terrace."}
+{"id":"food-dining-02a","domain":"food_dining","scenario_group":"food-dining-allergy","text":"Does this soup contain peanuts or sesame?"}
+{"id":"food-dining-02b","domain":"food_dining","scenario_group":"food-dining-allergy","text":"Which menu items are suitable for someone avoiding gluten?"}
+{"id":"food-dining-03a","domain":"food_dining","scenario_group":"food-dining-delivery","text":"The takeaway arrived cold and one meal is missing."}
+{"id":"food-dining-03b","domain":"food_dining","scenario_group":"food-dining-delivery","text":"Change the delivery instructions to use the side entrance."}
+{"id":"food-dining-04a","domain":"food_dining","scenario_group":"food-dining-recipe","text":"How long should I roast a two-kilogram chicken?"}
+{"id":"food-dining-04b","domain":"food_dining","scenario_group":"food-dining-recipe","text":"What can I substitute for eggs in this cake recipe?"}
+{"id":"general-knowledge-01a","domain":"general_knowledge","scenario_group":"general-knowledge-history","text":"Who was the first woman to win a Nobel Prize?"}
+{"id":"general-knowledge-01b","domain":"general_knowledge","scenario_group":"general-knowledge-history","text":"In which year did the Berlin Wall fall?"}
+{"id":"general-knowledge-02a","domain":"general_knowledge","scenario_group":"general-knowledge-science","text":"Why does the moon appear larger near the horizon?"}
+{"id":"general-knowledge-02b","domain":"general_knowledge","scenario_group":"general-knowledge-science","text":"What causes the northern lights?"}
+{"id":"general-knowledge-03a","domain":"general_knowledge","scenario_group":"general-knowledge-language","text":"Translate good morning into Welsh."}
+{"id":"general-knowledge-03b","domain":"general_knowledge","scenario_group":"general-knowledge-language","text":"What is the plural form of analysis?"}
+{"id":"general-knowledge-04a","domain":"general_knowledge","scenario_group":"general-knowledge-geography","text":"Which river runs through Budapest?"}
+{"id":"general-knowledge-04b","domain":"general_knowledge","scenario_group":"general-knowledge-geography","text":"What is the capital city of New Zealand?"}
