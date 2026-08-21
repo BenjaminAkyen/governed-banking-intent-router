@@ -4,11 +4,10 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: Module 16 adds cross-platform CPU CI, safety-suite coverage gates, CodeQL, dependency
-> review, vulnerability and secret scanning, SBOM generation, Dependabot, packaging checks and a
-> real lightweight container build. GitHub-hosted runs are pending. The Collector/backend path and
-> CPU/CUDA serving containers remain unverified. TF-IDF remains champion; production deployment
-> and real-CUDA claims are not approved.**
+> **Status: Module 17 adds a model card, system card, governed data boundary, risk register, threat
+> model, human oversight, incident response, rollback, change approval, monitoring, validation and
+> NIST AI RMF mapping. The v0.2.0 change record remains pending. TF-IDF remains champion; the served
+> LoRA model is a research challenger, and production deployment is not approved.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -32,6 +31,15 @@ The service recommends a queue. It never moves money, freezes an account, approv
 authenticates a customer or provides financial advice.
 
 ## Current module
+
+Module 17 converts the confirmed research boundary into a machine-readable governance contract and
+an operational document set. It records INNETWORK Technology Limited as the accountable
+organisation, preserves role-based veto authority, scores 13 current risks, models nine concrete
+security threats and defines human review, incident, immutable rollback, monitoring, validation and
+change-approval procedures. Its NIST AI RMF 1.0 crosswalk is a current-state mapping—not a
+certification. The Module 17 record deliberately contains no fabricated approvals, so v0.2.0
+remains blocked pending real accountable review. See the [governance inventory](docs/governance/README.md),
+[model card](docs/MODEL_CARD.md) and [system card](docs/SYSTEM_CARD.md).
 
 Module 16 adds an auditable continuous-integration and supply-chain boundary without changing any
 registered model or safety evidence. The CPU matrix covers Ubuntu, macOS and Windows on supported
@@ -353,6 +361,8 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 14. Deployable service profiles - **native MPS verified; CPU/CUDA container execution pending**
 15. Privacy-safe OpenTelemetry observability - **native MPS emission verified; backend pending**
 16. Continuous integration and supply-chain controls - **implemented; hosted CI run pending**
+17. Governance and operational documentation - **implemented; release approval pending**
+18. Open-source release and adoption - **planned; v0.2.0 research preview not yet released**
 
 ## Responsible-use limitations
 

@@ -57,3 +57,8 @@
 | Module 14 gateway template proves an identity provider is configured | Refuted | The contract contains explicit replacement values and `identity_provider_configured: false` |
 | Module 14 provides rollback by hot-swapping model files | Refuted by design | Rollback replaces an immutable process/container revision and versioned model bundle |
 | The system is production ready | Prohibited | Representative deployment evidence and organisational approval |
+| Module 17 documents the current research governance boundary | Verified | Machine-readable governance contract, cards, risk/threat documentation and consistency tests |
+| Module 17 approves the v0.2.0 release | Refuted | The change record is explicitly pending with no fabricated approvals |
+| The NIST AI RMF mapping is certification or full conformance | Prohibited | It is a voluntary-framework current-state crosswalk with explicit gaps |
+| Human oversight is operationally validated | Unverified | Named assignments, training, capacity, response targets and exercises are still required |
+| The Module 17 threat model covers a production bank deployment | Prohibited | It covers the confirmed research-only, private-origin, single-organisation assumptions |
