@@ -45,9 +45,10 @@ entire repository is strictly typed.
 ## Coverage interpretation
 
 Coverage floors are regression controls, not proof of correctness or safety. They are fixed at
-or slightly below the observed Module 15 coverage for safety-critical modules so that a change
-cannot silently reduce exercised behaviour. Percentages are compared without rounding. Raising a
-floor requires tests and review; lowering one requires a documented risk acceptance.
+or slightly below clean-clone coverage for safety-critical modules so that a change cannot
+silently reduce exercised behaviour. The API floor reflects the portable run in which the local,
+unredistributed adapter test is correctly skipped. Percentages are compared without rounding.
+Raising a floor requires tests and review; lowering one requires a documented risk acceptance.
 
 ## GitHub repository settings required
 

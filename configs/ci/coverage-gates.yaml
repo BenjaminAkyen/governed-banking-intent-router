@@ -16,7 +16,7 @@ modules:
     minimum_percent: 84
     rationale: pluggable audit persistence boundary
   src/governed_banking/api.py:
-    minimum_percent: 84
+    minimum_percent: 83
     rationale: authenticated governed inference boundary
   src/governed_banking/deployment_config.py:
     minimum_percent: 80
