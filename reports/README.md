@@ -44,3 +44,9 @@ Module 10 stores `service/module10-api-evaluation.json`. It records the preregis
 startup and sequential in-process latency summary, aggregate API and routing outcomes, security-
 boundary checks, audit permissions and explicit limitations. It contains no request, redacted
 request, message hash, prediction-level record, classification metric or official-test access.
+
+Module 11 stores real-device tensor-probe evidence under `runtime/` and metadata-only prediction
+evidence under `parity/`. The committed CPU and MPS reports describe observed local hardware; the
+MPS prediction report contains calibrated probability vectors and routing metadata for the 12
+registered synthetic cases, but no request or redacted text. CUDA and MPS–CUDA comparison reports
+must not be added until the registered Colab notebook runs successfully on a real NVIDIA GPU.

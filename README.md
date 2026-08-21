@@ -4,8 +4,9 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: Module 10's authenticated local shadow API passes its registered MPS integration
-> checks; Module 8 uncertainty gates remain failed and no automated route is production approved.**
+> **Status: Module 11 verifies CPU and native Mac MPS execution. CUDA support is implemented but
+> remains unverified until the registered Colab notebook runs on a real NVIDIA GPU. Module 8
+> uncertainty gates remain failed and no automated route is production approved.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -30,10 +31,15 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 10 exposes the registered seed-42 LoRA-RoBERTa adapter through a loopback-only FastAPI
-service. The API requires bearer authentication, rejects oversized and unexpected input, redacts
-structured PII before offline MPS inference, applies deterministic shadow routing, and persists a
-metadata-only audit event before returning a recommendation.
+Module 11 adds strict `auto`, `cuda`, `mps` and `cpu` execution profiles without modifying Module
+10's historical MPS files. `auto` selects CUDA, then MPS, then CPU. Every explicit profile fails if
+its requested backend is unavailable; CUDA is never simulated and MPS operator fallback to CPU is
+prohibited in registered evidence runs.
+
+The same pinned seed-42 adapter can now produce metadata-only prediction reports on MPS and CUDA.
+The comparison requires identical top-1 intents and deterministic routing actions plus a maximum
+absolute probability difference of 0.001. It uses the existing 12-case synthetic service fixture,
+not BANKING77 test data or customer data. These checks concern execution parity, not model quality.
 
 The service remains in `shadow_review_only` mode. It may return `security_queue` or `human_review`,
 but its schema cannot return `suggest_queue`. Module 8 thresholds are experimental observations
@@ -47,6 +53,23 @@ python -m pip install -e ".[dev,notebook]"
 ruff check .
 pytest --cov=governed_banking --cov-report=term-missing
 ```
+
+Reproduce the verified native-Mac reference:
+
+```bash
+python scripts/verify_accelerator.py \
+  --profile configs/runtime/mps.yaml \
+  --report reports/runtime/mps-runtime.json
+python scripts/run_backend_parity.py \
+  --backend mps \
+  --report reports/parity/mps-seed42.json
+```
+
+Then use
+[`11b-google-colab-cuda-prediction-parity.ipynb`](output/jupyter-notebook/11b-google-colab-cuda-prediction-parity.ipynb)
+on a real Colab GPU. It restores only the exact hash-bound private adapter, downloads the pinned
+public RoBERTa revision, creates CUDA evidence and applies the preregistered parity gates. The CUDA
+and cross-device reports must not be claimed until that notebook passes.
 
 Reproduce the Module 10 real-MPS integration evidence:
 
@@ -73,6 +96,23 @@ curl --request POST http://127.0.0.1:8000/v1/route \
   --header "Content-Type: application/json" \
   --data '{"message":"When will my replacement card arrive?"}'
 ```
+
+## Verified Module 11 local execution evidence
+
+| Measure | Registered result |
+|---|---:|
+| Explicit CPU tensor probe | Pass |
+| Explicit MPS tensor probe | Pass — Apple M4 |
+| MPS prediction cases | 12/12 completed |
+| Input or redacted text persisted | No |
+| Official test or customer data accessed | No |
+| Explicit CUDA request on the Mac | Failed closed; no fallback |
+| Real CUDA prediction evidence | **Pending Colab execution** |
+| MPS–CUDA parity decision | **Not yet available** |
+
+The MPS reference is bound to the runtime profile, service configuration, fixture, privacy policy,
+routing policy, calibration report, checkpoint files and implementation hashes. See the
+[cross-platform accelerator decision](docs/decisions/0002-cross-platform-accelerators.md).
 
 ## Verified Module 10 local integration evidence
 
@@ -206,6 +246,7 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 8. Uncertainty, selective prediction and possible-OOD evaluation - **complete; gates failed**
 9. PII controls, risk policy and metadata-only auditing - **complete; synthetic control evidence**
 10. FastAPI service and local MPS integration evidence - **complete; production release prohibited**
+11. Cross-platform runtime and prediction parity - **MPS/CPU verified; real CUDA run pending**
 
 ## Responsible-use limitations
 

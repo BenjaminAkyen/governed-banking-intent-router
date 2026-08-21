@@ -32,4 +32,9 @@
 | Module 10 measured 13.34 ms p50 and 299.25 ms p95 in-process sequential latency | Verified on the documented Mac only | 36-request registered run after three warm-ups; higher percentile method |
 | Module 10 API and audit outputs exclude registered fixture source and redacted values | Verified for the synthetic fixture | 39-event audit round trip and zero prohibited-value matches |
 | Module 10 supports production throughput or availability targets | Prohibited | Sustained concurrency, network, capacity, failure-recovery and representative workload evidence |
+| Module 11 explicit CPU and MPS profiles execute on observed local hardware | Verified | Self-hashing tensor-probe reports; Apple M4 MPS and arm64 CPU metadata |
+| Module 11 MPS inference completes the 12 registered synthetic cases without persisting text | Verified, bounded synthetic evidence | Hash-bound MPS prediction report and privacy-boundary validation |
+| Module 11 CUDA execution works on a real NVIDIA GPU | Unverified | Registered CUDA runtime and prediction reports from Notebook 11B |
+| Module 11 MPS and CUDA predictions satisfy the registered parity gates | Unverified | Independent backend reports and passing comparison; no tolerance changes after observation |
+| Cross-device parity establishes model quality or production fitness | Prohibited | Parity evaluates numerical and routing consistency only; representative independent evaluation is required |
 | The system is production ready | Prohibited | Representative deployment evidence and organisational approval |

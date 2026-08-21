@@ -61,3 +61,8 @@ security checks and the explicit non-production claim boundary.
 Module 11 profiles. Explicit accelerator profiles fail when their real backend is unavailable;
 `auto` alone may select CUDA, then MPS, then CPU. These profiles verify hardware execution only and
 do not access BANKING77 or make model-quality claims.
+
+`prediction_parity.yaml` registers the separate MPS reference and CUDA candidate profiles, the
+immutable Module 10 service source, the existing synthetic fixture and a 0.001 absolute-probability
+tolerance. Top-1 intent and deterministic routing-action equality are mandatory. Changing any of
+these gates invalidates both backend reports and their comparison.
