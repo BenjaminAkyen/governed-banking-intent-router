@@ -71,3 +71,9 @@ these gates invalidates both backend reports and their comparison.
 historical and development evidence hashes, service misalignment, external-data requirement and
 two promotion routes. The classification, calibration, selective-risk and safety margins are fixed
 before external evaluation exists. All existing evidence remains promotion-ineligible.
+
+`robustness_evaluation.yaml` registers Module 13's 60-case synthetic pack, pack hash, model role,
+real-MPS profile, leakage method and assessment thresholds. The evaluated Module 10 LoRA service is
+explicitly not the retained champion. The configuration requires zero pack/BANKING77 lexical
+leakage, complete PII expectations, at least 80% acceptable-intent accuracy, 100% expected-security
+routing recall, at least 95% routing-action agreement, zero suggestions and a text-free report.

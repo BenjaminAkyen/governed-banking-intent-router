@@ -42,4 +42,10 @@
 | A challenger may be promoted using another BANKING77 test run | Prohibited | The official test is already observed; a new locked external evaluation source is mandatory |
 | Module 12 automatically promotes a model that passes numeric gates | Refuted by design | Passing creates eligibility for human review; automatic registry mutation is prohibited |
 | Module 10 serves the approved champion | Refuted | The shadow service uses revised LoRA while TF-IDF remains champion |
+| The Module 13 synthetic pack covers all ten registered robustness families | Verified, authored synthetic evidence | 60 hash-locked cases, six per family, with complete case-level routing, risk, escalation, provenance and licence annotations |
+| The Module 13 pack copies or closely reproduces a pinned BANKING77 message | Refuted by the registered lexical check | Zero exact or character-five-gram near matches across 13,083 pinned train/test rows at the locked 0.85 Jaccard threshold |
+| The Module 10 LoRA service meets the Module 13 acceptable-intent gate | Refuted | 37/54 in-scope cases were acceptable (68.52%) versus the preregistered 80% minimum |
+| The Module 10 LoRA service meets the Module 13 expected-security routing gate | Refuted | 11/14 expected-security cases reached security (78.57%) versus the preregistered 100% requirement |
+| Module 13 PII and no-suggestion control checks passed on the synthetic pack | Verified, bounded synthetic evidence | 60/60 PII expectations matched, zero suggestions, and no input/redacted value or message hash was persisted |
+| Module 13 establishes representative real-world robustness | Prohibited | Authored synthetic cases support failure discovery only; governed real-world data and independent assessment are required |
 | The system is production ready | Prohibited | Representative deployment evidence and organisational approval |

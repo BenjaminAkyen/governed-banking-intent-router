@@ -38,3 +38,10 @@ described as representative privacy or routing validation.
 Module 10's `fixtures/api-shadow-cases.jsonl` contains 12 authored non-customer requests used only
 for local MPS/API integration and latency checks. Reports derived from it retain hashes and aggregate
 metadata rather than source or redacted message strings.
+
+Module 13 adds `robustness/v1/cases.jsonl`, a 60-case, versioned synthetic stress pack with six
+cases in each of ten primary robustness families. Every case includes acceptable intent labels,
+expected routing action, risk and escalation annotations, expected structured-PII types, provenance
+and MIT licence metadata. The construction manifest records zero internal or BANKING77 exact/near
+duplicates after scanning all 13,083 pinned source rows. This is authored failure-discovery data,
+not representative banking traffic; the observed v1 pack must not be reused as a tuning target.

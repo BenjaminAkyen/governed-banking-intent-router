@@ -4,9 +4,9 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: Module 12 retains TF-IDF as the evidence-backed champion. Existing challenger evidence
-> cannot authorize promotion, the required external evaluation lock is missing, and no production
-> deployment is approved. Module 11 real-CUDA verification also remains pending.**
+> **Status: Module 13's locked synthetic robustness assessment failed for the Module 10 LoRA
+> research service. TF-IDF remains the evidence-backed champion; no challenger promotion or
+> production deployment is approved. Module 11 real-CUDA verification also remains pending.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -31,16 +31,18 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 12 introduces a hash-bound champion–challenger registry. TF-IDF remains champion because it
-has the highest macro-F1 in the completed like-for-like historical comparison. Frozen RoBERTa,
-revised LoRA and planned full RoBERTa fine-tuning are challengers. No existing evidence is marked
-promotion-eligible because BANKING77 test results are already observed and later validation roles
-influenced development.
+Module 13 introduces a hash-locked 60-case synthetic robustness pack with complete acceptable-
+intent, routing, severity, escalation, provenance and licence annotations. It covers ten families,
+including typo and speech noise, paraphrases, multi-intent and ambiguous requests, code-switching,
+PII, prompt-like manipulation, non-banking input and urgent security incidents. A registered
+leakage gate found zero exact or high-overlap matches within the pack or across all 13,083 pinned
+BANKING77 rows.
 
-Promotion now requires either statistically supported macro-F1 superiority across seeds 17, 42
-and 73, or macro-F1 non-inferiority with a material calibration or selective-risk improvement.
-Every route also has security, privacy, routing and audit vetoes and requires human approval. A new
-locked external evaluation dataset is mandatory before these gates can make a credible decision.
+The real-MPS assessment preserved a negative result. The Module 10 LoRA service reached 68.52%
+acceptable-intent accuracy on 54 in-scope synthetic cases, 78.57% expected-security routing recall
+and 90.00% overall routing-action agreement. Each missed its preregistered gate. PII expectations
+matched 60/60 and no suggestion action or message value entered the report. The evaluated LoRA
+service is not the retained TF-IDF champion, and these authored cases are not production validation.
 
 The service remains in `shadow_review_only` mode. It may return `security_queue` or `human_review`,
 but its schema cannot return `suggest_queue`. Module 8 thresholds are experimental observations
@@ -64,6 +66,18 @@ pytest -q tests/test_champion.py
 
 See the [champion–challenger card](docs/CHAMPION_CHALLENGER_CARD.md) and
 [`12-champion-challenger-registry-audit.ipynb`](output/jupyter-notebook/12-champion-challenger-registry-audit.ipynb).
+
+Revalidate the Module 13 pack and reproduce the real-MPS assessment:
+
+```bash
+python scripts/build_robustness_pack.py
+python scripts/run_robustness_evaluation.py
+pytest -q tests/test_robustness.py
+```
+
+The second command requires a real MPS device and cannot fall back to CPU. See the
+[synthetic robustness evaluation card](docs/ROBUSTNESS_EVALUATION_CARD.md) and
+[`13-synthetic-robustness-evaluation.ipynb`](output/jupyter-notebook/13-synthetic-robustness-evaluation.ipynb).
 
 Reproduce the verified native-Mac reference:
 
@@ -107,6 +121,26 @@ curl --request POST http://127.0.0.1:8000/v1/route \
   --header "Content-Type: application/json" \
   --data '{"message":"When will my replacement card arrive?"}'
 ```
+
+## Verified Module 13 synthetic robustness decision
+
+| Measure | Registered result |
+|---|---:|
+| Locked synthetic cases | 60; six in each of ten primary families |
+| BANKING77 rows scanned for lexical leakage | 13,083 |
+| Internal / BANKING77 exact or near matches | 0 / 0 |
+| In-scope acceptable-intent rate | 68.52% (37/54) — **fail** |
+| Expected-security routing recall | 78.57% (11/14) — **fail** |
+| Overall routing-action agreement | 90.00% (54/60) — **fail** |
+| PII expectation agreement | 100% (60/60) — pass |
+| Suggestion actions | 0 — pass |
+| Production validation | No |
+| Decision | Stop LoRA promotion; retain champion |
+
+The weakest primary family was typographical error at 16.67% acceptable-intent accuracy. Three
+expected-security cases were under-routed, while three unrelated requests were over-routed to
+security after closed-set predictions. These cases are failure-discovery evidence, not population
+estimates.
 
 ## Verified Module 12 registry decision
 

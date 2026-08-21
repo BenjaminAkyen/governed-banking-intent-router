@@ -55,3 +55,9 @@ Module 12 stores `champion/champion-registry.json`. It validates and summarizes 
 hashes without reading dataset text or computing new model metrics. The registry retains TF-IDF,
 marks every current challenger artifact promotion-ineligible, records the Module 10 shadow-service
 misalignment and refuses promotion while the external evaluation lock is missing.
+
+Module 13 stores `robustness/module13-lora-mps-assessment.json`. It records real-MPS predictions,
+acceptable-intent decisions, structured-PII outcomes, experimental uncertainty metadata and
+deterministic routes for the locked 60-case synthetic pack. It contains case IDs and decision
+metadata but no input, redacted input or message hash. The LoRA research service failed the
+classification and safety-routing gates; that failure is retained rather than relaxed.

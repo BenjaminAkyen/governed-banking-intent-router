@@ -93,6 +93,20 @@ classification non-inferiority with material calibration or selective-risk impro
 security-intent, privacy, routing and audit gates. Passing creates eligibility for human approval;
 the framework cannot promote automatically.
 
+Module 13 locks a separately authored 60-case synthetic robustness pack before inference. It
+requires six cases in each of ten primary families, complete acceptable-intent/routing/risk/
+escalation/provenance/licence annotations, exact structured-PII expectations, no internal
+duplicates and no exact or high-overlap lexical match against pinned BANKING77 train/test text.
+Official BANKING77 text may be read only by the construction leakage gate, never scored during the
+Module 13 model assessment.
+
+The first assessment targets the Module 10 LoRA research service on explicit real MPS; it does not
+evaluate or replace the TF-IDF champion. Gates are at least 80% acceptable-intent accuracy across
+in-scope cases, 100% recall for expected security actions, at least 95% overall routing-action
+agreement, exact PII expectations, zero suggestion actions and a text-free report. Because v1 is
+now observed, it may support regression analysis but must not become a training or threshold-tuning
+set. A changed model needs a new locked pack or independent governed data for a fresh claim.
+
 ## Metrics
 
 ### Classification
@@ -163,6 +177,11 @@ Module 9 additionally requires all 11 registered detector classes to be exercise
 expected redaction and route to match, zero `suggest_queue` actions, a validated audit round trip
 and local evidence-sink permissions of `0700` for the directory and `0600` for the file. These are
 control-verification gates, not estimates of real-world detector or policy effectiveness.
+
+Module 13 failed its three model/routing performance gates: 68.52% in-scope acceptable-intent
+accuracy, 78.57% expected-security routing recall and 90.00% overall routing-action agreement.
+PII expectations, the zero-suggestion condition and report privacy passed. The failed gates are a
+stop-promotion decision, not permission to revise the locked thresholds.
 
 The gates are hypotheses and engineering targets, not achieved results.
 
