@@ -13,7 +13,11 @@ from fastapi.testclient import TestClient
 from governed_banking.api import GovernedService, ServiceConfig
 from governed_banking.audit import AuditConfig
 from governed_banking.audit_store import require_audit_store
-from governed_banking.deployment_config import CapacityProfile, DeploymentProfile
+from governed_banking.deployment_config import (
+    CapacityProfile,
+    DeploymentProfile,
+    LifecycleProfile,
+)
 from governed_banking.deployment_service import (
     CapacityController,
     CapacityRejected,
@@ -183,6 +187,36 @@ def test_failed_model_loading_is_live_but_not_ready() -> None:
         assert route.json() == {"detail": "service_not_ready"}
 
 
+def test_late_model_load_after_startup_timeout_is_closed() -> None:
+    base = _native_profile()
+    profile = replace(
+        base,
+        lifecycle=LifecycleProfile(
+            startup_timeout_seconds=0.01,
+            graceful_shutdown_seconds=0.1,
+        ),
+    )
+    harness = LoaderHarness(selected_device="mps")
+
+    def delayed_loader(*args):
+        time.sleep(0.05)
+        return harness(*args)
+
+    app = create_deployment_app(
+        profile,
+        environment=_native_environment(),
+        service_loader=delayed_loader,
+    )
+    with TestClient(app) as client:
+        ready = client.get("/health/ready")
+        assert ready.status_code == 503
+        assert ready.json()["lifecycle_phase"] == "failed"
+        time.sleep(0.08)
+
+    assert harness.loaded is not None
+    assert harness.loaded.closed is True
+
+
 def test_development_authentication_rejects_legacy_and_incorrect_tokens() -> None:
     harness = LoaderHarness(selected_device="mps")
     app = create_deployment_app(
@@ -262,6 +296,10 @@ def test_invalid_correlation_identifier_is_rejected_without_inference() -> None:
 
     assert response.status_code == 400
     assert response.json() == {"detail": "invalid_correlation_id"}
+    assert response.headers["cache-control"] == "no-store"
+    assert response.headers["x-content-type-options"] == "nosniff"
+    assert response.headers["x-frame-options"] == "DENY"
+    assert response.headers["referrer-policy"] == "no-referrer"
     assert harness.store.events == []
     uuid.UUID(response.headers["x-request-id"])
     uuid.UUID(response.headers["x-correlation-id"])

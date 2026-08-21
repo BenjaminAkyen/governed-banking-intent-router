@@ -23,7 +23,7 @@
   "implementation_sha256": {
     "audit_store.py": "00da2e870576da5a58e13fbb76c051c14aa1b8c26dcd897a54fb47bfe42337af",
     "deployment_config.py": "f41e3b0ef9b1faefbd937db73d61a5d64facba053b127d99c1df1aac195fc44a",
-    "deployment_service.py": "e892740fc4b78f169fd034a79ea75dfb9f84a39d7048ee0afea2460598f7460e",
+    "deployment_service.py": "506435b14e58102ac806794c622360ac7c31bc30712bf19d03ec9a526d7361ae",
     "run_deployment_smoke.py": "1137fa001275f749e32663d7443bf22d03f732b7661868c7732c1d0aa02dc0e6"
   },
   "limitations": [
@@ -36,10 +36,10 @@
     "audit_directory_mode": "0700",
     "audit_event_count": 1,
     "audit_file_mode": "0600",
-    "single_route_seconds": 0.7859,
-    "startup_seconds": 1.2512
+    "single_route_seconds": 0.1194,
+    "startup_seconds": 1.2368
   },
-  "report_sha256": "051df43711b3573adfeac7d0799993536f1719cff9226ba4c132fbec1364145d",
+  "report_sha256": "728059e921ea98e9fea1fa99b71e319a39adf9cfae69d7e6562d17dacf78006e",
   "runtime": {
     "accelerator_name": "Apple M4",
     "compute_capability": null,

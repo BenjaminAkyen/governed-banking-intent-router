@@ -372,20 +372,28 @@ def create_deployment_app(
     @asynccontextmanager
     async def lifespan(_: FastAPI):
         runtime.phase = "loading"
+        load_task = asyncio.create_task(
+            asyncio.to_thread(
+                loader,
+                profile,
+                selected_environment,
+                audit_store_factory,
+            )
+        )
         try:
             runtime.loaded = await asyncio.wait_for(
-                asyncio.to_thread(
-                    loader,
-                    profile,
-                    selected_environment,
-                    audit_store_factory,
-                ),
+                asyncio.shield(load_task),
                 timeout=profile.lifecycle.startup_timeout_seconds,
             )
             require_audit_store(runtime.loaded.audit_store)
             if runtime.loaded.selected_device != profile.expected_device:
                 raise RuntimeError("loaded service selected a different deployment device")
         except Exception as error:  # noqa: BLE001 - readiness records only a bounded category
+            if runtime.loaded is not None:
+                await asyncio.to_thread(runtime.loaded.close)
+                runtime.loaded = None
+            elif not load_task.done():
+                load_task.add_done_callback(_close_late_loaded_deployment)
             runtime.phase = "failed"
             runtime.startup_failure = type(error).__name__
         else:
@@ -616,6 +624,16 @@ def _release_capacity_after_background_task(
     asyncio.create_task(controller.release())
 
 
+def _close_late_loaded_deployment(task: asyncio.Task[LoadedDeployment]) -> None:
+    """Consume a non-cancellable loader result and close it after startup has failed."""
+
+    try:
+        loaded = task.result()
+    except (asyncio.CancelledError, Exception):
+        return
+    loaded.close()
+
+
 def _header_value(scope: Scope, name: bytes) -> str | None:
     values = [value for key, value in scope.get("headers", []) if key.lower() == name]
     if not values:
@@ -655,6 +673,9 @@ async def _send_problem(
                 (b"content-type", b"application/json"),
                 (b"content-length", str(len(payload)).encode("ascii")),
                 (b"cache-control", b"no-store"),
+                (b"x-content-type-options", b"nosniff"),
+                (b"x-frame-options", b"DENY"),
+                (b"referrer-policy", b"no-referrer"),
                 (b"x-request-id", request_id.encode("ascii")),
                 (b"x-correlation-id", correlation_id.encode("ascii")),
             ],
