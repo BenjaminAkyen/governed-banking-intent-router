@@ -4,10 +4,10 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: Module 14 adds native MPS and Linux CPU/CUDA deployment profiles, but only the native
-> MPS profile has been executed. Module 13's locked robustness gates failed for the served LoRA
-> research model. TF-IDF remains champion; production deployment and real-CUDA claims are not
-> approved.**
+> **Status: Module 15 adds privacy-allowlisted OpenTelemetry metrics and traces. A real Apple M4
+> MPS emission test passed, but the Collector/backend path and CPU/CUDA containers remain
+> unverified. Module 13's locked robustness gates failed for the served LoRA model. TF-IDF remains
+> champion; production deployment and real-CUDA claims are not approved.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -32,23 +32,27 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 14 adds a lifecycle-managed, versioned service boundary with separate liveness and
-readiness endpoints, canonical request/correlation IDs, bounded concurrency and queueing,
-per-principal rate limiting, request timeouts, pluggable metadata-only auditing, separated local
-and gateway authentication, graceful shutdown and immutable-revision rollback requirements.
+Module 15 wraps the immutable Module 14 service with manual OpenTelemetry instrumentation. It
+records request, error and latency signals; model-load duration; selected device; model and policy
+versions; human-review and security-escalation rates; redaction categories; uncertainty
+distribution; and descriptive routing-distribution change. Only fixed, registered metadata is
+accepted. Customer or redacted text, matched PII, headers, identity, request/correlation IDs and
+message hashes are prohibited.
 
-Three profiles are registered: native macOS MPS, a Linux CPU container and a Linux NVIDIA CUDA
-container. MPS is native-only; neither Linux image advertises or falls back to MPS. Explicit CUDA
-fails when a real CUDA backend is unavailable. The real Apple M4 MPS smoke test passed all 12
-checks, with 1.2368-second startup and one 0.1194-second synthetic route. CPU and CUDA container
-execution remains unverified.
+The real Apple M4/MPS evidence routed 20 synthetic cases and observed all 14 registered metrics,
+both span names, 10 human-review actions, 10 security escalations and the registered email and
+authentication-secret redaction categories. All 14 privacy and signal checks passed. The test used
+an in-memory exporter, so Collector, Prometheus and trace-backend operation remain unverified.
 
-See the [Module 14 deployment profiles](docs/DEPLOYMENT_PROFILES.md) and the metadata-only
-[`module14-native-mps-smoke.json`](reports/deployment/module14-native-mps-smoke.json).
+See [Module 15 observability](docs/OBSERVABILITY.md), the metadata-only
+[`module15-native-mps-observability.json`](reports/observability/module15-native-mps-observability.json)
+and the preserved [Module 14 deployment profiles](docs/DEPLOYMENT_PROFILES.md).
 
-Start the Module 14 native service:
+Start a reviewed loopback Collector before the observed native service:
 
 ```bash
+otelcol-contrib --config deploy/observability/collector-local.yaml
+export OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4317
 export GOVERNED_BANKING_DEV_API_TOKEN="$(openssl rand -hex 32)"
 python scripts/run_deployment_api.py \
   --profile configs/deployment/native-mps.yaml

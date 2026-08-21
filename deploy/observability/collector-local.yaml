@@ -1,0 +1,56 @@
+# Native-development profile: metrics stay loopback-only and traces are discarded after validation.
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 127.0.0.1:4317
+
+processors:
+  memory_limiter:
+    check_interval: 5s
+    limit_mib: 256
+    spike_limit_mib: 64
+  redaction:
+    allow_all_keys: false
+    allowed_keys:
+      - deployment.device
+      - deployment.environment
+      - error.type
+      - http.request.method
+      - http.response.status_code
+      - http.route
+      - model.uncertainty.bucket
+      - model.version
+      - policy.version
+      - privacy.redaction.category
+      - route.action
+      - route.processing_status
+      - service.name
+      - service.version
+      - telemetry.outcome
+    redact_all_types: true
+    summary: silent
+  batch:
+    timeout: 5s
+
+exporters:
+  prometheus:
+    endpoint: 127.0.0.1:9464
+    enable_open_metrics: true
+    resource_to_telemetry_conversion:
+      enabled: true
+  nop:
+
+service:
+  telemetry:
+    logs:
+      level: warn
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      processors: [memory_limiter, redaction, batch]
+      exporters: [prometheus]
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, redaction, batch]
+      exporters: [nop]

@@ -5,10 +5,16 @@ import yaml
 from governed_banking.observability_config import ALLOWED_ATTRIBUTE_KEYS
 
 
-def test_collector_is_local_fail_closed_and_has_no_log_pipeline() -> None:
-    config = yaml.safe_load(
-        Path("deploy/observability/collector.yaml").read_text(encoding="utf-8")
+def test_collectors_are_local_fail_closed_and_have_no_log_pipeline() -> None:
+    paths = (
+        Path("deploy/observability/collector.yaml"),
+        Path("deploy/observability/collector-local.yaml"),
     )
+    for path in paths:
+        _assert_collector_privacy_contract(yaml.safe_load(path.read_text(encoding="utf-8")))
+
+
+def _assert_collector_privacy_contract(config: dict) -> None:
     receiver = config["receivers"]["otlp"]["protocols"]["grpc"]
     redaction = config["processors"]["redaction"]
     pipelines = config["service"]["pipelines"]

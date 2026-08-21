@@ -67,3 +67,10 @@ runtime, profile and implementation hashes, startup and single-route timing, agg
 permission modes and 12 boolean service-boundary checks. It contains no request, redacted request or
 message hash. The report verifies one native in-process smoke path only; Linux CPU/CUDA containers,
 distributed limits, gateway identity and production availability remain unverified.
+
+Module 15 stores `observability/module15-native-mps-observability.json`. It records a real Apple M4
+MPS application-emission test for 20 synthetic routes, all 14 registered metric names, both span
+names, bounded attribute keys, routing-action counts, redaction categories and 14 boolean privacy
+and signal checks. It contains no request, redacted request, request/correlation identifier or
+message hash. The in-memory exporter does not validate the Collector, Prometheus, trace backend,
+alerts, retention or production data path.
