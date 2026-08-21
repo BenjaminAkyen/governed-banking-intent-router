@@ -77,3 +77,11 @@ real-MPS profile, leakage method and assessment thresholds. The evaluated Module
 explicitly not the retained champion. The configuration requires zero pack/BANKING77 lexical
 leakage, complete PII expectations, at least 80% acceptable-intent accuracy, 100% expected-security
 routing recall, at least 95% routing-action agreement, zero suggestions and a text-free report.
+
+`deployment/native-mps.yaml`, `deployment/linux-cpu.yaml` and `deployment/linux-cuda.yaml` register
+Module 14's three separate service execution boundaries. Native MPS is loopback development and
+cannot run as a Linux-container profile. CPU and CUDA profiles require an explicitly declared Linux
+container, trusted-gateway origin authentication and an immutable rollback reference. Explicit
+accelerator requests fail when unavailable. Every profile preserves shadow-review-only mode, binds
+the Module 10 research adapter and records that the served model is not the champion, Module 13
+gates failed and production use is not approved.

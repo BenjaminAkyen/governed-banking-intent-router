@@ -61,3 +61,9 @@ acceptable-intent decisions, structured-PII outcomes, experimental uncertainty m
 deterministic routes for the locked 60-case synthetic pack. It contains case IDs and decision
 metadata but no input, redacted input or message hash. The LoRA research service failed the
 classification and safety-routing gates; that failure is retained rather than relaxed.
+
+Module 14 stores `deployment/module14-native-mps-smoke.json`. It records the real Apple M4 MPS
+runtime, profile and implementation hashes, startup and single-route timing, aggregate audit count,
+permission modes and 12 boolean service-boundary checks. It contains no request, redacted request or
+message hash. The report verifies one native in-process smoke path only; Linux CPU/CUDA containers,
+distributed limits, gateway identity and production availability remain unverified.

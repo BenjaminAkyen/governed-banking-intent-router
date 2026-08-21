@@ -4,9 +4,10 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: Module 13's locked synthetic robustness assessment failed for the Module 10 LoRA
-> research service. TF-IDF remains the evidence-backed champion; no challenger promotion or
-> production deployment is approved. Module 11 real-CUDA verification also remains pending.**
+> **Status: Module 14 adds native MPS and Linux CPU/CUDA deployment profiles, but only the native
+> MPS profile has been executed. Module 13's locked robustness gates failed for the served LoRA
+> research model. TF-IDF remains champion; production deployment and real-CUDA claims are not
+> approved.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -30,6 +31,30 @@ The service recommends a queue. It never moves money, freezes an account, approv
 authenticates a customer or provides financial advice.
 
 ## Current module
+
+Module 14 adds a lifecycle-managed, versioned service boundary with separate liveness and
+readiness endpoints, canonical request/correlation IDs, bounded concurrency and queueing,
+per-principal rate limiting, request timeouts, pluggable metadata-only auditing, separated local
+and gateway authentication, graceful shutdown and immutable-revision rollback requirements.
+
+Three profiles are registered: native macOS MPS, a Linux CPU container and a Linux NVIDIA CUDA
+container. MPS is native-only; neither Linux image advertises or falls back to MPS. Explicit CUDA
+fails when a real CUDA backend is unavailable. The real Apple M4 MPS smoke test passed all 12
+checks, with 1.2368-second startup and one 0.1194-second synthetic route. CPU and CUDA container
+execution remains unverified.
+
+See the [Module 14 deployment profiles](docs/DEPLOYMENT_PROFILES.md) and the metadata-only
+[`module14-native-mps-smoke.json`](reports/deployment/module14-native-mps-smoke.json).
+
+Start the Module 14 native service:
+
+```bash
+export GOVERNED_BANKING_DEV_API_TOKEN="$(openssl rand -hex 32)"
+python scripts/run_deployment_api.py \
+  --profile configs/deployment/native-mps.yaml
+```
+
+The older Module 10 evidence remains immutable and is summarized below.
 
 Module 13 introduces a hash-locked 60-case synthetic robustness pack with complete acceptable-
 intent, routing, severity, escalation, provenance and licence annotations. It covers ten families,
@@ -302,6 +327,7 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 2. Immutable BANKING77 loader and split-integrity tests - **complete**
 3. TF-IDF logistic-regression baseline - **complete**
 4. Frozen RoBERTa embedding baseline - **complete**
+5. LoRA-adapted RoBERTa baseline - **complete; registered protocol underfit**
 6. Multi-seed manifests, revised development protocol and aggregation - **complete; exploratory**
 7. Temperature scaling and calibration assessment - **complete; exploratory**
 8. Uncertainty, selective prediction and possible-OOD evaluation - **complete; gates failed**
@@ -309,6 +335,8 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 10. FastAPI service and local MPS integration evidence - **complete; production release prohibited**
 11. Cross-platform runtime and prediction parity - **MPS/CPU verified; real CUDA run pending**
 12. Champion–challenger registry and promotion gates - **framework complete; external lock missing**
+13. Synthetic robustness evaluation - **complete; classification and safety-routing gates failed**
+14. Deployable service profiles - **native MPS verified; CPU/CUDA container execution pending**
 
 ## Responsible-use limitations
 

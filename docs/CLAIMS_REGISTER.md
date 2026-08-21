@@ -48,4 +48,12 @@
 | The Module 10 LoRA service meets the Module 13 expected-security routing gate | Refuted | 11/14 expected-security cases reached security (78.57%) versus the preregistered 100% requirement |
 | Module 13 PII and no-suggestion control checks passed on the synthetic pack | Verified, bounded synthetic evidence | 60/60 PII expectations matched, zero suggestions, and no input/redacted value or message hash was persisted |
 | Module 13 establishes representative real-world robustness | Prohibited | Authored synthetic cases support failure discovery only; governed real-world data and independent assessment are required |
+| Module 14 exposes separate liveness, readiness and versioned routing endpoints | Verified in native MPS smoke and focused tests | Hash-bound native report plus lifecycle/service tests |
+| Module 14 native service loads the registered adapter on real MPS without fallback | Verified on the documented Apple M4 only | Native profile and metadata-only 12-check smoke report |
+| Module 14 Linux CPU container executes successfully | Unverified | Digest-pinned image build and runtime smoke evidence on Linux CPU |
+| Module 14 Linux CUDA container executes successfully | Unverified | Digest-pinned CUDA image and real NVIDIA runtime smoke evidence |
+| Standard Linux Docker on a Mac provides normal PyTorch MPS acceleration | Refuted by design | MPS is restricted to native macOS; Linux profiles allow only CPU or CUDA |
+| Module 14 in-process rate limiting is a distributed fleet quota | Prohibited | An organisation gateway or shared limiter is required for fleet-wide enforcement |
+| Module 14 gateway template proves an identity provider is configured | Refuted | The contract contains explicit replacement values and `identity_provider_configured: false` |
+| Module 14 provides rollback by hot-swapping model files | Refuted by design | Rollback replaces an immutable process/container revision and versioned model bundle |
 | The system is production ready | Prohibited | Representative deployment evidence and organisational approval |
