@@ -1,0 +1,27 @@
+schema_version: 1
+experiment_name: module11-mps-cuda-prediction-parity
+claim_scope: cross_device_numerical_and_decision_parity_not_model_quality
+legacy_service_config_path: configs/service.yaml
+expected_legacy_service_config_sha256: 5004282b8af9364c1efbe10bb5a4a8abcbd734b459258a8ac18f94a41faa29d7
+fixture_path: data/fixtures/api-shadow-cases.jsonl
+expected_fixture_sha256: 9fa170477296993eda0d4b19aef2ad76af37acc885b20ae5288a6f170932b030
+runtime_profiles:
+  mps:
+    path: configs/runtime/mps.yaml
+    expected_sha256: abf0eaf54a3f1858b06727495d74ebb48a12ce3f7296ee6dfba65f8675e66c9d
+  cuda:
+    path: configs/runtime/cuda.yaml
+    expected_sha256: ef6a1f76cbb7aef0298c73ac7ddec51a58eb0568edcd968c51d001c516815ccb
+reference_backend: mps
+candidate_backend: cuda
+probability_absolute_tolerance: 0.001
+require_identical_predicted_intents: true
+require_identical_routing_actions: true
+output_policy:
+  include_input_text: false
+  include_redacted_text: false
+  include_probability_vector: true
+data_boundary:
+  official_test_access: false
+  customer_data_access: false
+  fixture_is_synthetic: true
