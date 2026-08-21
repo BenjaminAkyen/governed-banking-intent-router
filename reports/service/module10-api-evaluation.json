@@ -1,0 +1,119 @@
+{
+  "acceptance_gate": {
+    "all_measured_http_responses_successful": true,
+    "all_passed": true,
+    "all_required_overrides_passed": true,
+    "metadata_only_api_and_audit": true,
+    "module8_uncertainty_remains_experimental": true,
+    "mps_selected": true,
+    "p95_latency_within_registered_maximum": true,
+    "restrictive_audit_permissions": true,
+    "security_boundary_checks_passed": true,
+    "startup_within_registered_maximum": true,
+    "zero_suggestion_actions": true
+  },
+  "api": {
+    "processing_status_counts": {
+      "completed": 36
+    },
+    "prohibited_value_matches": 0,
+    "response_status_counts": {
+      "200": 36
+    },
+    "security_boundary_checks": {
+      "authentication_required": true,
+      "docs_disabled": true,
+      "extra_fields_rejected": true,
+      "health_minimal": true,
+      "oversized_body_rejected": true,
+      "security_headers_present": true,
+      "untrusted_host_rejected": true
+    }
+  },
+  "artifact_type": "module10_shadow_api_evaluation",
+  "audit": {
+    "directory_mode": "0700",
+    "event_count": 39,
+    "exact_input_length_logged": false,
+    "expected_event_count": 39,
+    "file_mode": "0600",
+    "message_hash_logged": false,
+    "validated_round_trip": true
+  },
+  "claim_scope": "synthetic_local_integration_not_production_validation",
+  "contains_message_hash": false,
+  "contains_message_text": false,
+  "contains_redacted_text": false,
+  "data_boundary": {
+    "classification_metrics_computed": false,
+    "fixture_provenance": "synthetic_authored_non_customer_data",
+    "model_inference_performed": true,
+    "official_test_access": false,
+    "production_validation": false,
+    "uncertainty_status": "experimental_review_only"
+  },
+  "experiment_name": "module10_local_shadow_api_evaluation",
+  "fixture_sha256": "9fa170477296993eda0d4b19aef2ad76af37acc885b20ae5288a6f170932b030",
+  "implementation_sha256": {
+    "api.py": "8585d5e122aef4669adb3db6748e298a0858c26c2fee238b3475d2b914d0fc36",
+    "audit.py": "fd56c74e9d6cd9e2222366f1f0883be66f6513022dda7fb159fe2291bdddf3c9",
+    "inference.py": "a2d5e634492d591413c48603c0381d2a8e1f21b07544e82108a4c53d56e551d8",
+    "policy.py": "96205c7eaa90782a290e1a14d04f5cce8c441dce565620f7e11d718d52882692",
+    "privacy.py": "02dcf1cfdfeda6b34b1b3a3740f8a53145f7348ba54ed99d29adebb9bb4b8bd2",
+    "run_service_evaluation.py": "d99dd29bac53d29dbbb7f03cd80ed18c35043fe091d008ade19662516916add0",
+    "service_evaluation.py": "c4166c97fec2b3d33f88264c2b06f94a7620f6a70987c301718459db8023a411"
+  },
+  "latency": {
+    "maximum_milliseconds": 550.1336,
+    "mean_milliseconds": 66.9987,
+    "p50_milliseconds": 13.3395,
+    "p95_milliseconds": 299.2479,
+    "registered_maximum_p95_milliseconds": 750.0,
+    "registered_maximum_startup_seconds": 30.0,
+    "startup_seconds": 0.9031
+  },
+  "limitations": [
+    "Latency is an in-process sequential measurement on one Mac and is not a service-level objective.",
+    "Synthetic requests do not estimate production accuracy, privacy performance, attack resistance, or traffic mix.",
+    "No concurrency, sustained-load, network-hop, availability, rate-limit, or centralized-audit test was performed.",
+    "Module 8 uncertainty thresholds failed their gates and remain experimental review observations."
+  ],
+  "protocol": {
+    "fixture_cases": 12,
+    "latency_percentile_method": "higher",
+    "measured_requests": 36,
+    "measurement_repetitions": 3,
+    "warmup_requests": 3
+  },
+  "report_sha256": "ac041ec7fc210fca9ea500b2b1ef0c62eb8f7483ef3d8d5235f30e55a0cec0fd",
+  "routing": {
+    "action_counts": {
+      "human_review": 30,
+      "security_queue": 6
+    },
+    "operating_mode": "shadow_review_only",
+    "reason_counts": {
+      "EXPERIMENTAL_UNCERTAINTY_BELOW_THRESHOLD": 12,
+      "EXPERIMENTAL_UNCERTAINTY_NOT_AUTHORIZED": 18,
+      "EXPOSED_AUTHENTICATION_SECRET": 3,
+      "SECURITY_INTENT_OVERRIDE": 6,
+      "SENSITIVE_PII_REVIEW": 6,
+      "SHADOW_MODE_REQUIRES_REVIEW": 30
+    },
+    "required_override_failures": [],
+    "suggest_queue_count": 0,
+    "uncertainty_authorized_suggestion": false
+  },
+  "runtime": {
+    "mps_available": true,
+    "mps_built": true,
+    "platform": "macOS-26.5-arm64-arm-64bit",
+    "python_version": "3.12.14",
+    "requested": "mps",
+    "selected": "mps",
+    "torch_version": "2.13.0"
+  },
+  "schema_version": 1,
+  "service_config_sha256": "5004282b8af9364c1efbe10bb5a4a8abcbd734b459258a8ac18f94a41faa29d7",
+  "service_evaluation_config_sha256": "1328ea56b96f8ba223d616390aaa644408a54dc69a7b94ecfc41a03d389a43ea"
+}

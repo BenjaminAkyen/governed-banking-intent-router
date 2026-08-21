@@ -39,3 +39,8 @@ Module 9 stores `governance/module9-controls.json`. It summarizes 23 synthetic r
 eight metadata-only routing cases and a 24-event audit round trip. The report contains fixture and
 implementation hashes, aggregate counts, permission checks and limitations—but no source message,
 redacted message, message hash, exact input length, model inference or official-test metric.
+
+Module 10 stores `service/module10-api-evaluation.json`. It records the preregistered real-MPS
+startup and sequential in-process latency summary, aggregate API and routing outcomes, security-
+boundary checks, audit permissions and explicit limitations. It contains no request, redacted
+request, message hash, prediction-level record, classification metric or official-test access.

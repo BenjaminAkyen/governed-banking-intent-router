@@ -28,4 +28,8 @@
 | Module 9 audit serialization excludes fixture source and redacted values | Verified for registered fixtures | 24-event validated round trip and zero prohibited-value matches |
 | Audit events exclude all personal data in production | Prohibited | Representative adversarial evaluation, production DLP and operational log inspection |
 | Module 8 uncertainty can authorize an automated suggestion | Refuted by current policy | Failed gates are hash-bound as `review_signal_only`; Module 9 emits zero suggestions |
+| Module 10 integrates the registered seed-42 adapter through the shadow API on MPS | Verified, local synthetic integration | Hash-bound configuration, real-MPS report and executed notebook |
+| Module 10 measured 13.34 ms p50 and 299.25 ms p95 in-process sequential latency | Verified on the documented Mac only | 36-request registered run after three warm-ups; higher percentile method |
+| Module 10 API and audit outputs exclude registered fixture source and redacted values | Verified for the synthetic fixture | 39-event audit round trip and zero prohibited-value matches |
+| Module 10 supports production throughput or availability targets | Prohibited | Sustained concurrency, network, capacity, failure-recovery and representative workload evidence |
 | The system is production ready | Prohibited | Representative deployment evidence and organisational approval |

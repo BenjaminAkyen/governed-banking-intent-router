@@ -26,6 +26,7 @@ current policy schema cannot emit it. Module 8 uncertainty values are diagnostic
 - Versioned deterministic rules that combine intent risk and uncertainty.
 - Metadata-only audit events with traceability to model and policy versions.
 - Human correction capture as a separately reviewed feedback source.
+- An authenticated, loopback-only FastAPI interface for local shadow-mode evaluation.
 
 ## Out of scope
 
@@ -36,6 +37,7 @@ current policy schema cannot emit it. Module 8 uncertainty values are diagnostic
 - Replacing fraud, complaints, vulnerability or safeguarding teams.
 - Training on real customer data during this research project.
 - Claiming production readiness from BANKING77 performance.
+- Public internet exposure or production operation of the Module 10 local API.
 
 ## Data flow and minimisation
 

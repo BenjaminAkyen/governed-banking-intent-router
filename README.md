@@ -4,8 +4,8 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: Module 9 privacy, routing and audit controls pass bounded synthetic checks; Module 8
-> uncertainty gates remain failed and no model or automated route is production approved.**
+> **Status: Module 10's authenticated local shadow API passes its registered MPS integration
+> checks; Module 8 uncertainty gates remain failed and no automated route is production approved.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -30,14 +30,14 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 9 implements bounded structured-PII redaction, a fail-closed deterministic routing policy
-and an allowlisted metadata-only audit contract. The policy runs in `shadow_review_only` mode: it
-may emit `security_queue` or `human_review`, but its schema cannot emit `suggest_queue`.
+Module 10 exposes the registered seed-42 LoRA-RoBERTa adapter through a loopback-only FastAPI
+service. The API requires bearer authentication, rejects oversized and unexpected input, redacts
+structured PII before offline MPS inference, applies deterministic shadow routing, and persists a
+metadata-only audit event before returning a recommendation.
 
-The implementation is deliberately bound to Module 8's failed evidence. Its seed-specific
-thresholds remain experimental review observations and can never authorize a lower-risk route.
-Module 9's passing results come from authored synthetic controls; they do not estimate production
-PII-detector accuracy, routing safety or regulatory compliance.
+The service remains in `shadow_review_only` mode. It may return `security_queue` or `human_review`,
+but its schema cannot return `suggest_queue`. Module 8 thresholds are experimental observations
+only and cannot authorize automation.
 
 Run the local checks:
 
@@ -48,15 +48,49 @@ ruff check .
 pytest --cov=governed_banking --cov-report=term-missing
 ```
 
-Reproduce the lightweight Module 9 control evidence:
+Reproduce the Module 10 real-MPS integration evidence:
 
 ```bash
-python scripts/run_governance_controls.py
+python scripts/run_service_evaluation.py
 ```
 
 Then open
-[`09-pii-routing-audit-controls.ipynb`](output/jupyter-notebook/09-pii-routing-audit-controls.ipynb)
+[`10-shadow-fastapi-mps-evaluation.ipynb`](output/jupyter-notebook/10-shadow-fastapi-mps-evaluation.ipynb)
 in VS Code and run it with the project virtual environment's `Python 3` kernel.
+
+Start the local API with a fresh development token:
+
+```bash
+export GOVERNED_BANKING_API_TOKEN="$(openssl rand -hex 32)"
+python scripts/run_api.py
+```
+
+The service binds only to `127.0.0.1:8000`. In another terminal, submit a synthetic request:
+
+```bash
+curl --request POST http://127.0.0.1:8000/v1/route \
+  --header "Authorization: Bearer $GOVERNED_BANKING_API_TOKEN" \
+  --header "Content-Type: application/json" \
+  --data '{"message":"When will my replacement card arrive?"}'
+```
+
+## Verified Module 10 local integration evidence
+
+| Measure | Registered result |
+|---|---:|
+| Runtime | Apple MPS |
+| Model/API startup | 0.9031 seconds |
+| Measured sequential requests | 36/36 HTTP 200 |
+| Mean / p50 / p95 latency | 67.00 / 13.34 / 299.25 ms |
+| Registered p95 maximum | 750 ms — pass |
+| Metadata-only audit events | 39/39 validated |
+| Security-boundary checks | 7/7 passed |
+| Original or redacted value matches | 0 |
+| `suggest_queue` actions | 0 |
+
+The latency run used an in-process client on one Mac and included inference, routing and an
+`fsync`-backed local audit append. It is not a throughput test or service-level objective. See the
+[Module 10 service boundary](docs/SERVICE_BOUNDARY.md).
 
 ## Verified Module 9 control evidence
 
@@ -167,12 +201,11 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 2. Immutable BANKING77 loader and split-integrity tests - **complete**
 3. TF-IDF logistic-regression baseline - **complete**
 4. Frozen RoBERTa embedding baseline - **complete**
-5. LoRA-RoBERTa registered baseline - **complete; negative result preserved**
 6. Multi-seed manifests, revised development protocol and aggregation - **complete; exploratory**
 7. Temperature scaling and calibration assessment - **complete; exploratory**
 8. Uncertainty, selective prediction and possible-OOD evaluation - **complete; gates failed**
 9. PII controls, risk policy and metadata-only auditing - **complete; synthetic control evidence**
-10. FastAPI service, latency evaluation and release evidence - **next**
+10. FastAPI service and local MPS integration evidence - **complete; production release prohibited**
 
 ## Responsible-use limitations
 

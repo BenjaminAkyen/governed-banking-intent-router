@@ -52,3 +52,25 @@ A future production service needs a new configuration and review covering manage
 rotation, TLS termination, proxy trust, rate limiting, centralized audit storage, retention,
 encryption, integrity monitoring, availability objectives, multi-worker/MPS behaviour, operational
 ownership and representative privacy and routing validation. None is implied by this local module.
+
+## Verified local integration evidence
+
+The preregistered Module 10 run loaded the hash-bound seed-42 adapter on Apple MPS and exercised 12
+synthetic cases three times after three warm-up requests.
+
+| Measure | Result |
+|---|---:|
+| Startup | 0.9031 seconds |
+| Mean request latency | 66.9987 ms |
+| p50 request latency | 13.3395 ms |
+| p95 request latency | 299.2479 ms |
+| Maximum request latency | 550.1336 ms |
+| Successful measured responses | 36/36 |
+| Validated audit events including warm-up | 39/39 |
+| Human-review / security recommendations | 30 / 6 |
+| Suggestion recommendations | 0 |
+| Prohibited source/redacted value matches | 0 |
+
+All registered security-boundary checks passed: authentication, trusted host, size limit, strict
+schema, disabled docs, minimal health response and central security headers. This is reproducible
+local engineering evidence, not a production security certification or availability result.
