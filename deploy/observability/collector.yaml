@@ -1,0 +1,71 @@
+# Privacy enforcement is intentionally duplicated here and in the Python emitter.
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 127.0.0.1:4317
+
+processors:
+  memory_limiter:
+    check_interval: 5s
+    limit_mib: 256
+    spike_limit_mib: 64
+  redaction:
+    allow_all_keys: false
+    allowed_keys:
+      - deployment.device
+      - deployment.environment
+      - error.type
+      - http.request.method
+      - http.response.status_code
+      - http.route
+      - model.uncertainty.bucket
+      - model.version
+      - policy.version
+      - privacy.redaction.category
+      - route.action
+      - route.processing_status
+      - service.name
+      - service.version
+      - telemetry.outcome
+    redact_all_types: true
+    blocked_key_patterns:
+      - (?i)^(account|authorization|baggage|content|correlation_id|customer)([._-].*)?$
+      - (?i)^(email|message|name|payload|prompt|query|request_id|subject|text|token|user)([._-].*)?$
+      - (?i)^([a-z0-9._-]*[._-])?hash([._-].*)?$
+    blocked_values:
+      - "(?i)bearer[[:space:]]+[a-z0-9._~+/=-]+"
+      - "[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}"
+      - "[0-9]{12,19}"
+      - "[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)+"
+    summary: silent
+  batch:
+    timeout: 5s
+    send_batch_size: 512
+
+exporters:
+  prometheus:
+    endpoint: 0.0.0.0:9464
+    enable_open_metrics: true
+    resource_to_telemetry_conversion:
+      enabled: true
+  otlp/traces:
+    endpoint: ${env:TRACE_BACKEND_OTLP_ENDPOINT}
+    headers:
+      authorization: ${env:TRACE_BACKEND_AUTHORIZATION}
+    tls:
+      insecure: false
+
+service:
+  telemetry:
+    logs:
+      level: warn
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      processors: [memory_limiter, redaction, batch]
+      exporters: [prometheus]
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, redaction, batch]
+      exporters: [otlp/traces]

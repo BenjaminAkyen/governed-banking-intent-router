@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: governed-banking-intent-router
+spec:
+  template:
+    spec:
+      containers:
+        - name: router
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://127.0.0.1:4317
+        - name: otel-collector
+          image: REPLACE_WITH_IMMUTABLE_OTEL_COLLECTOR_CONTRIB_IMAGE_DIGEST
+          imagePullPolicy: IfNotPresent
+          args: ["--config=/conf/collector.yaml"]
+          ports:
+            - name: prometheus
+              containerPort: 9464
+          env:
+            - name: TRACE_BACKEND_OTLP_ENDPOINT
+              value: REPLACE_WITH_TLS_TRACE_BACKEND_OTLP_ENDPOINT
+            - name: TRACE_BACKEND_AUTHORIZATION
+              valueFrom:
+                secretKeyRef:
+                  name: router-telemetry-export
+                  key: authorization
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 320Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: collector-config
+              mountPath: /conf
+              readOnly: true
+      volumes:
+        - name: collector-config
+          configMap:
+            name: governed-banking-otel-collector
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: governed-banking-otel-collector
+data:
+  collector.yaml: |
+    REPLACE_WITH_INDENTED_DEPLOY_OBSERVABILITY_COLLECTOR_YAML
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: governed-banking-intent-router-metrics
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: governed-banking-intent-router
+  ports:
+    - name: prometheus
+      port: 9464
+      targetPort: prometheus
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: monitoring-only-router-metrics
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: governed-banking-intent-router
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              governed-banking-monitoring: "true"
+      ports:
+        - protocol: TCP
+          port: 9464
