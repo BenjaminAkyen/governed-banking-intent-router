@@ -38,6 +38,10 @@ The primary comparison uses seeds 17, 42 and 73 with an identical split policy.
 The Module 3 seed-42 TF-IDF result is an implementation checkpoint. It must not be described as the
 final primary comparison until the registered multi-seed module has been completed.
 
+Module 4 follows the same rule. Validation-search amendments are permitted before test access only
+when the reason, round and unchanged test-access state are recorded in the hashed configuration.
+The final search round must be declared before test embeddings are created.
+
 ## Metrics
 
 ### Classification

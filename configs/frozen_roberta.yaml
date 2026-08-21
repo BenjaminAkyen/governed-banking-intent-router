@@ -1,0 +1,85 @@
+schema_version: 1
+experiment_name: frozen_roberta_embedding_baseline
+random_seed: 42
+thread_limit: 1
+model:
+  repository: FacebookAI/roberta-base
+  revision: e2da8e2f811d1448a5b465c236feacd80ffbac7b
+  license: MIT
+  max_length: 96
+  batch_size: 64
+  device: mps
+  normalize_embeddings: true
+  snapshot_files:
+    - config.json
+    - merges.txt
+    - model.safetensors
+    - tokenizer.json
+    - tokenizer_config.json
+    - vocab.json
+selection:
+  metric: macro_f1
+  amendment_round: 4
+  amendment_reason: final plateau check after round-three boundary improvement fell below 0.001 macro-F1
+  test_accessed_before_amendment: false
+  tie_breakers:
+    - accuracy
+    - negative_log_loss
+    - candidate_name
+candidates:
+  - name: cls_c1
+    pooling: cls
+    logistic_regression:
+      C: 1.0
+      solver: lbfgs
+      max_iter: 1000
+      tolerance: 0.00001
+  - name: mean_c1
+    pooling: mean
+    logistic_regression:
+      C: 1.0
+      solver: lbfgs
+      max_iter: 1000
+      tolerance: 0.00001
+  - name: mean_c4
+    pooling: mean
+    logistic_regression:
+      C: 4.0
+      solver: lbfgs
+      max_iter: 1000
+      tolerance: 0.00001
+  - name: mean_c16
+    pooling: mean
+    logistic_regression:
+      C: 16.0
+      solver: lbfgs
+      max_iter: 1000
+      tolerance: 0.00001
+  - name: mean_c64
+    pooling: mean
+    logistic_regression:
+      C: 64.0
+      solver: lbfgs
+      max_iter: 1000
+      tolerance: 0.00001
+  - name: mean_c256
+    pooling: mean
+    logistic_regression:
+      C: 256.0
+      solver: lbfgs
+      max_iter: 1000
+      tolerance: 0.00001
+  - name: mean_c1024
+    pooling: mean
+    logistic_regression:
+      C: 1024.0
+      solver: lbfgs
+      max_iter: 1000
+      tolerance: 0.00001
+  - name: mean_c4096
+    pooling: mean
+    logistic_regression:
+      C: 4096.0
+      solver: lbfgs
+      max_iter: 1000
+      tolerance: 0.00001

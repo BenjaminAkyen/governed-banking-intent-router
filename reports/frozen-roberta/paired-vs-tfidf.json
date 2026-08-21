@@ -1,0 +1,178 @@
+{
+  "artifact_type": "paired_baseline_comparison",
+  "candidate_advantage_intents": [
+    {
+      "candidate_correct": 39,
+      "candidate_minus_reference_correct": 6,
+      "intent": "why_verify_identity",
+      "reference_correct": 33,
+      "support": 40
+    },
+    {
+      "candidate_correct": 37,
+      "candidate_minus_reference_correct": 5,
+      "intent": "verify_my_identity",
+      "reference_correct": 32,
+      "support": 40
+    },
+    {
+      "candidate_correct": 37,
+      "candidate_minus_reference_correct": 4,
+      "intent": "disposable_card_limits",
+      "reference_correct": 33,
+      "support": 40
+    },
+    {
+      "candidate_correct": 38,
+      "candidate_minus_reference_correct": 3,
+      "intent": "card_not_working",
+      "reference_correct": 35,
+      "support": 40
+    },
+    {
+      "candidate_correct": 36,
+      "candidate_minus_reference_correct": 3,
+      "intent": "transfer_timing",
+      "reference_correct": 33,
+      "support": 40
+    },
+    {
+      "candidate_correct": 36,
+      "candidate_minus_reference_correct": 3,
+      "intent": "unable_to_verify_identity",
+      "reference_correct": 33,
+      "support": 40
+    },
+    {
+      "candidate_correct": 31,
+      "candidate_minus_reference_correct": 3,
+      "intent": "virtual_card_not_working",
+      "reference_correct": 28,
+      "support": 40
+    },
+    {
+      "candidate_correct": 39,
+      "candidate_minus_reference_correct": 2,
+      "intent": "declined_cash_withdrawal",
+      "reference_correct": 37,
+      "support": 40
+    },
+    {
+      "candidate_correct": 34,
+      "candidate_minus_reference_correct": 2,
+      "intent": "declined_transfer",
+      "reference_correct": 32,
+      "support": 40
+    },
+    {
+      "candidate_correct": 39,
+      "candidate_minus_reference_correct": 2,
+      "intent": "getting_spare_card",
+      "reference_correct": 37,
+      "support": 40
+    }
+  ],
+  "candidate_model": "frozen_roberta_mean_c1024",
+  "comparison_sha256": "4520049d12ef5c55e3821048f601aadde2b0ee5f33260e4e019972837f931444",
+  "contains_message_text": false,
+  "correctness": {
+    "both_correct": 2625,
+    "both_wrong": 157,
+    "candidate_only_correct": 135,
+    "discordant_rows": 298,
+    "prediction_disagreements": 368,
+    "reference_only_correct": 163
+  },
+  "implementation_sha256": {
+    "compare_module4_baselines.py": "30e263f2b21f89263c39fdfc85d4e16589203d381e8ad34154b49396acfc9ab8",
+    "comparison.py": "5c1a1ec69c7b35259fc1a04a76518c38661e37c3b0f999b2f7d1c62f45dc3423"
+  },
+  "inputs": {
+    "candidate_evaluation_sha256": "b3e6b944259f510695b2461ff35ecba88e280252da121621a8c63afd8bf7e7cf",
+    "candidate_predictions_sha256": "e59229255b0400553b30e7613e9c3e52630673f97d7b7931f10ec621bc9de64c",
+    "reference_evaluation_sha256": "c0446495a7aaccf0d685e54ac46264fd4602dd78e53e69f2a93dd4666e8eba53",
+    "reference_predictions_sha256": "d13cdf56f06b88829a82a8e58c4616b2eada16c3fb1b6b0179a413ca752755a3"
+  },
+  "interpretation_guardrail": "A non-significant paired result does not establish model equivalence.",
+  "metrics": {
+    "candidate_macro_f1": 0.8964173425,
+    "candidate_minus_reference_macro_f1": -0.0088836932,
+    "exact_mcnemar_two_sided_p_value": 0.1176530802,
+    "reference_macro_f1": 0.9053010357
+  },
+  "reference_advantage_intents": [
+    {
+      "candidate_correct": 31,
+      "candidate_minus_reference_correct": -6,
+      "intent": "compromised_card",
+      "reference_correct": 37,
+      "support": 40
+    },
+    {
+      "candidate_correct": 29,
+      "candidate_minus_reference_correct": -5,
+      "intent": "balance_not_updated_after_bank_transfer",
+      "reference_correct": 34,
+      "support": 40
+    },
+    {
+      "candidate_correct": 34,
+      "candidate_minus_reference_correct": -5,
+      "intent": "supported_cards_and_currencies",
+      "reference_correct": 39,
+      "support": 40
+    },
+    {
+      "candidate_correct": 34,
+      "candidate_minus_reference_correct": -5,
+      "intent": "transfer_fee_charged",
+      "reference_correct": 39,
+      "support": 40
+    },
+    {
+      "candidate_correct": 32,
+      "candidate_minus_reference_correct": -4,
+      "intent": "contactless_not_working",
+      "reference_correct": 36,
+      "support": 40
+    },
+    {
+      "candidate_correct": 33,
+      "candidate_minus_reference_correct": -4,
+      "intent": "top_up_by_cash_or_cheque",
+      "reference_correct": 37,
+      "support": 40
+    },
+    {
+      "candidate_correct": 32,
+      "candidate_minus_reference_correct": -3,
+      "intent": "beneficiary_not_allowed",
+      "reference_correct": 35,
+      "support": 40
+    },
+    {
+      "candidate_correct": 33,
+      "candidate_minus_reference_correct": -3,
+      "intent": "card_arrival",
+      "reference_correct": 36,
+      "support": 40
+    },
+    {
+      "candidate_correct": 35,
+      "candidate_minus_reference_correct": -3,
+      "intent": "exchange_via_app",
+      "reference_correct": 38,
+      "support": 40
+    },
+    {
+      "candidate_correct": 32,
+      "candidate_minus_reference_correct": -3,
+      "intent": "top_up_by_bank_transfer_charge",
+      "reference_correct": 35,
+      "support": 40
+    }
+  ],
+  "reference_model": "tfidf_word_char_c4",
+  "row_count": 3080,
+  "schema_version": 1
+}

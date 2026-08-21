@@ -1,0 +1,143 @@
+{
+  "artifact_type": "frozen_embedding_extraction_evidence",
+  "contains_message_text": false,
+  "encoder_repository": "FacebookAI/roberta-base",
+  "encoder_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+  "evidence_sha256": "c81e901fd5bc391f77c3a9041fbf95633c41324f1aced603fd578de3be38e9a6",
+  "implementation_sha256": {
+    "summarize_frozen_embedding_evidence.py": "79977df4412223d772985c751c88344769d25a5b73eb0e0b0be16693166fe1dd"
+  },
+  "pooling_outputs": [
+    "cls",
+    "mean"
+  ],
+  "schema_version": 1,
+  "splits": {
+    "test": {
+      "arrays": {
+        "cls": {
+          "dtype": "float32",
+          "filename": "test-cls.npy",
+          "sha256": "1e409eacb1e09c1fb7039089bcae510a250a5c2f2268f84002039270befdbfde",
+          "shape": [
+            3080,
+            768
+          ]
+        },
+        "mean": {
+          "dtype": "float32",
+          "filename": "test-mean.npy",
+          "sha256": "81df9e28dcabe906d60144a23a719bbd51a41ead22157ecb022dea80aca9c175",
+          "shape": [
+            3080,
+            768
+          ]
+        }
+      },
+      "cache_metadata_sha256": "09c5aecac44ed27d7818ce38b7b74c257041b86df1d166f03462e32e088a3df3",
+      "device": {
+        "mps_available": true,
+        "mps_built": true,
+        "platform": "macOS-26.5-arm64-arm-64bit",
+        "python_version": "3.12.14",
+        "requested": "mps",
+        "selected": "mps",
+        "torch_version": "2.13.0"
+      },
+      "extraction_seconds": 17.0550092077,
+      "rows": 3080,
+      "rows_per_second": 180.5921042019,
+      "token_length": {
+        "maximum_before_truncation": 81,
+        "p95_before_truncation": 30.0,
+        "truncated_rows": 0
+      },
+      "total_encoder_parameters": 124055040,
+      "trainable_encoder_parameters": 0
+    },
+    "train": {
+      "arrays": {
+        "cls": {
+          "dtype": "float32",
+          "filename": "train-cls.npy",
+          "sha256": "fd8fe0b80b50ba04671031ada76ef664c5accb5f5589072f5953f38e5d99749b",
+          "shape": [
+            8495,
+            768
+          ]
+        },
+        "mean": {
+          "dtype": "float32",
+          "filename": "train-mean.npy",
+          "sha256": "5e92b280ac74a402f46147f48aac722a202bb3fb4e61bdcc2ea2edad654b41ab",
+          "shape": [
+            8495,
+            768
+          ]
+        }
+      },
+      "cache_metadata_sha256": "be5fe7cf61f185c754bbdd1c7b9ead7f48779043c4665bb160bf8d3f4443a7e6",
+      "device": {
+        "mps_available": true,
+        "mps_built": true,
+        "platform": "macOS-26.5-arm64-arm-64bit",
+        "python_version": "3.12.14",
+        "requested": "mps",
+        "selected": "mps",
+        "torch_version": "2.13.0"
+      },
+      "extraction_seconds": 28.921549459,
+      "rows": 8495,
+      "rows_per_second": 293.7256184025,
+      "token_length": {
+        "maximum_before_truncation": 96,
+        "p95_before_truncation": 36.0,
+        "truncated_rows": 0
+      },
+      "total_encoder_parameters": 124055040,
+      "trainable_encoder_parameters": 0
+    },
+    "validation": {
+      "arrays": {
+        "cls": {
+          "dtype": "float32",
+          "filename": "validation-cls.npy",
+          "sha256": "4ee7f1ef9a7730f76aec3e99c690b66e5a8b1878fbc362b25d3e1a67c0c1cd1f",
+          "shape": [
+            1501,
+            768
+          ]
+        },
+        "mean": {
+          "dtype": "float32",
+          "filename": "validation-mean.npy",
+          "sha256": "083106ec756088b1236f60e3ffe6add68cbfaccb02d3773be9fa05701d497d8a",
+          "shape": [
+            1501,
+            768
+          ]
+        }
+      },
+      "cache_metadata_sha256": "af18898ab6d674e936d7b267394dbb82b2f54f82fd95857fddeebcd5108aba49",
+      "device": {
+        "mps_available": true,
+        "mps_built": true,
+        "platform": "macOS-26.5-arm64-arm-64bit",
+        "python_version": "3.12.14",
+        "requested": "mps",
+        "selected": "mps",
+        "torch_version": "2.13.0"
+      },
+      "extraction_seconds": 5.7912629168,
+      "rows": 1501,
+      "rows_per_second": 259.1835358843,
+      "token_length": {
+        "maximum_before_truncation": 90,
+        "p95_before_truncation": 35.0,
+        "truncated_rows": 0
+      },
+      "total_encoder_parameters": 124055040,
+      "trainable_encoder_parameters": 0
+    }
+  }
+}

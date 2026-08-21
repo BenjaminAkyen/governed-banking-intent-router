@@ -4,7 +4,7 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: first baseline evaluated; no model is approved for production use.**
+> **Status: lexical and frozen-encoder baselines evaluated; no model is production approved.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -29,9 +29,9 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 3 establishes a serious sparse-text baseline. TF-IDF vocabularies are fitted on training
-messages only, candidate selection uses validation macro-F1, and test access requires a valid
-selection lock. This is a single-seed engineering result, not yet the three-seed primary comparison.
+Module 4 evaluates a pinned, fully frozen RoBERTa-base encoder against Module 3. Embeddings are
+created on MPS, while validation-only model selection and locked-test evidence use the same row
+manifest and artifact controls. These remain single-seed engineering results.
 
 Run the local checks:
 
@@ -46,29 +46,30 @@ Prepare the dataset and reproduce the baseline:
 
 ```bash
 python scripts/prepare_banking77.py --offline
-python scripts/run_tfidf_baseline.py run
+python scripts/run_frozen_roberta_baseline.py run --offline
+python scripts/compare_module4_baselines.py
 ```
 
 Then open
-[`03-tfidf-logreg-baseline.ipynb`](output/jupyter-notebook/03-tfidf-logreg-baseline.ipynb) in VS
+[`04-frozen-roberta-embedding-baseline.ipynb`](output/jupyter-notebook/04-frozen-roberta-embedding-baseline.ipynb) in VS
 Code and run it with the `Governed Banking AI (MPS)` kernel.
 
-## Verified Module 3 result
+## Verified baseline comparison
 
-The locked winner combines word (1,2)-grams and character-within-word (3,5)-grams with logistic
-regression at `C=4.0`. On all 3,080 official test rows it achieved:
+Both models were evaluated on the same 3,080 official test rows:
 
-| Metric | Result |
-|---|---:|
-| Accuracy | 0.9052 |
-| Macro-F1 | 0.9053 |
-| Weighted-F1 | 0.9053 |
-| Log-loss | 0.4970 |
-| Top-3 accuracy | 0.9705 |
+| Metric | TF-IDF | Frozen RoBERTa |
+|---|---:|---:|
+| Accuracy | 0.9052 | 0.8961 |
+| Macro-F1 | 0.9053 | 0.8964 |
+| Weighted-F1 | 0.9053 | 0.8964 |
+| Log-loss | 0.4970 | 0.3990 |
+| Top-3 accuracy | 0.9705 | 0.9718 |
 
-The weakest intent F1 was 0.7556 for `balance_not_updated_after_bank_transfer`. Identity,
-transfer-state and top-up-state confusions remain important. Probabilities are uncalibrated and
-must not yet drive automated routing. See the [baseline card](docs/BASELINE_CARD.md).
+Frozen RoBERTa corrected 135 rows missed by TF-IDF, while TF-IDF corrected 163 rows missed by
+RoBERTa. Their paired exact McNemar p-value is 0.1177, which does not establish equivalence. The
+results suggest complementarity, but not that generic frozen embeddings beat the lexical baseline.
+Probabilities remain uncalibrated. See the [frozen baseline card](docs/FROZEN_BASELINE_CARD.md).
 
 ## Evidence contract
 
@@ -88,8 +89,8 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 1. Mac/MPS foundation and evaluation contract - **complete**
 2. Immutable BANKING77 loader and split-integrity tests - **complete**
 3. TF-IDF logistic-regression baseline - **complete**
-4. Frozen RoBERTa embedding baseline - **next**
-5. LoRA-RoBERTa and optional full fine-tuning
+4. Frozen RoBERTa embedding baseline - **complete**
+5. LoRA-RoBERTa and optional full fine-tuning - **next**
 6. Multi-seed manifests and aggregation
 7. Calibration and selective prediction
 8. Possible-OOD evaluation and robustness suites
