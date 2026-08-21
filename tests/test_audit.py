@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import stat
 from copy import deepcopy
 from datetime import UTC, datetime
@@ -86,6 +87,7 @@ def test_experimental_uncertainty_cannot_be_promoted_in_audit() -> None:
         validate_audit_event(tampered, config)
 
 
+@pytest.mark.skipif(os.name != "posix", reason="local audit permission contract is POSIX-only")
 def test_audit_sink_round_trip_and_permissions(tmp_path: Path) -> None:
     config, event, _, _ = _event()
     sink = AuditSink(tmp_path, config)
@@ -97,6 +99,7 @@ def test_audit_sink_round_trip_and_permissions(tmp_path: Path) -> None:
     assert stat.S_IMODE(sink.path.stat().st_mode) == 0o600
 
 
+@pytest.mark.skipif(os.name != "posix", reason="local audit symlink contract is POSIX-only")
 def test_audit_sink_rejects_symbolic_link_file(tmp_path: Path) -> None:
     config, event, _, _ = _event()
     sink = AuditSink(tmp_path, config)

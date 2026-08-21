@@ -14,7 +14,7 @@ from governed_banking.api import (
     create_app,
     load_api_token,
 )
-from governed_banking.audit import AuditConfig, AuditSink
+from governed_banking.audit import AuditConfig
 from governed_banking.inference import Prediction
 from governed_banking.policy import RoutingPolicyConfig
 from governed_banking.privacy import PrivacyConfig
@@ -50,18 +50,36 @@ class FailingAuditSink:
         raise OSError("synthetic audit outage")
 
 
+class RecordingAuditSink:
+    """Portable test double; production permission controls are tested separately."""
+
+    def __init__(self, path: Path) -> None:
+        self.path = path
+
+    def append(self, event: dict[str, Any]) -> None:
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        with self.path.open("a", encoding="utf-8", newline="\n") as handle:
+            handle.write(
+                json.dumps(event, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+            )
+            handle.write("\n")
+
+    def read_validated(self) -> list[dict[str, Any]]:
+        return [json.loads(line) for line in self.path.read_text(encoding="utf-8").splitlines()]
+
+
 def _service(
     tmp_path: Path,
     *,
     predictor: RecordingPredictor | None = None,
     audit_sink: Any | None = None,
-) -> tuple[GovernedService, RecordingPredictor, AuditSink | Any]:
+) -> tuple[GovernedService, RecordingPredictor, Any]:
     config = ServiceConfig.from_yaml(Path("configs/service.yaml"))
     privacy_config = PrivacyConfig.from_yaml(config.privacy_config_path)
     routing_config = RoutingPolicyConfig.from_yaml(config.routing_config_path)
     audit_config = AuditConfig.from_yaml(config.audit_config_path)
     selected_predictor = predictor or RecordingPredictor()
-    selected_sink = audit_sink or AuditSink(tmp_path, audit_config)
+    selected_sink = audit_sink or RecordingAuditSink(tmp_path / "audit" / "events.jsonl")
     return (
         GovernedService(
             config=config,
@@ -82,7 +100,7 @@ def _client(
     predictor: RecordingPredictor | None = None,
     audit_sink: Any | None = None,
     raise_server_exceptions: bool = True,
-) -> tuple[TestClient, RecordingPredictor, AuditSink | Any]:
+) -> tuple[TestClient, RecordingPredictor, Any]:
     service, selected_predictor, selected_sink = _service(
         tmp_path, predictor=predictor, audit_sink=audit_sink
     )
