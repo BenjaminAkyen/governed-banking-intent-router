@@ -1,0 +1,58 @@
+schema_version: 1
+profile_name: module14-linux-cpu-container
+environment: container_staging
+execution:
+  platform: linux_container
+  runtime_profile_path: configs/runtime/cpu.yaml
+  expected_runtime_profile_sha256: 1cd5282591f820f5ec477463fd442e7c10ecf1e58122fb4ca1d0edfec2ef2a9a
+  expected_device: cpu
+  container_required: true
+  mps_supported_in_linux_container: false
+legacy_service:
+  path: configs/service.yaml
+  expected_sha256: 5004282b8af9364c1efbe10bb5a4a8abcbd734b459258a8ac18f94a41faa29d7
+model_release:
+  release_id: module10-lora-seed42-research
+  expected_artifact_sha256: b78b2dafce23a633c86b962cb672b8b91c8e07c5308debf124a73ffbcb21cca8
+  champion_model: false
+network:
+  bind_host: 0.0.0.0
+  port: 8000
+  allowed_hosts:
+    - router.internal
+    - 127.0.0.1
+    - localhost
+    - testserver
+authentication:
+  mode: trusted_gateway
+  secret_environment_variable: GOVERNED_BANKING_GATEWAY_ASSERTION
+  minimum_secret_characters: 32
+  subject_header: X-Authenticated-Subject
+  issuer_header: X-Authenticated-Issuer
+  assertion_header: X-Governed-Gateway-Assertion
+  allowed_issuers:
+    - https://identity.example.invalid/
+capacity:
+  request_timeout_seconds: 20
+  queue_timeout_seconds: 3
+  maximum_concurrent_requests: 2
+  maximum_queue_depth: 8
+  rate_limit_requests: 60
+  rate_limit_window_seconds: 60
+lifecycle:
+  startup_timeout_seconds: 300
+  graceful_shutdown_seconds: 45
+audit:
+  backend: local_jsonl
+  store_injection_supported: true
+  metadata_only_required: true
+rollback:
+  strategy: immutable_process_or_container_revision
+  current_release_environment_variable: GOVERNED_BANKING_RELEASE_ID
+  rollback_reference_environment_variable: GOVERNED_BANKING_ROLLBACK_REFERENCE
+  rollback_reference_required: true
+claims:
+  operating_mode: shadow_review_only
+  production_approved: false
+  mps_in_standard_linux_container: false
+  module13_gates_passed: false
