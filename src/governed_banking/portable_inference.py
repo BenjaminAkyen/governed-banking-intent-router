@@ -134,7 +134,9 @@ class PortableLoRAPredictor:
             }
             logits = self._model(**inputs).logits
             synchronize_accelerator(self._device)
-            host_logits = logits.detach().to(device="cpu", dtype=torch.float64).numpy()
+            # MPS does not implement float64 tensors. Transfer supported float32
+            # values to host memory before promoting for the shared SciPy softmax.
+            host_logits = logits.detach().to(dtype=torch.float32).cpu().numpy().astype("float64")
 
         values = probabilities_from_logits(host_logits, self._source_config.temperature)[0]
         probabilities = tuple(float(value) for value in values)
