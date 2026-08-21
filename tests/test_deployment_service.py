@@ -215,7 +215,9 @@ def test_late_model_load_after_startup_timeout_is_closed() -> None:
         ready = client.get("/health/ready")
         assert ready.status_code == 503
         assert ready.json()["lifecycle_phase"] == "failed"
-        time.sleep(0.08)
+        deadline = time.monotonic() + 1.0
+        while (harness.loaded is None or not harness.loaded.closed) and time.monotonic() < deadline:
+            time.sleep(0.01)
 
     assert harness.loaded is not None
     assert harness.loaded.closed is True
