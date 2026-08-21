@@ -1,0 +1,123 @@
+schema_version: 1
+framework_version: module12-champion-challenger-v1
+claim_scope: governance_registry_not_new_model_evaluation
+decision_owner: human_model_risk_review
+current_champion_id: tfidf-word-char-c4
+models:
+  - model_id: tfidf-word-char-c4
+    role: champion
+    lifecycle_status: active_historical_champion
+    architecture: tfidf_word_char_logistic_regression
+    evidence:
+      - evidence_id: banking77_locked_test_seed42
+        path: reports/baseline/tfidf-logreg-test.json
+        expected_file_sha256: 2fa8ad2e8427adacfbd8ed9cf372a63f9b8a12e67e8b884574fd6cdda7d056f0
+        content_hash_field: evaluation_sha256
+        expected_content_sha256: c0446495a7aaccf0d685e54ac46264fd4602dd78e53e69f2a93dd4666e8eba53
+        scope: historical_official_test_already_observed
+        promotion_eligible: false
+  - model_id: frozen-roberta-mean-c1024
+    role: challenger
+    lifecycle_status: historical_challenger
+    architecture: frozen_roberta_mean_pooling_logistic_regression
+    evidence:
+      - evidence_id: banking77_locked_test_seed42
+        path: reports/frozen-roberta/test.json
+        expected_file_sha256: 084dcd59028ede899c5d6b639b2468648605afd31cdaf0433c0b91cb4b11b489
+        content_hash_field: evaluation_sha256
+        expected_content_sha256: b3e6b944259f510695b2461ff35ecba88e280252da121621a8c63afd8bf7e7cf
+        scope: historical_official_test_already_observed
+        promotion_eligible: false
+  - model_id: lora-roberta-r8-original
+    role: challenger
+    lifecycle_status: retired_historical_challenger
+    architecture: roberta_base_lora_rank8
+    evidence:
+      - evidence_id: banking77_locked_test_seed42
+        path: reports/lora-roberta/test.json
+        expected_file_sha256: d8a2a760679863fa74a7730105985effe79db01ab5b6e129f150a747ddc42e54
+        content_hash_field: evaluation_sha256
+        expected_content_sha256: 1b8c569dbc905ba9aeb825e12af8d8f384dc0fe92022f8fdfacd427e389af5ad
+        scope: historical_official_test_already_observed
+        promotion_eligible: false
+  - model_id: lora-roberta-r8-revised
+    role: challenger
+    lifecycle_status: active_development_challenger
+    architecture: roberta_base_lora_rank8_revised_stopping
+    evidence:
+      - evidence_id: multiseed_validation
+        path: reports/multiseed-lora/validation-aggregate.json
+        expected_file_sha256: 512ee3c6799991b787db1f427d547ae97032f6eb7ea38e16a13fe92dc622442e
+        content_hash_field: aggregate_sha256
+        expected_content_sha256: 85243a88f3ebcc8858a4bbbca1db28a6e31d0392ec68e46e4cc931a3b3eeac72
+        scope: post_test_development_validation
+        promotion_eligible: false
+      - evidence_id: calibration_assessment
+        path: reports/calibration/temperature-scaling-aggregate.json
+        expected_file_sha256: d6ef5f928be67a4e871950377be333f577dde1edb27f3a4bd3604c638458f259
+        content_hash_field: aggregate_sha256
+        expected_content_sha256: 9c8d1aba737c48f5cf7fc36e87d47ae1401eecc25ae9ff166901aa3f38611748
+        scope: post_test_development_calibration
+        promotion_eligible: false
+      - evidence_id: uncertainty_assessment
+        path: reports/uncertainty/selective-ood-aggregate.json
+        expected_file_sha256: 19dbc01f8cdd8ecf3878a26de5e1fd2f789a02ef9eff78cad0f555bd35b1f60c
+        content_hash_field: aggregate_sha256
+        expected_content_sha256: 69d14aca45fee7f14c357db34c49d75878e3655c7722d4bd62a946281215098e
+        scope: post_test_synthetic_possible_ood
+        promotion_eligible: false
+  - model_id: full-roberta-base
+    role: challenger
+    lifecycle_status: planned_cuda_challenger
+    architecture: roberta_base_full_finetuning
+    evidence: []
+service_alignment:
+  service_module: 10
+  operating_mode: shadow_review_only
+  currently_served_model_id: lora-roberta-r8-revised
+  champion_aligned: false
+  production_deployment_approved: false
+data_boundary:
+  official_banking77_test_previously_observed: true
+  official_banking77_test_access_in_module12: false
+  banking77_test_eligible_for_promotion: false
+  development_validation_eligible_for_promotion: false
+  synthetic_possible_ood_eligible_for_promotion: false
+  required_promotion_dataset: new_locked_external_evaluation
+  external_evaluation_lock_status: missing
+promotion_gates:
+  required_seeds:
+    - 17
+    - 42
+    - 73
+  confidence_level: 0.95
+  paired_bootstrap_resamples: 5000
+  bootstrap_seed: 120017
+  superiority:
+    require_positive_macro_f1_delta_each_seed: true
+    mean_macro_f1_delta_ci_lower_strictly_above: 0.0
+  noninferiority:
+    mean_macro_f1_delta_ci_lower_at_least: -0.005
+    minimum_per_seed_macro_f1_delta: -0.01
+  calibration_route:
+    minimum_mean_ece_reduction: 0.01
+    require_non_worse_ece_each_seed: true
+    mean_ece_delta_ci_upper_strictly_below: 0.0
+  selective_risk_route:
+    minimum_mean_selective_risk_reduction: 0.02
+    matched_coverage_required: true
+    minimum_known_coverage_each_seed: 0.7
+    minimum_possible_ood_recall_each_seed: 0.9
+    mean_selective_risk_delta_ci_upper_strictly_below: 0.0
+  safety_vetoes:
+    minimum_security_intent_f1_delta: -0.02
+    privacy_tests_must_pass: true
+    routing_tests_must_pass: true
+    audit_tests_must_pass: true
+    complete_seed_evidence_required: true
+  approval:
+    automatic_promotion_permitted: false
+    human_approval_required: true
+current_decision:
+  action: retain_champion
+  reason: external_evaluation_lock_missing

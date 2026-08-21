@@ -1,0 +1,217 @@
+{
+  "artifact_type": "module12_champion_challenger_registry",
+  "claim_scope": "governance_registry_not_new_model_evaluation",
+  "config_sha256": "c5c05167c9d84f9656301997152f972260f430d9381132c18321cef5354196b8",
+  "created_at_utc": "2026-08-21T15:52:16.071929+00:00",
+  "current_champion_id": "tfidf-word-char-c4",
+  "current_decision": {
+    "action": "retain_champion",
+    "production_deployment_approved": false,
+    "reason_codes": [
+      "EXTERNAL_EVALUATION_LOCK_MISSING",
+      "NO_PROMOTION_ELIGIBLE_CHALLENGER_EVIDENCE",
+      "SHADOW_SERVICE_MODEL_DIFFERS_FROM_CHAMPION",
+      "REVISED_LORA_UNCERTAINTY_GATES_FAILED"
+    ]
+  },
+  "data_boundary": {
+    "external_evaluation_loaded": false,
+    "message_text_loaded": false,
+    "new_model_metrics_computed": false,
+    "official_banking77_test_loaded": false,
+    "source_reports_only": true
+  },
+  "framework_version": "module12-champion-challenger-v1",
+  "historical_ranking_context_only": [
+    {
+      "macro_f1": 0.9053010357,
+      "model_id": "tfidf-word-char-c4",
+      "promotion_eligible": false
+    },
+    {
+      "macro_f1": 0.8964173425,
+      "model_id": "frozen-roberta-mean-c1024",
+      "promotion_eligible": false
+    },
+    {
+      "macro_f1": 0.8202064851,
+      "model_id": "lora-roberta-r8-original",
+      "promotion_eligible": false
+    }
+  ],
+  "implementation_sha256": {
+    "build_champion_registry.py": "96f43322c0a8411848a316f9444ad110f0d0779e515b99abb9fa4a521b069aa9",
+    "champion.py": "a5484bf8574692f45f061cae96ca589fa7972d93962b75b3c93d8088667d5b43"
+  },
+  "models": [
+    {
+      "architecture": "tfidf_word_char_logistic_regression",
+      "evidence": [
+        {
+          "content_sha256": "c0446495a7aaccf0d685e54ac46264fd4602dd78e53e69f2a93dd4666e8eba53",
+          "evidence_id": "banking77_locked_test_seed42",
+          "file_sha256": "2fa8ad2e8427adacfbd8ed9cf372a63f9b8a12e67e8b884574fd6cdda7d056f0",
+          "path": "reports/baseline/tfidf-logreg-test.json",
+          "promotion_eligible": false,
+          "scope": "historical_official_test_already_observed"
+        }
+      ],
+      "external_locked_evaluation_present": false,
+      "historical_official_test_macro_f1": 0.9053010357,
+      "lifecycle_status": "active_historical_champion",
+      "model_id": "tfidf-word-char-c4",
+      "promotion_ready": false,
+      "role": "champion"
+    },
+    {
+      "architecture": "frozen_roberta_mean_pooling_logistic_regression",
+      "evidence": [
+        {
+          "content_sha256": "b3e6b944259f510695b2461ff35ecba88e280252da121621a8c63afd8bf7e7cf",
+          "evidence_id": "banking77_locked_test_seed42",
+          "file_sha256": "084dcd59028ede899c5d6b639b2468648605afd31cdaf0433c0b91cb4b11b489",
+          "path": "reports/frozen-roberta/test.json",
+          "promotion_eligible": false,
+          "scope": "historical_official_test_already_observed"
+        }
+      ],
+      "external_locked_evaluation_present": false,
+      "historical_official_test_macro_f1": 0.8964173425,
+      "lifecycle_status": "historical_challenger",
+      "model_id": "frozen-roberta-mean-c1024",
+      "promotion_ready": false,
+      "role": "challenger"
+    },
+    {
+      "architecture": "roberta_base_lora_rank8",
+      "evidence": [
+        {
+          "content_sha256": "1b8c569dbc905ba9aeb825e12af8d8f384dc0fe92022f8fdfacd427e389af5ad",
+          "evidence_id": "banking77_locked_test_seed42",
+          "file_sha256": "d8a2a760679863fa74a7730105985effe79db01ab5b6e129f150a747ddc42e54",
+          "path": "reports/lora-roberta/test.json",
+          "promotion_eligible": false,
+          "scope": "historical_official_test_already_observed"
+        }
+      ],
+      "external_locked_evaluation_present": false,
+      "historical_official_test_macro_f1": 0.8202064851,
+      "lifecycle_status": "retired_historical_challenger",
+      "model_id": "lora-roberta-r8-original",
+      "promotion_ready": false,
+      "role": "challenger"
+    },
+    {
+      "architecture": "roberta_base_lora_rank8_revised_stopping",
+      "calibration_point_gates_passed": true,
+      "development_calibrated_ece": {
+        "confidence_interval_95": [
+          0.0161450567,
+          0.0398713562
+        ],
+        "mean": 0.0280082064,
+        "sample_standard_deviation": 0.0047755604,
+        "values_by_seed": {
+          "17": 0.0333614008,
+          "42": 0.0264776721,
+          "73": 0.0241855464
+        }
+      },
+      "development_possible_ood_recall": {
+        "confidence_interval_95": [
+          0.7811567012,
+          0.9966210766
+        ],
+        "mean": 0.8888888889,
+        "sample_standard_deviation": 0.0433680416,
+        "values_by_seed": {
+          "17": 0.8541666667,
+          "42": 0.875,
+          "73": 0.9375
+        }
+      },
+      "development_selective_risk": {
+        "confidence_interval_95": [
+          0.0467217055,
+          0.0819691005
+        ],
+        "mean": 0.064345403,
+        "sample_standard_deviation": 0.007094493,
+        "values_by_seed": {
+          "17": 0.0608695652,
+          "42": 0.0596590909,
+          "73": 0.0725075529
+        }
+      },
+      "development_validation_macro_f1": {
+        "confidence_interval_95": [
+          0.8791922729,
+          0.9156181514
+        ],
+        "mean": 0.8974052122,
+        "sample_standard_deviation": 0.0073316947,
+        "values_by_seed": {
+          "17": 0.9006331788,
+          "42": 0.9025690545,
+          "73": 0.8890134032
+        }
+      },
+      "evidence": [
+        {
+          "content_sha256": "85243a88f3ebcc8858a4bbbca1db28a6e31d0392ec68e46e4cc931a3b3eeac72",
+          "evidence_id": "multiseed_validation",
+          "file_sha256": "512ee3c6799991b787db1f427d547ae97032f6eb7ea38e16a13fe92dc622442e",
+          "path": "reports/multiseed-lora/validation-aggregate.json",
+          "promotion_eligible": false,
+          "scope": "post_test_development_validation"
+        },
+        {
+          "content_sha256": "9c8d1aba737c48f5cf7fc36e87d47ae1401eecc25ae9ff166901aa3f38611748",
+          "evidence_id": "calibration_assessment",
+          "file_sha256": "d6ef5f928be67a4e871950377be333f577dde1edb27f3a4bd3604c638458f259",
+          "path": "reports/calibration/temperature-scaling-aggregate.json",
+          "promotion_eligible": false,
+          "scope": "post_test_development_calibration"
+        },
+        {
+          "content_sha256": "69d14aca45fee7f14c357db34c49d75878e3655c7722d4bd62a946281215098e",
+          "evidence_id": "uncertainty_assessment",
+          "file_sha256": "19dbc01f8cdd8ecf3878a26de5e1fd2f789a02ef9eff78cad0f555bd35b1f60c",
+          "path": "reports/uncertainty/selective-ood-aggregate.json",
+          "promotion_eligible": false,
+          "scope": "post_test_synthetic_possible_ood"
+        }
+      ],
+      "external_locked_evaluation_present": false,
+      "lifecycle_status": "active_development_challenger",
+      "model_id": "lora-roberta-r8-revised",
+      "promotion_ready": false,
+      "role": "challenger",
+      "uncertainty_gates_passed": false
+    },
+    {
+      "architecture": "roberta_base_full_finetuning",
+      "evidence": [],
+      "external_locked_evaluation_present": false,
+      "lifecycle_status": "planned_cuda_challenger",
+      "model_id": "full-roberta-base",
+      "promotion_ready": false,
+      "role": "challenger"
+    }
+  ],
+  "promotion_readiness": {
+    "automatic_promotion_permitted": false,
+    "eligible_challenger_evaluations": 0,
+    "external_evaluation_lock_status": "missing",
+    "human_approval_required": true
+  },
+  "report_sha256": "13a5299cedf4a33a2bc6911c932a2289d7960acf4b9372925616b3aa10ca7d3c",
+  "schema_version": 1,
+  "service_alignment": {
+    "champion_aligned": false,
+    "currently_served_model_id": "lora-roberta-r8-revised",
+    "operating_mode": "shadow_review_only",
+    "production_deployment_approved": false,
+    "service_module": 10
+  }
+}
