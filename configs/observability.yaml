@@ -1,0 +1,98 @@
+schema_version: 1
+profile_name: module15-privacy-safe-otel-v1
+instrumentation:
+  name: governed_banking.observability
+  version: module15-observability-v1
+  manual_instrumentation_only: true
+  automatic_http_instrumentation: false
+  inbound_trace_context: false
+  baggage_propagation: false
+  exception_stacktraces: false
+  telemetry_logs: false
+export:
+  protocol: otlp_grpc
+  endpoint_environment_variable: OTEL_EXPORTER_OTLP_ENDPOINT
+  endpoint_required: true
+  exporter_headers_allowed: false
+  metric_export_interval_milliseconds: 15000
+  export_timeout_milliseconds: 5000
+signals:
+  metric_names:
+    - banking_router.requests
+    - banking_router.errors
+    - banking_router.request.duration
+    - banking_router.model.load.duration
+    - banking_router.runtime.selected_device
+    - banking_router.routing.decisions
+    - banking_router.routing.human_reviews
+    - banking_router.routing.security_escalations
+    - banking_router.privacy.redactions
+    - banking_router.model.uncertainty
+    - banking_router.routing.human_review_ratio
+    - banking_router.routing.security_escalation_ratio
+    - banking_router.routing.distribution_shift
+    - banking_router.routing.window_observations
+  span_names:
+    - banking_router.http.request
+    - banking_router.model.load
+attributes:
+  allowed_keys:
+    - deployment.device
+    - deployment.environment
+    - error.type
+    - http.request.method
+    - http.response.status_code
+    - http.route
+    - model.uncertainty.bucket
+    - model.version
+    - policy.version
+    - privacy.redaction.category
+    - route.action
+    - route.processing_status
+    - service.version
+    - telemetry.outcome
+  prohibited_keys:
+    - account
+    - authorization
+    - baggage
+    - content
+    - correlation_id
+    - customer
+    - email
+    - message
+    - message_hash
+    - name
+    - payload
+    - prompt
+    - query
+    - redacted_text
+    - request_id
+    - subject
+    - text
+    - token
+    - user
+routing_distribution:
+  dimension: route.action
+  reference_source_path: reports/service/module10-api-evaluation.json
+  expected_reference_source_sha256: c2c6e439a632a70c82a09e69213a0ce6459e2853dc09b94ad58eae34a2d33385
+  reference_scope: synthetic_module10_local_integration_not_production_baseline
+  rolling_window_observations: 100
+  minimum_observations: 20
+  reference:
+    human_review: 0.8333333333333334
+    security_queue: 0.16666666666666666
+  alerting_threshold_approved: false
+registered_deployment_profiles:
+  configs/deployment/native-mps.yaml: 9e2f31e36f280130f95400e6044a0909465ddc0a2ebe6ea3505a199688e4f660
+  configs/deployment/linux-cpu.yaml: bf98088665ebffcc1e43baac4f947a30b1e1ce02b7cd6ffaeccf5ddda09cc516
+  configs/deployment/linux-cuda.yaml: 39729e1da738f0d7f7a348e4de310e1f58b986342488fccebe74ca3740b06402
+claims:
+  data_classification: aggregate_and_bounded_metadata_only
+  customer_text_collected: false
+  redacted_text_collected: false
+  identity_attributes_collected: false
+  request_identifiers_collected: false
+  message_hashes_collected: false
+  automatic_header_capture: false
+  production_alert_threshold_approved: false
+  production_approved: false
