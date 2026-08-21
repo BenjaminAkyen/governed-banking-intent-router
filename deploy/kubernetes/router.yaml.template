@@ -1,0 +1,131 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: governed-banking-intent-router
+  labels:
+    app.kubernetes.io/name: governed-banking-intent-router
+spec:
+  replicas: 2
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: governed-banking-intent-router
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: governed-banking-intent-router
+    spec:
+      terminationGracePeriodSeconds: 60
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+        - name: router
+          image: REPLACE_WITH_IMMUTABLE_ROUTER_IMAGE_DIGEST
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            - name: GOVERNED_BANKING_CONTAINER
+              value: "1"
+            - name: GOVERNED_BANKING_DEPLOYMENT_PROFILE
+              value: configs/deployment/linux-cpu.yaml
+            - name: GOVERNED_BANKING_RELEASE_ID
+              value: module10-lora-seed42-research
+            - name: GOVERNED_BANKING_ROLLBACK_REFERENCE
+              value: REPLACE_WITH_PREVIOUS_IMMUTABLE_IMAGE_DIGEST
+            - name: GOVERNED_BANKING_GATEWAY_ASSERTION
+              valueFrom:
+                secretKeyRef:
+                  name: router-origin-auth
+                  key: assertion
+          readinessProbe:
+            exec:
+              command:
+                - python
+                - -c
+                - import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=2).read()
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 30
+          livenessProbe:
+            exec:
+              command:
+                - python
+                - -c
+                - import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/live', timeout=2).read()
+            periodSeconds: 20
+            timeoutSeconds: 2
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: "1"
+              memory: 2Gi
+            limits:
+              cpu: "2"
+              memory: 4Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: model-bundle
+              mountPath: /app/artifacts/multiseed-lora/seed-42
+              subPath: multiseed-lora/seed-42
+              readOnly: true
+            - name: model-bundle
+              mountPath: /app/artifacts/huggingface
+              subPath: huggingface
+              readOnly: true
+            - name: audit-events
+              mountPath: /app/artifacts/audit
+      volumes:
+        - name: model-bundle
+          persistentVolumeClaim:
+            claimName: REPLACE_WITH_VERSIONED_MODEL_BUNDLE_PVC
+        - name: audit-events
+          persistentVolumeClaim:
+            claimName: REPLACE_WITH_AUDIT_STORAGE_PVC
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: governed-banking-intent-router
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: governed-banking-intent-router
+  ports:
+    - name: http
+      port: 8000
+      targetPort: http
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: gateway-only-router-origin
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: governed-banking-intent-router
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              governed-banking-gateway: "true"
+      ports:
+        - protocol: TCP
+          port: 8000

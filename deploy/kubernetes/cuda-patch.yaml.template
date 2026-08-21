@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: governed-banking-intent-router
+spec:
+  template:
+    spec:
+      containers:
+        - name: router
+          image: REPLACE_WITH_IMMUTABLE_CUDA_ROUTER_IMAGE_DIGEST
+          env:
+            - name: GOVERNED_BANKING_DEPLOYMENT_PROFILE
+              value: configs/deployment/linux-cuda.yaml
+          resources:
+            requests:
+              cpu: "2"
+              memory: 4Gi
+              nvidia.com/gpu: "1"
+            limits:
+              cpu: "4"
+              memory: 8Gi
+              nvidia.com/gpu: "1"

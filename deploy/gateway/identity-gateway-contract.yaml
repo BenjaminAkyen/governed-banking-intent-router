@@ -1,0 +1,43 @@
+schema_version: 1
+status: deployment_template_not_production_approval
+public_boundary:
+  component: organisation_managed_api_gateway
+  tls_required: true
+  oidc_validation_required: true
+  allowed_algorithms:
+    - RS256
+  required_claims:
+    - iss
+    - sub
+    - aud
+    - exp
+  issuer: REPLACE_WITH_REGISTERED_HTTPS_ISSUER
+  audience: REPLACE_WITH_ROUTER_AUDIENCE
+origin_boundary:
+  service: governed-banking-intent-router
+  public_network_access: false
+  gateway_is_only_permitted_caller: true
+  remove_client_supplied_headers:
+    - Authorization
+    - X-Authenticated-Subject
+    - X-Authenticated-Issuer
+    - X-Governed-Gateway-Assertion
+  inject_after_successful_identity_validation:
+    X-Authenticated-Subject: verified_oidc_claim.sub
+    X-Authenticated-Issuer: verified_oidc_claim.iss
+    X-Governed-Gateway-Assertion: secret_manager.GOVERNED_BANKING_GATEWAY_ASSERTION
+  forward_client_correlation_header_only_when_canonical_uuid: true
+required_controls:
+  gateway_assertion_rotation: required
+  origin_network_policy: required
+  request_body_limit_bytes: 8192
+  preserve_response_headers:
+    - X-Request-ID
+    - X-Correlation-ID
+    - X-Model-Release
+  customer_text_logging: prohibited
+  authorization_decision_logging: metadata_only
+claims:
+  identity_provider_configured: false
+  gateway_vendor_selected: false
+  production_approved: false
