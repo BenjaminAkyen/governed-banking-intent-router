@@ -52,6 +52,7 @@ ALLOWED_ATTRIBUTE_KEYS = (
     "privacy.redaction.category",
     "route.action",
     "route.processing_status",
+    "service.name",
     "service.version",
     "telemetry.outcome",
 )
