@@ -1,0 +1,70 @@
+{
+  "all_checks_passed": true,
+  "artifact_type": "module14_native_mps_deployment_smoke",
+  "checks": {
+    "authentication_required": true,
+    "canonical_request_id_returned": true,
+    "correlation_id_preserved": true,
+    "graceful_shutdown_completed": true,
+    "liveness_healthy": true,
+    "message_absent_from_response_and_audit": true,
+    "mps_selected_without_fallback": true,
+    "one_metadata_only_audit_event": true,
+    "readiness_healthy": true,
+    "release_header_bound": true,
+    "unversioned_route_absent": true,
+    "versioned_route_successful": true
+  },
+  "claim_scope": "single_process_native_mps_smoke_not_production_validation",
+  "contains_message_hash": false,
+  "contains_message_text": false,
+  "contains_redacted_text": false,
+  "deployment_profile_sha256": "9e2f31e36f280130f95400e6044a0909465ddc0a2ebe6ea3505a199688e4f660",
+  "implementation_sha256": {
+    "audit_store.py": "00da2e870576da5a58e13fbb76c051c14aa1b8c26dcd897a54fb47bfe42337af",
+    "deployment_config.py": "f41e3b0ef9b1faefbd937db73d61a5d64facba053b127d99c1df1aac195fc44a",
+    "deployment_service.py": "e892740fc4b78f169fd034a79ea75dfb9f84a39d7048ee0afea2460598f7460e",
+    "run_deployment_smoke.py": "1137fa001275f749e32663d7443bf22d03f732b7661868c7732c1d0aa02dc0e6"
+  },
+  "limitations": [
+    "This is one in-process synthetic request on one Mac, not a load, availability, or production validation.",
+    "The Linux CPU container was not built or executed in this environment.",
+    "The Linux CUDA container was not built or executed because no NVIDIA CUDA runtime was available.",
+    "The service remains shadow-review-only; Module 13 classification and safety-routing gates failed."
+  ],
+  "observations": {
+    "audit_directory_mode": "0700",
+    "audit_event_count": 1,
+    "audit_file_mode": "0600",
+    "single_route_seconds": 0.7859,
+    "startup_seconds": 1.2512
+  },
+  "report_sha256": "051df43711b3573adfeac7d0799993536f1719cff9226ba4c132fbec1364145d",
+  "runtime": {
+    "accelerator_name": "Apple M4",
+    "compute_capability": null,
+    "cuda_available": false,
+    "cuda_build_version": null,
+    "cuda_device_count": 0,
+    "cudnn_version": null,
+    "device": "mps",
+    "device_index": 0,
+    "machine": "arm64",
+    "memory_allocated_bytes": 0,
+    "memory_free_bytes": null,
+    "memory_reserved_bytes": 475136,
+    "memory_semantics": "metal_recommended_max_working_set_unified_memory",
+    "memory_total_bytes": 19069665280,
+    "mps_available": true,
+    "mps_built": true,
+    "operating_system": "Darwin",
+    "operating_system_release": "25.5.0",
+    "processor": "arm",
+    "python_version": "3.12.14",
+    "real_hardware_observed": true,
+    "requested": "mps",
+    "selected": "mps",
+    "torch_version": "2.13.0"
+  },
+  "schema_version": 1
+}

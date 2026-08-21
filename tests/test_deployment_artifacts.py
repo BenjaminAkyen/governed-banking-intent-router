@@ -1,6 +1,9 @@
+import json
 from pathlib import Path
 
 import yaml
+
+from governed_banking.data import sha256_file, stable_json_sha256
 
 
 def test_container_profiles_never_register_mps_or_cpu_fallback() -> None:
@@ -59,3 +62,27 @@ def test_cuda_patch_requests_a_real_nvidia_gpu() -> None:
     container = patch["spec"]["template"]["spec"]["containers"][0]
     assert container["resources"]["limits"]["nvidia.com/gpu"] == "1"
     assert container["env"][0]["value"] == "configs/deployment/linux-cuda.yaml"
+
+
+def test_native_mps_smoke_evidence_is_hash_bound_and_passed() -> None:
+    report = json.loads(
+        Path("reports/deployment/module14-native-mps-smoke.json").read_text(encoding="utf-8")
+    )
+    report_hash = report.pop("report_sha256")
+    assert stable_json_sha256(report) == report_hash
+    assert report["deployment_profile_sha256"] == sha256_file(
+        Path("configs/deployment/native-mps.yaml")
+    )
+    implementation_paths = {
+        "audit_store.py": Path("src/governed_banking/audit_store.py"),
+        "deployment_config.py": Path("src/governed_banking/deployment_config.py"),
+        "deployment_service.py": Path("src/governed_banking/deployment_service.py"),
+        "run_deployment_smoke.py": Path("scripts/run_deployment_smoke.py"),
+    }
+    assert report["implementation_sha256"] == {
+        name: sha256_file(path) for name, path in implementation_paths.items()
+    }
+    assert report["all_checks_passed"] is True
+    assert report["runtime"]["selected"] == "mps"
+    assert report["runtime"]["real_hardware_observed"] is True
+    assert report["contains_message_text"] is False
