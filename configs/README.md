@@ -20,3 +20,9 @@ overwrite its evidence. A follow-up requires a new versioned configuration and c
 reuses Module 5's rank-8 winner, defines validation-only early stopping and explicitly prohibits
 official-test model access or confirmatory claims. Changing it invalidates all Module 6 manifests,
 seed reports and aggregate evidence.
+
+`calibration.yaml` registers Module 7's post-selection, post-test exploratory calibration protocol.
+For each seed, it partitions the Module 6 validation pool into disjoint normalized-text groups for
+temperature fitting and calibration assessment. It fixes the scalar-temperature bounds, 15-bin
+metrics, 2,000 paired bootstrap resamples and the point-estimate acceptance gate. Changing it
+invalidates the calibration registry, all seed reports and the aggregate.

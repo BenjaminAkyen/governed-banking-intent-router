@@ -1,0 +1,451 @@
+{
+  "acceptance_gate": {
+    "all_passed": true,
+    "calibrated_ece_at_or_below_maximum": true,
+    "calibrated_ece_lower_than_raw": true,
+    "predicted_classes_unchanged": true,
+    "registered_ece_maximum": 0.05
+  },
+  "artifact_type": "temperature_scaling_assessment",
+  "assessment_metrics": {
+    "calibrated": {
+      "accuracy": 0.8946666667,
+      "count": 750,
+      "expected_calibration_error": 0.0241855464,
+      "macro_f1": 0.8973012418,
+      "maximum_calibration_error": 0.2701888082,
+      "mean_confidence": 0.8879305307,
+      "multiclass_brier_score": 0.1589034703,
+      "negative_log_likelihood": 0.3845509224,
+      "reliability_bins": [
+        {
+          "absolute_gap": 0.0,
+          "accuracy": 0.0,
+          "bin": 1,
+          "count": 0,
+          "lower": 0.0,
+          "mean_confidence": 0.0,
+          "upper": 0.0666666667
+        },
+        {
+          "absolute_gap": 0.0,
+          "accuracy": 0.0,
+          "bin": 2,
+          "count": 0,
+          "lower": 0.0666666667,
+          "mean_confidence": 0.0,
+          "upper": 0.1333333333
+        },
+        {
+          "absolute_gap": 0.0,
+          "accuracy": 0.0,
+          "bin": 3,
+          "count": 0,
+          "lower": 0.1333333333,
+          "mean_confidence": 0.0,
+          "upper": 0.2
+        },
+        {
+          "absolute_gap": 0.2473591752,
+          "accuracy": 0.5,
+          "bin": 4,
+          "count": 2,
+          "lower": 0.2,
+          "mean_confidence": 0.2526408248,
+          "upper": 0.2666666667
+        },
+        {
+          "absolute_gap": 0.1946900831,
+          "accuracy": 0.5,
+          "bin": 5,
+          "count": 4,
+          "lower": 0.2666666667,
+          "mean_confidence": 0.3053099169,
+          "upper": 0.3333333333
+        },
+        {
+          "absolute_gap": 0.2504935051,
+          "accuracy": 0.1111111111,
+          "bin": 6,
+          "count": 9,
+          "lower": 0.3333333333,
+          "mean_confidence": 0.3616046162,
+          "upper": 0.4
+        },
+        {
+          "absolute_gap": 0.2701888082,
+          "accuracy": 0.7142857143,
+          "bin": 7,
+          "count": 7,
+          "lower": 0.4,
+          "mean_confidence": 0.4440969061,
+          "upper": 0.4666666667
+        },
+        {
+          "absolute_gap": 0.1050325953,
+          "accuracy": 0.3913043478,
+          "bin": 8,
+          "count": 23,
+          "lower": 0.4666666667,
+          "mean_confidence": 0.4963369431,
+          "upper": 0.5333333333
+        },
+        {
+          "absolute_gap": 0.0389561,
+          "accuracy": 0.5263157895,
+          "bin": 9,
+          "count": 19,
+          "lower": 0.5333333333,
+          "mean_confidence": 0.5652718894,
+          "upper": 0.6
+        },
+        {
+          "absolute_gap": 0.0719832805,
+          "accuracy": 0.7058823529,
+          "bin": 10,
+          "count": 34,
+          "lower": 0.6,
+          "mean_confidence": 0.6338990725,
+          "upper": 0.6666666667
+        },
+        {
+          "absolute_gap": 0.0007245846,
+          "accuracy": 0.7,
+          "bin": 11,
+          "count": 20,
+          "lower": 0.6666666667,
+          "mean_confidence": 0.6992754154,
+          "upper": 0.7333333333
+        },
+        {
+          "absolute_gap": 0.0333285813,
+          "accuracy": 0.7352941176,
+          "bin": 12,
+          "count": 34,
+          "lower": 0.7333333333,
+          "mean_confidence": 0.768622699,
+          "upper": 0.8
+        },
+        {
+          "absolute_gap": 0.0688430579,
+          "accuracy": 0.9038461538,
+          "bin": 13,
+          "count": 52,
+          "lower": 0.8,
+          "mean_confidence": 0.835003096,
+          "upper": 0.8666666667
+        },
+        {
+          "absolute_gap": 0.0212805682,
+          "accuracy": 0.9264705882,
+          "bin": 14,
+          "count": 68,
+          "lower": 0.8666666667,
+          "mean_confidence": 0.90519002,
+          "upper": 0.9333333333
+        },
+        {
+          "absolute_gap": 0.0019706897,
+          "accuracy": 0.9832635983,
+          "bin": 15,
+          "count": 478,
+          "lower": 0.9333333333,
+          "mean_confidence": 0.9812929086,
+          "upper": 1.0
+        }
+      ],
+      "signed_confidence_gap": -0.006736136
+    },
+    "calibrated_minus_raw": {
+      "expected_calibration_error": -0.0148851452,
+      "maximum_calibration_error": -0.160358402,
+      "mean_confidence": 0.0255073459,
+      "multiclass_brier_score": -0.0021598127,
+      "negative_log_likelihood": -0.0080345896,
+      "signed_confidence_gap": 0.0255073459
+    },
+    "raw": {
+      "accuracy": 0.8946666667,
+      "count": 750,
+      "expected_calibration_error": 0.0390706916,
+      "macro_f1": 0.8973012418,
+      "maximum_calibration_error": 0.4305472102,
+      "mean_confidence": 0.8624231848,
+      "multiclass_brier_score": 0.161063283,
+      "negative_log_likelihood": 0.392585512,
+      "reliability_bins": [
+        {
+          "absolute_gap": 0.0,
+          "accuracy": 0.0,
+          "bin": 1,
+          "count": 0,
+          "lower": 0.0,
+          "mean_confidence": 0.0,
+          "upper": 0.0666666667
+        },
+        {
+          "absolute_gap": 0.0,
+          "accuracy": 0.0,
+          "bin": 2,
+          "count": 0,
+          "lower": 0.0666666667,
+          "mean_confidence": 0.0,
+          "upper": 0.1333333333
+        },
+        {
+          "absolute_gap": 0.0,
+          "accuracy": 0.0,
+          "bin": 3,
+          "count": 0,
+          "lower": 0.1333333333,
+          "mean_confidence": 0.0,
+          "upper": 0.2
+        },
+        {
+          "absolute_gap": 0.4305472102,
+          "accuracy": 0.6666666667,
+          "bin": 4,
+          "count": 3,
+          "lower": 0.2,
+          "mean_confidence": 0.2361194565,
+          "upper": 0.2666666667
+        },
+        {
+          "absolute_gap": 0.0858450023,
+          "accuracy": 0.2222222222,
+          "bin": 5,
+          "count": 9,
+          "lower": 0.2666666667,
+          "mean_confidence": 0.3080672245,
+          "upper": 0.3333333333
+        },
+        {
+          "absolute_gap": 0.1646113213,
+          "accuracy": 0.2,
+          "bin": 6,
+          "count": 5,
+          "lower": 0.3333333333,
+          "mean_confidence": 0.3646113213,
+          "upper": 0.4
+        },
+        {
+          "absolute_gap": 0.089663235,
+          "accuracy": 0.5263157895,
+          "bin": 7,
+          "count": 19,
+          "lower": 0.4,
+          "mean_confidence": 0.4366525545,
+          "upper": 0.4666666667
+        },
+        {
+          "absolute_gap": 0.0478229514,
+          "accuracy": 0.45,
+          "bin": 8,
+          "count": 20,
+          "lower": 0.4666666667,
+          "mean_confidence": 0.4978229514,
+          "upper": 0.5333333333
+        },
+        {
+          "absolute_gap": 0.0708292264,
+          "accuracy": 0.6388888889,
+          "bin": 9,
+          "count": 36,
+          "lower": 0.5333333333,
+          "mean_confidence": 0.5680596625,
+          "upper": 0.6
+        },
+        {
+          "absolute_gap": 0.1143518808,
+          "accuracy": 0.75,
+          "bin": 10,
+          "count": 24,
+          "lower": 0.6,
+          "mean_confidence": 0.6356481192,
+          "upper": 0.6666666667
+        },
+        {
+          "absolute_gap": 0.0002993694,
+          "accuracy": 0.7037037037,
+          "bin": 11,
+          "count": 27,
+          "lower": 0.6666666667,
+          "mean_confidence": 0.7040030731,
+          "upper": 0.7333333333
+        },
+        {
+          "absolute_gap": 0.1256892069,
+          "accuracy": 0.8913043478,
+          "bin": 12,
+          "count": 46,
+          "lower": 0.7333333333,
+          "mean_confidence": 0.765615141,
+          "upper": 0.8
+        },
+        {
+          "absolute_gap": 0.0737740737,
+          "accuracy": 0.9047619048,
+          "bin": 13,
+          "count": 42,
+          "lower": 0.8,
+          "mean_confidence": 0.8309878311,
+          "upper": 0.8666666667
+        },
+        {
+          "absolute_gap": 0.0379092569,
+          "accuracy": 0.9405940594,
+          "bin": 14,
+          "count": 101,
+          "lower": 0.8666666667,
+          "mean_confidence": 0.9026848025,
+          "upper": 0.9333333333
+        },
+        {
+          "absolute_gap": 0.0137421654,
+          "accuracy": 0.9880382775,
+          "bin": 15,
+          "count": 418,
+          "lower": 0.9333333333,
+          "mean_confidence": 0.9742961121,
+          "upper": 1.0
+        }
+      ],
+      "signed_confidence_gap": -0.0322434819
+    }
+  },
+  "calibration_config_sha256": "80859dca415abd0dec57d31335ea574005c911810f2b825af2908e7ecd92efe0",
+  "claim_scope": "post_selection_post_test_exploratory",
+  "contains_message_text": false,
+  "data_boundary": {
+    "assessment_role": "calibration_assessment",
+    "fit_and_assessment_rows_disjoint": true,
+    "independent_model_evaluation": false,
+    "loaded_model_splits": [
+      "validation"
+    ],
+    "official_test_metrics_computed": false,
+    "prohibited_model_splits": [
+      "train",
+      "test"
+    ],
+    "temperature_fit_role": "temperature_fit",
+    "test_split_loaded": false
+  },
+  "experiment_name": "multiseed_temperature_scaling",
+  "extraction": {
+    "checkpoint_files_sha256": {
+      "README.md": "0b5a527d7c8ad39b8025c1fac0fc9865093e3b8f5686193127c7a0f57a8eecde",
+      "adapter_config.json": "3d2863d402107e9d0516fcb0e7c4a148cbe2a447777bbca63381d7458cb40bdc",
+      "adapter_model.safetensors": "4f6f38f679b4159fa05460deae304b1e10318e19ab5d44908fd34ec130779cbd"
+    },
+    "extraction_seconds": 12.0710323332,
+    "labels_sha256": "6248167bf409d52ab16b44059976fd11cd3f54169b19a33ecb455b6a54239f13",
+    "logit_shape": [
+      1499,
+      77
+    ],
+    "logits_sha256": "0f376e67a129696367bdcf2fe154201753e383448905b6c7fd628ad83d2b583d",
+    "row_count": 1499,
+    "runtime_device": {
+      "mps_available": true,
+      "mps_built": true,
+      "platform": "macOS-26.5-arm64-arm-64bit",
+      "python_version": "3.12.14",
+      "requested": "mps",
+      "selected": "mps",
+      "torch_version": "2.13.0"
+    },
+    "token_length_audit": {
+      "maximum_tokens": 82,
+      "rows": 1499,
+      "rows_exceeding_max_length": 0
+    }
+  },
+  "implementation_sha256": {
+    "calibration.py": "814267dfca0b710b84b9c9cc227e1c2e8d8c50ad5786b556bb67ad89a72ede96",
+    "data.py": "f5f728612d18ab103fb9500301a4a3395e672a30206c9278fd0fa6a88f9fa544",
+    "device.py": "48cb1d2082716f440a78985c3c1e5b2d45c10d5057b863237672cb3b28277d97",
+    "frozen_baseline.py": "979177d3410e3759bb12700fa3b1ab49b1be48269c6211aff762a16ce5567c91",
+    "lora_baseline.py": "f2efe927b616a4f8e18ffbd37d62d3348ccf2f9fac47c4b1c47c77019e15bb4e",
+    "multiseed.py": "7193d77e2d11621103b282639c554d21246deb093bea3ebbb39c55efff4644da",
+    "run_temperature_scaling.py": "b128848d42c4d1b4bcc95b52a6f8abdba6dde7d0d5e5df1390108103e24faf53"
+  },
+  "interpretation_notice": "Assessment rows were not used to fit temperature, but were previously part of Module 6 checkpoint selection; this is not independent model evaluation.",
+  "paired_bootstrap": {
+    "confidence_level": 0.95,
+    "delta_definition": "calibrated_minus_raw",
+    "intervals": {
+      "expected_calibration_error": {
+        "lower": -0.0257848932,
+        "median": -0.0119983097,
+        "upper": 0.005890672
+      },
+      "maximum_calibration_error": {
+        "lower": -0.3856772657,
+        "median": -0.0099223428,
+        "upper": 0.3678211333
+      },
+      "multiclass_brier_score": {
+        "lower": -0.0040785329,
+        "median": -0.0021206788,
+        "upper": -0.000140907
+      },
+      "negative_log_likelihood": {
+        "lower": -0.0145193017,
+        "median": -0.0080787323,
+        "upper": -0.0006702229
+      },
+      "signed_confidence_gap": {
+        "lower": 0.0240808228,
+        "median": 0.0255098155,
+        "upper": 0.0268673833
+      }
+    },
+    "random_seed": 9073,
+    "resamples": 2000
+  },
+  "partition_registry_sha256": "54df48234481d1a0351f30f308eed77d3b79a6dc63f5b06d87cdc664a31a9751",
+  "partitions": {
+    "calibration_assessment": {
+      "count": 750,
+      "source_indices_sha256": "6b866cc4d8116bdd91b4f3dbbd4884d3ef82cb8a3b989b33353beb0a4fc5d6e8"
+    },
+    "temperature_fit": {
+      "count": 749,
+      "source_indices_sha256": "8def060099f14455c5e15997e12ad167c96875b95dc51e8b28f3c2224d201cb7"
+    }
+  },
+  "prediction_invariance": {
+    "changed_class_predictions": 0,
+    "unchanged_class_predictions": 750
+  },
+  "report_sha256": "826f61ffd4c37ef4bf8495cacb24b9528aa80d41fb76349b6dcd627035bc1587",
+  "schema_version": 1,
+  "seed": 73,
+  "software": {
+    "numpy": "2.5.2",
+    "peft": "0.20.0",
+    "python": "3.12.14",
+    "scikit_learn": "1.9.0",
+    "scipy": "1.18.0",
+    "torch": "2.13.0",
+    "transformers": "5.15.1"
+  },
+  "source": {
+    "manifest_sha256": "34d28b8c791346fba5b7ce54130fa3ada135fabe014a8d309c22ef4f93d5a778",
+    "module6_run_sha256": "f56cd1b26093d82a5ac6568ea2115d1535cfc2b637e451b4369830e93a26d921",
+    "role": "validation",
+    "role_history": "used_for_module6_checkpoint_selection"
+  },
+  "temperature_fit": {
+    "calibrated_nll": 0.4121593774,
+    "log_temperature": -0.1138876645,
+    "nll_change": -0.0060863354,
+    "optimizer_function_evaluations": 13,
+    "optimizer_iterations": 13,
+    "optimizer_success": true,
+    "raw_nll": 0.4182457128,
+    "temperature": 0.8923581937,
+    "temperature_at_registered_boundary": false
+  }
+}

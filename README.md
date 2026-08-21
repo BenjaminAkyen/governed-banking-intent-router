@@ -4,7 +4,8 @@ A Mac-first research implementation of a privacy-aware banking support router. T
 LoRA-adapted RoBERTa as one component in a larger decision pipeline that includes calibration,
 uncertainty handling, deterministic escalation and metadata-only audit events.
 
-> **Status: lexical, frozen-encoder and LoRA baselines evaluated; no model is production approved.**
+> **Status: three-seed LoRA calibration assessed on disjoint validation roles; no model is
+> production approved.**
 
 ![System architecture](docs/images/system-architecture.svg)
 
@@ -29,10 +30,15 @@ authenticates a customer or provides financial advice.
 
 ## Current module
 
-Module 6 evaluates the revised rank-8 LoRA training protocol across seeds 17, 42 and 73 using only
-train and validation data. It is explicitly post-test exploratory because Module 5's BANKING77 test
-result is already known. The runner has no test-evaluation mode and cannot support a new test
-improvement claim.
+Module 7 fits one positive scalar temperature per Module 6 seed and assesses it on different rows.
+Each seed's validation pool is divided 50:50 into `temperature_fit` and
+`calibration_assessment`; normalized-text duplicate groups cannot cross that boundary. This fixes
+the immediate resubstitution error of scoring calibration on the probabilities used to fit the
+temperature.
+
+The evidence remains explicitly post-selection and post-test exploratory. Both roles came from the
+validation pool previously used to select the Module 6 checkpoint, so the assessment is not an
+independent model-evaluation set.
 
 Run the local checks:
 
@@ -43,17 +49,34 @@ ruff check .
 pytest --cov=governed_banking --cov-report=term-missing
 ```
 
-Prepare the multi-seed manifests and reproduce Module 6 (about 85 minutes on the documented Mac):
+Prepare the calibration registry and reproduce Module 7 from the local Module 6 adapters:
 
 ```bash
-python scripts/prepare_banking77.py --offline
-python scripts/prepare_multiseed_manifests.py
-python scripts/run_multiseed_lora.py --offline --resume
+python scripts/prepare_calibration_splits.py
+python scripts/run_temperature_scaling.py --offline --resume
 ```
 
 Then open
-[`06-multiseed-validation-only-lora.ipynb`](output/jupyter-notebook/06-multiseed-validation-only-lora.ipynb) in VS
-Code and run it with the project virtual environment's `Python 3` kernel.
+[`07-temperature-scaling-calibration.ipynb`](output/jupyter-notebook/07-temperature-scaling-calibration.ipynb)
+in VS Code and run it with the project virtual environment's `Python 3` kernel.
+
+## Verified Module 7 calibration evidence
+
+Metrics below use only each seed's held-out `calibration_assessment` rows. Lower is better.
+
+| Seed | Temperature | Assessment rows | ECE raw → scaled | NLL raw → scaled | Brier raw → scaled |
+|---:|---:|---:|---:|---:|---:|
+| 17 | 0.8285 | 750 | 0.0555 → 0.0334 | 0.3378 → 0.3234 | 0.1354 → 0.1317 |
+| 42 | 0.8910 | 751 | 0.0463 → 0.0265 | 0.3216 → 0.3090 | 0.1404 → 0.1375 |
+| 73 | 0.8924 | 750 | 0.0391 → 0.0242 | 0.3926 → 0.3846 | 0.1611 → 0.1589 |
+| **Mean** | **0.8706** | — | **0.0470 → 0.0280** | **0.3507 → 0.3390** | **0.1456 → 0.1427** |
+
+All registered point-estimate gates passed and zero assessment predictions changed. Paired
+bootstrap intervals support lower NLL and Brier score for every seed. The seed-73 interval for the
+ECE change crosses zero, however, and maximum calibration error is unstable in sparsely populated
+bins. The credible conclusion is therefore narrower than “the model is calibrated”: scalar
+temperature scaling improved several assessment-set probability-quality measures in this
+post-selection experiment. See the [calibration card](docs/CALIBRATION_CARD.md).
 
 ## Verified Module 6 validation evidence
 
@@ -112,8 +135,8 @@ See the [data card](docs/DATA_CARD.md), [system boundary](docs/SYSTEM_BOUNDARY.m
 4. Frozen RoBERTa embedding baseline - **complete**
 5. LoRA-RoBERTa registered baseline - **complete; negative result preserved**
 6. Multi-seed manifests, revised development protocol and aggregation - **complete; exploratory**
-7. Calibration and selective prediction - **next**
-8. Possible-OOD evaluation and robustness suites
+7. Temperature scaling and calibration assessment - **complete; exploratory**
+8. Uncertainty, selective prediction and possible-OOD evaluation - **next**
 9. PII controls, risk policy and metadata-only auditing
 10. FastAPI service, latency evaluation and release evidence
 

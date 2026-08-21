@@ -22,3 +22,9 @@ Module 6 stores three validation-only seed reports and their aggregate under `mu
 These are explicitly post-test exploratory artifacts: they contain no official-test metrics or
 predictions and cannot support an improvement claim. Local adapters remain ignored under
 `artifacts/multiseed-lora/`; their hashes are preserved in each seed report.
+
+Module 7 stores three temperature-scaling reports and their aggregate under `calibration/`. Each
+report fits temperature on `temperature_fit` and calculates the published metrics only on disjoint
+`calibration_assessment` rows. Reports include fixed-width reliability bins and paired bootstrap
+intervals but no message text, logits or official-test metrics. These artifacts are post-selection,
+post-test exploratory evidence—not independent model evaluation.

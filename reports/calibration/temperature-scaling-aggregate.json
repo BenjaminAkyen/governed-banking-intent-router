@@ -1,0 +1,331 @@
+{
+  "acceptance_gate": {
+    "all_seeds_passed": true,
+    "by_seed": {
+      "17": {
+        "all_passed": true,
+        "calibrated_ece_at_or_below_maximum": true,
+        "calibrated_ece_lower_than_raw": true,
+        "predicted_classes_unchanged": true,
+        "registered_ece_maximum": 0.05
+      },
+      "42": {
+        "all_passed": true,
+        "calibrated_ece_at_or_below_maximum": true,
+        "calibrated_ece_lower_than_raw": true,
+        "predicted_classes_unchanged": true,
+        "registered_ece_maximum": 0.05
+      },
+      "73": {
+        "all_passed": true,
+        "calibrated_ece_at_or_below_maximum": true,
+        "calibrated_ece_lower_than_raw": true,
+        "predicted_classes_unchanged": true,
+        "registered_ece_maximum": 0.05
+      }
+    }
+  },
+  "aggregate_sha256": "9c8d1aba737c48f5cf7fc36e87d47ae1401eecc25ae9ff166901aa3f38611748",
+  "artifact_type": "multiseed_temperature_scaling_aggregate",
+  "assessment_metrics": {
+    "expected_calibration_error": {
+      "calibrated": {
+        "confidence_interval_95": [
+          0.0161450567,
+          0.0398713562
+        ],
+        "mean": 0.0280082064,
+        "sample_standard_deviation": 0.0047755604,
+        "values_by_seed": {
+          "17": 0.0333614008,
+          "42": 0.0264776721,
+          "73": 0.0241855464
+        }
+      },
+      "calibrated_minus_raw": {
+        "confidence_interval_95": [
+          -0.0281858392,
+          -0.0097167818
+        ],
+        "mean": -0.0189513105,
+        "sample_standard_deviation": 0.0037173981,
+        "values_by_seed": {
+          "17": -0.0221755158,
+          "42": -0.0197932704,
+          "73": -0.0148851452
+        }
+      },
+      "raw": {
+        "confidence_interval_95": [
+          0.0264537549,
+          0.0674652789
+        ],
+        "mean": 0.0469595169,
+        "sample_standard_deviation": 0.00825468,
+        "values_by_seed": {
+          "17": 0.0555369166,
+          "42": 0.0462709425,
+          "73": 0.0390706916
+        }
+      }
+    },
+    "maximum_calibration_error": {
+      "calibrated": {
+        "confidence_interval_95": [
+          0.1943211229,
+          0.3729252825
+        ],
+        "mean": 0.2836232027,
+        "sample_standard_deviation": 0.0359489248,
+        "values_by_seed": {
+          "17": 0.3243545584,
+          "42": 0.2563262414,
+          "73": 0.2701888082
+        }
+      },
+      "calibrated_minus_raw": {
+        "confidence_interval_95": [
+          -0.285844422,
+          0.1725950472
+        ],
+        "mean": -0.0566246874,
+        "sample_standard_deviation": 0.0922733605,
+        "values_by_seed": {
+          "17": 0.0163101646,
+          "42": -0.0258258248,
+          "73": -0.160358402
+        }
+      },
+      "raw": {
+        "confidence_interval_95": [
+          0.1433405465,
+          0.5371552336
+        ],
+        "mean": 0.3402478901,
+        "sample_standard_deviation": 0.0792658727,
+        "values_by_seed": {
+          "17": 0.3080443938,
+          "42": 0.2821520662,
+          "73": 0.4305472102
+        }
+      }
+    },
+    "mean_confidence": {
+      "calibrated": {
+        "confidence_interval_95": [
+          0.8750332759,
+          0.9123033993
+        ],
+        "mean": 0.8936683376,
+        "sample_standard_deviation": 0.0075016218,
+        "values_by_seed": {
+          "17": 0.9021570728,
+          "42": 0.8909174093,
+          "73": 0.8879305307
+        }
+      },
+      "calibrated_minus_raw": {
+        "confidence_interval_95": [
+          0.0118644526,
+          0.0440126478
+        ],
+        "mean": 0.0279385502,
+        "sample_standard_deviation": 0.006470695,
+        "values_by_seed": {
+          "17": 0.0352727166,
+          "42": 0.0230355881,
+          "73": 0.0255073459
+        }
+      },
+      "raw": {
+        "confidence_interval_95": [
+          0.8585091252,
+          0.8729504496
+        ],
+        "mean": 0.8657297874,
+        "sample_standard_deviation": 0.0029067077,
+        "values_by_seed": {
+          "17": 0.8668843562,
+          "42": 0.8678818212,
+          "73": 0.8624231848
+        }
+      }
+    },
+    "multiclass_brier_score": {
+      "calibrated": {
+        "confidence_interval_95": [
+          0.1070586583,
+          0.1783199188
+        ],
+        "mean": 0.1426892885,
+        "sample_standard_deviation": 0.0143432589,
+        "values_by_seed": {
+          "17": 0.131657423,
+          "42": 0.1375069723,
+          "73": 0.1589034703
+        }
+      },
+      "calibrated_minus_raw": {
+        "confidence_interval_95": [
+          -0.0049190891,
+          -0.0009357087
+        ],
+        "mean": -0.0029273989,
+        "sample_standard_deviation": 0.0008017632,
+        "values_by_seed": {
+          "17": -0.0037594473,
+          "42": -0.0028629367,
+          "73": -0.0021598127
+        }
+      },
+      "raw": {
+        "confidence_interval_95": [
+          0.1118213534,
+          0.1794120215
+        ],
+        "mean": 0.1456166874,
+        "sample_standard_deviation": 0.0136044527,
+        "values_by_seed": {
+          "17": 0.1354168703,
+          "42": 0.140369909,
+          "73": 0.161063283
+        }
+      }
+    },
+    "negative_log_likelihood": {
+      "calibrated": {
+        "confidence_interval_95": [
+          0.2392519001,
+          0.4386618383
+        ],
+        "mean": 0.3389568692,
+        "sample_standard_deviation": 0.0401366513,
+        "values_by_seed": {
+          "17": 0.32335967,
+          "42": 0.3089600153,
+          "73": 0.3845509224
+        }
+      },
+      "calibrated_minus_raw": {
+        "confidence_interval_95": [
+          -0.0199423661,
+          -0.0034896266
+        ],
+        "mean": -0.0117159963,
+        "sample_standard_deviation": 0.0033115595,
+        "values_by_seed": {
+          "17": -0.0144521657,
+          "42": -0.0126612337,
+          "73": -0.0080345896
+        }
+      },
+      "raw": {
+        "confidence_interval_95": [
+          0.2582897839,
+          0.4430559473
+        ],
+        "mean": 0.3506728656,
+        "sample_standard_deviation": 0.037189195,
+        "values_by_seed": {
+          "17": 0.3378118357,
+          "42": 0.321621249,
+          "73": 0.392585512
+        }
+      }
+    },
+    "signed_confidence_gap": {
+      "calibrated": {
+        "confidence_interval_95": [
+          -0.0280900241,
+          0.0109005859
+        ],
+        "mean": -0.0085947191,
+        "sample_standard_deviation": 0.0078479164,
+        "values_by_seed": {
+          "17": -0.0018429272,
+          "42": -0.0172050941,
+          "73": -0.006736136
+        }
+      },
+      "calibrated_minus_raw": {
+        "confidence_interval_95": [
+          0.0118644525,
+          0.0440126478
+        ],
+        "mean": 0.0279385502,
+        "sample_standard_deviation": 0.0064706951,
+        "values_by_seed": {
+          "17": 0.0352727166,
+          "42": 0.023035588,
+          "73": 0.0255073459
+        }
+      },
+      "raw": {
+        "confidence_interval_95": [
+          -0.0465450447,
+          -0.0265214938
+        ],
+        "mean": -0.0365332693,
+        "sample_standard_deviation": 0.004030282,
+        "values_by_seed": {
+          "17": -0.0371156438,
+          "42": -0.0402406821,
+          "73": -0.0322434819
+        }
+      }
+    }
+  },
+  "calibration_config_sha256": "80859dca415abd0dec57d31335ea574005c911810f2b825af2908e7ecd92efe0",
+  "claim_scope": "post_selection_post_test_exploratory",
+  "contains_message_text": false,
+  "data_boundary": {
+    "fit_and_assessment_rows_disjoint": true,
+    "independent_model_evaluation": false,
+    "loaded_model_splits": [
+      "validation"
+    ],
+    "official_test_metrics_computed": false,
+    "prohibited_model_splits": [
+      "train",
+      "test"
+    ],
+    "source_role_history": "used_for_module6_checkpoint_selection",
+    "test_split_loaded": false
+  },
+  "experiment_name": "multiseed_temperature_scaling",
+  "implementation_sha256": {
+    "calibration.py": "814267dfca0b710b84b9c9cc227e1c2e8d8c50ad5786b556bb67ad89a72ede96",
+    "data.py": "f5f728612d18ab103fb9500301a4a3395e672a30206c9278fd0fa6a88f9fa544",
+    "device.py": "48cb1d2082716f440a78985c3c1e5b2d45c10d5057b863237672cb3b28277d97",
+    "frozen_baseline.py": "979177d3410e3759bb12700fa3b1ab49b1be48269c6211aff762a16ce5567c91",
+    "lora_baseline.py": "f2efe927b616a4f8e18ffbd37d62d3348ccf2f9fac47c4b1c47c77019e15bb4e",
+    "multiseed.py": "7193d77e2d11621103b282639c554d21246deb093bea3ebbb39c55efff4644da",
+    "run_temperature_scaling.py": "b128848d42c4d1b4bcc95b52a6f8abdba6dde7d0d5e5df1390108103e24faf53"
+  },
+  "interpretation_notice": "The aggregate measures calibration on disjoint fit/assessment rows after checkpoint selection. It is post-selection, post-test exploratory evidence and not an independent generalisation estimate.",
+  "partition_registry_sha256": "54df48234481d1a0351f30f308eed77d3b79a6dc63f5b06d87cdc664a31a9751",
+  "report_hashes": {
+    "17": "d13885281a9f389d8b893b8fbbd1b366dc68c26d2e9806dbfeea9ca507bd98cd",
+    "42": "9573a7c838121c8631327852c7f2201da0c667f986131ee0711646da816bf3e9",
+    "73": "826f61ffd4c37ef4bf8495cacb24b9528aa80d41fb76349b6dcd627035bc1587"
+  },
+  "schema_version": 1,
+  "seeds": [
+    17,
+    42,
+    73
+  ],
+  "temperatures": {
+    "confidence_interval_95": [
+      0.7800211429,
+      0.9612143464
+    ],
+    "mean": 0.8706177447,
+    "sample_standard_deviation": 0.03647004,
+    "values_by_seed": {
+      "17": 0.8285132685,
+      "42": 0.8909817718,
+      "73": 0.8923581937
+    }
+  }
+}

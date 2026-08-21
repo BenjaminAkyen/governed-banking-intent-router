@@ -1,0 +1,51 @@
+schema_version: 1
+experiment_name: multiseed_temperature_scaling
+claim_scope: post_selection_post_test_exploratory
+seeds:
+  - 17
+  - 42
+  - 73
+source:
+  multiseed_config: configs/multiseed_lora.yaml
+  manifest_pattern: data/manifests/banking77-seed-{seed}.json
+  validation_report_pattern: reports/multiseed-lora/seed-{seed}-validation.json
+  checkpoint_pattern: artifacts/multiseed-lora/seed-{seed}
+  split: validation
+  role_history: used_for_module6_checkpoint_selection
+partition:
+  development_role: temperature_fit
+  assessment_role: calibration_assessment
+  development_fraction: 0.5
+  seed_offset: 7000
+  group_by_normalized_text: true
+  registry_path: data/manifests/banking77-calibration-index.json
+temperature_scaling:
+  parameterization: log_temperature
+  minimum_temperature: 0.05
+  maximum_temperature: 10.0
+  optimizer: scipy_bounded
+  absolute_tolerance: 0.00000001
+  maximum_iterations: 500
+metrics:
+  ece_bins: 15
+  ece_binning: fixed_width
+  include_nll: true
+  include_multiclass_brier: true
+  include_mce: true
+  include_confidence_gap: true
+bootstrap:
+  resamples: 2000
+  confidence_level: 0.95
+  seed_offset: 9000
+acceptance_gate:
+  calibrated_ece_must_be_lower: true
+  calibrated_ece_maximum: 0.05
+boundary:
+  permitted_model_splits:
+    - validation
+  prohibited_model_splits:
+    - train
+    - test
+  official_test_access_history: observed_in_module_5
+  official_test_evaluation_in_this_module: false
+  independent_model_evaluation: false

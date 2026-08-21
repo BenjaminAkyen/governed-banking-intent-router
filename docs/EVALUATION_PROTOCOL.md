@@ -20,7 +20,9 @@ source.
 - Quarantine official-training rows whose normalised text occurs in the official test file.
 - Keep same-label duplicate groups together while deriving a group-stratified validation split
   only from official training data.
-- Use validation data for checkpoint selection and temperature fitting.
+- For Module 7, divide each Module 6 validation pool into a group-safe `temperature_fit` role and a
+  disjoint `calibration_assessment` role before fitting temperature. Never assess calibration on
+  the probabilities used to fit the temperature.
 - Use a separate development set for uncertainty and possible-OOD threshold selection.
 - Keep official test and unknown-request holdout data untouched until all choices are locked.
 - Record source revision, expected and observed file hashes, exact row indices, counts, label
@@ -48,6 +50,13 @@ validation trajectories and aggregate validation results, but it must not comput
 test score or describe validation changes as improved generalisation. A new confirmatory performance
 claim requires an independently sourced, untouched evaluation set and a frozen protocol.
 
+Module 7 remains post-selection and post-test exploratory. For each seed, it partitions Module 6's
+validation rows 50:50 by normalized-text group, fits one positive scalar temperature only on the
+`temperature_fit` role, and reports calibration only on `calibration_assessment`. This separation
+prevents temperature-fit resubstitution, but it does not undo the validation pool's earlier use for
+checkpoint selection. Module 7 therefore cannot establish independent generalisation or production
+calibration.
+
 ## Metrics
 
 ### Classification
@@ -62,6 +71,8 @@ claim requires an independently sourced, untouched evaluation set and a frozen p
 
 - negative log-likelihood;
 - 15-bin expected calibration error;
+- 15-bin maximum calibration error;
+- multiclass Brier score and signed confidence gap;
 - reliability diagrams before and after temperature scaling.
 
 ### Selective routing

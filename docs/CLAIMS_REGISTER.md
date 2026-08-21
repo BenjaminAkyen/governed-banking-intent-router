@@ -15,7 +15,10 @@
 | Revised LoRA reaches 0.8974 mean validation macro-F1 across seeds 17/42/73 | Verified, post-test exploratory | Immutable manifests and validation-only seed reports |
 | Module 6 improves official-test performance | Prohibited | No Module 6 official-test metrics were computed; Module 5 test was already observed |
 | Module 6 establishes LoRA convergence | Not supported | Seeds 17 and 42 peaked at the eight-epoch boundary |
-| Calibration improves confidence quality | Prohibited until evaluated | Validation-fitted temperature and test ECE |
+| Module 7 scalar temperature scaling lowers mean assessment ECE from 0.0470 to 0.0280 | Verified, post-selection/post-test exploratory | Disjoint fit/assessment registry, three seed reports and aggregate |
+| Module 7 changes predicted intent labels | Refuted | Positive scalar temperature changed 0 assessment predictions across all seeds |
+| Temperature scaling improves independent or production calibration | Prohibited | The assessment roles came from validation pools already used for checkpoint selection; representative untouched data are required |
+| Temperature scaling improves every calibration statistic | Refuted | Seed-17 maximum calibration error increased and ECE improvement uncertainty includes zero for seed 73 |
 | The system detects OOD requests | Overstated | Representative external evaluation; use "possible-OOD" meanwhile |
 | Audit events exclude message text | Pending control implementation | Schema, privacy tests and log inspection |
 | The system is production ready | Prohibited | Representative deployment evidence and organisational approval |
