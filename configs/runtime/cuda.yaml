@@ -1,0 +1,8 @@
+schema_version: 1
+profile_name: module11-cuda-fp32
+device_preference: cuda
+cuda_device_index: 0
+require_accelerator: true
+allow_mps_cpu_fallback: false
+precision: float32
+claim_scope: hardware_runtime_verification_not_model_quality

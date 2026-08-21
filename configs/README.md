@@ -56,3 +56,8 @@ audit behaviour.
 `service_evaluation.yaml` registers the synthetic local integration protocol before measurement. It
 fixes the fixture hash, warm-up and repetition counts, Mac-local startup and p95 latency targets,
 security checks and the explicit non-production claim boundary.
+
+`runtime/auto.yaml`, `runtime/cuda.yaml`, `runtime/mps.yaml` and `runtime/cpu.yaml` are additive
+Module 11 profiles. Explicit accelerator profiles fail when their real backend is unavailable;
+`auto` alone may select CUDA, then MPS, then CPU. These profiles verify hardware execution only and
+do not access BANKING77 or make model-quality claims.
