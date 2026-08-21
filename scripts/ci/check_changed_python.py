@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import re
 import subprocess
+import sys
 from pathlib import Path
 
 SHA_PATTERN = re.compile(r"^[0-9a-fA-F]{40}$")
@@ -73,8 +74,8 @@ def main() -> int:
     print("Prospective Python checks:")
     for path in paths:
         print(f"- {path}")
-    subprocess.run(["ruff", "format", "--check", "--", *paths], check=True)
-    subprocess.run(["ruff", "check", "--", *paths], check=True)
+    subprocess.run([sys.executable, "-m", "ruff", "format", "--check", "--", *paths], check=True)
+    subprocess.run([sys.executable, "-m", "ruff", "check", "--", *paths], check=True)
     return 0
 
 
