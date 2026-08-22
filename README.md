@@ -2,7 +2,7 @@
 
 # Governed Banking Intent Router
 
-**An evidence-first reference implementation for privacy-aware, risk-controlled banking support routing.**
+**Evidence-first BANKING77 intent routing with TF-IDF, RoBERTa, LoRA, calibration, uncertainty evaluation, PII redaction and governed FastAPI deployment.**
 
 [![Quality and evidence](https://github.com/BenjaminAkyen/governed-banking-intent-router/actions/workflows/quality.yml/badge.svg)](https://github.com/BenjaminAkyen/governed-banking-intent-router/actions/workflows/quality.yml)
 [![CodeQL](https://github.com/BenjaminAkyen/governed-banking-intent-router/actions/workflows/codeql.yml/badge.svg)](https://github.com/BenjaminAkyen/governed-banking-intent-router/actions/workflows/codeql.yml)
