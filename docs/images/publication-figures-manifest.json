@@ -1,0 +1,146 @@
+{
+  "artifact_type": "publication_figure_manifest",
+  "claim_scope": "research_preview",
+  "contains_message_text": false,
+  "derived_values": {
+    "calibration_assessment_means": {
+      "expected_calibration_error": {
+        "raw": 0.0469595169,
+        "temperature_scaled": 0.0280082064
+      },
+      "multiclass_brier_score": {
+        "raw": 0.1456166874,
+        "temperature_scaled": 0.1426892885
+      },
+      "negative_log_likelihood": {
+        "raw": 0.3506728656,
+        "temperature_scaled": 0.3389568692
+      }
+    },
+    "historical_test_macro_f1": {
+      "frozen_roberta_logreg": 0.8964173425,
+      "original_lora_roberta": 0.8202064851,
+      "tfidf_word_char_logreg": 0.9053010357
+    },
+    "robustness_metrics": {
+      "expected_security_routing_recall": 0.7857142857,
+      "in_scope_acceptable_intent_rate": 0.6851851852,
+      "pii_expectation_match_rate": 1.0,
+      "routing_action_match_rate": 0.9,
+      "suggest_queue_count": 0.0
+    },
+    "uncertainty_assessment_means": {
+      "known_coverage": 0.9129456265,
+      "possible_ood_auroc": 0.9610553093,
+      "possible_ood_recall": 0.8888888889,
+      "selective_risk": 0.064345403
+    }
+  },
+  "figures": [
+    {
+      "evidence": [
+        "reports/baseline/tfidf-logreg-test.json",
+        "reports/frozen-roberta/test.json",
+        "reports/lora-roberta/test.json"
+      ],
+      "id": "model-macro-f1-comparison",
+      "outputs": [
+        {
+          "path": "docs/images/model-macro-f1-comparison.png",
+          "sha256": "2ad0607ce407899a7acfac59a5e1bb6ac506ee6ec9f6c32141a87d542cdb98b3"
+        },
+        {
+          "path": "docs/images/model-macro-f1-comparison.svg",
+          "sha256": "48d7c33e743a889ba0615f181b820b4ef3247cac5e41bc5d5c089ca552189f7e"
+        }
+      ],
+      "title": "Historical model macro-F1 comparison"
+    },
+    {
+      "evidence": [
+        "reports/calibration/temperature-scaling-aggregate.json"
+      ],
+      "id": "calibration-before-after",
+      "outputs": [
+        {
+          "path": "docs/images/calibration-before-after.png",
+          "sha256": "97b9204a9dff2827b738cf33ba21cfc4ea27be5c3009e1a76ec37ff3a415cfc2"
+        },
+        {
+          "path": "docs/images/calibration-before-after.svg",
+          "sha256": "e3253ccfcdbc65f8145a02eae34562cbbb641cce21c1f80128466a25e196fe33"
+        }
+      ],
+      "title": "Calibration metrics before and after temperature scaling"
+    },
+    {
+      "evidence": [
+        "reports/uncertainty/selective-ood-aggregate.json"
+      ],
+      "id": "uncertainty-gate-results",
+      "outputs": [
+        {
+          "path": "docs/images/uncertainty-gate-results.png",
+          "sha256": "85a960a66f05d0337b74caa7858adbefa6946f07362a98cbb2752ecbe58a8c0e"
+        },
+        {
+          "path": "docs/images/uncertainty-gate-results.svg",
+          "sha256": "0c54cdf14d19bcdae8f9c176942280d0ed430a8f96954454b0f502ad0e54b6fa"
+        }
+      ],
+      "title": "Selective-prediction and possible-OOD gate results"
+    },
+    {
+      "evidence": [
+        "reports/robustness/module13-lora-mps-assessment.json"
+      ],
+      "id": "robustness-gate-results",
+      "outputs": [
+        {
+          "path": "docs/images/robustness-gate-results.png",
+          "sha256": "4f752ee5384e386bc778d454c9357248e80757d673d7e406f95fe3e90f447dca"
+        },
+        {
+          "path": "docs/images/robustness-gate-results.svg",
+          "sha256": "651c4b522eb4819630366e4f30806eb0076a4273c31888d5d13c2523ee0a824c"
+        }
+      ],
+      "title": "Synthetic robustness gate results"
+    },
+    {
+      "evidence": [],
+      "id": "governed-routing-architecture",
+      "outputs": [
+        {
+          "path": "docs/images/governed-routing-architecture.png",
+          "sha256": "4b9624b33667af345d8d74630bd018b69333398ca25fa5ccbc421d62508e9a39"
+        },
+        {
+          "path": "docs/images/governed-routing-architecture.svg",
+          "sha256": "985dd8947748c75808aa32d5ca0433a966050551d895815b4d981dba00960ef9"
+        }
+      ],
+      "title": "Governed research-service architecture"
+    }
+  ],
+  "generator": {
+    "matplotlib_version": "3.11.1",
+    "path": "scripts/generate_publication_figures.py",
+    "sha256": "0ee15b501afbf6d2c891716dabf0aa1091f41fa9bd9825a50bd50cdcd4d1bb84"
+  },
+  "limitations": [
+    "Historical BANKING77 test metrics are single-seed and previously observed.",
+    "Calibration and uncertainty evidence is post-selection and post-test exploratory.",
+    "Robustness evidence uses a small synthetic pack and is not production validation.",
+    "Rendering hashes can differ across Matplotlib or font-library versions; source hashes and derived values preserve the evidence lineage."
+  ],
+  "schema_version": 1,
+  "source_reports": {
+    "reports/baseline/tfidf-logreg-test.json": "2fa8ad2e8427adacfbd8ed9cf372a63f9b8a12e67e8b884574fd6cdda7d056f0",
+    "reports/calibration/temperature-scaling-aggregate.json": "d6ef5f928be67a4e871950377be333f577dde1edb27f3a4bd3604c638458f259",
+    "reports/frozen-roberta/test.json": "084dcd59028ede899c5d6b639b2468648605afd31cdaf0433c0b91cb4b11b489",
+    "reports/lora-roberta/test.json": "d8a2a760679863fa74a7730105985effe79db01ab5b6e129f150a747ddc42e54",
+    "reports/robustness/module13-lora-mps-assessment.json": "5c8d40ca3307032d246289be88e8c1e900b3e5a25289f7468165a9acbc7741d7",
+    "reports/uncertainty/selective-ood-aggregate.json": "19dbc01f8cdd8ecf3878a26de5e1fd2f789a02ef9eff78cad0f555bd35b1f60c"
+  }
+}

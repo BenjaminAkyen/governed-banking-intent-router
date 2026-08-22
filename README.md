@@ -32,7 +32,7 @@ This project treats intent classification as one component of a governed decisio
 combines model evaluation with privacy controls, calibrated confidence, uncertainty signals,
 deterministic escalation, metadata-only auditing and explicit human oversight.
 
-![Governed Banking Intent Router architecture](docs/images/system-architecture.svg)
+![Governed Banking Intent Router architecture](docs/images/governed-routing-architecture.svg)
 
 ## What the system demonstrates
 
@@ -68,6 +68,8 @@ historical evidence, not a fresh confirmation set.
 | TF-IDF word + character logistic regression | **0.9053** | Champion |
 | Frozen RoBERTa embeddings + classifier | 0.8964 | Challenger |
 | LoRA-adapted RoBERTa | 0.8202 | Challenger; registered protocol underfit |
+
+![Historical BANKING77 model macro-F1 comparison](docs/images/model-macro-f1-comparison.svg)
 
 The revised three-seed LoRA study reached **0.8974 ± 0.0073 validation macro-F1**. That result is
 post-test development evidence and is not presented as proof that LoRA surpassed the champion.
@@ -130,6 +132,16 @@ To inspect the privacy, policy and API safety boundary without a model checkpoin
 ```bash
 pytest -q tests/test_privacy.py tests/test_policy.py tests/test_audit.py tests/test_api.py
 ```
+
+### Reproduce the publication figures
+
+```bash
+python scripts/generate_publication_figures.py
+```
+
+This reads the committed metadata-only reports and regenerates five PNG/SVG publication assets
+without rerunning training. The accompanying manifest records source-report hashes, derived values,
+the generator hash and output hashes.
 
 ### Run the research notebooks
 

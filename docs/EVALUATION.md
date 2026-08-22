@@ -177,9 +177,14 @@ cannot be presented as a deployable champion service.
 | Uncertainty | `python scripts/run_uncertainty_evaluation.py` |
 | Robustness | `python scripts/run_robustness_evaluation.py` |
 | Champion registry | `python scripts/build_champion_registry.py` |
+| Publication figures | `python scripts/generate_publication_figures.py` |
 
 Model-backed commands require the registered local datasets and unredistributed model artifacts.
 Some runs require explicit MPS or CUDA and fail if the requested backend is unavailable.
+
+Publication-figure generation does not rerun a model. It reads the committed metadata-only reports,
+validates the required fields and writes both PNG and SVG assets plus a source-and-output hash
+manifest under `docs/images/`.
 
 ## Claim boundary
 

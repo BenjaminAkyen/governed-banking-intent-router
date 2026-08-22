@@ -74,3 +74,19 @@ names, bounded attribute keys, routing-action counts, redaction categories and 1
 and signal checks. It contains no request, redacted request, request/correlation identifier or
 message hash. The in-memory exporter does not validate the Collector, Prometheus, trace backend,
 alerts, retention or production data path.
+
+## Publication figures
+
+Generate the public evidence visuals without rerunning training:
+
+```bash
+python scripts/generate_publication_figures.py
+```
+
+The command reads only the committed reports described above and writes PNG and SVG assets under
+`docs/images/`. It also writes `publication-figures-manifest.json`, which records every source-report
+hash, derived value, generator hash and output hash. Generation fails if a required report is
+missing, malformed, text-bearing or inconsistent with a figure's evidence boundary.
+
+The figures are publication aids, not new experiments. Their captions and surrounding prose must
+retain the limitations recorded in the manifest and claims register.
