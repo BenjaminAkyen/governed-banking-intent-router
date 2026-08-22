@@ -549,6 +549,11 @@ def _save_figure(fig: Figure, output_path: Path, output_format: str) -> None:
         metadata = {"Software": "governed-banking-intent-router"}
     fig.savefig(output_path, format=output_format, dpi=180, metadata=metadata)
     plt.close(fig)
+    if output_format == "svg":
+        normalized = "\n".join(
+            line.rstrip() for line in output_path.read_text(encoding="utf-8").splitlines()
+        )
+        output_path.write_text(normalized + "\n", encoding="utf-8")
 
 
 def _derived_values(reports: Mapping[str, dict[str, Any]]) -> dict[str, Any]:

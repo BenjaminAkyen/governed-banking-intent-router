@@ -51,7 +51,7 @@
         },
         {
           "path": "docs/images/model-macro-f1-comparison.svg",
-          "sha256": "48d7c33e743a889ba0615f181b820b4ef3247cac5e41bc5d5c089ca552189f7e"
+          "sha256": "2c54f29833f2de837c21c1ba0a2a4a7ebb9873e5ff7f7b0dbdb2cd80c6144934"
         }
       ],
       "title": "Historical model macro-F1 comparison"
@@ -68,7 +68,7 @@
         },
         {
           "path": "docs/images/calibration-before-after.svg",
-          "sha256": "e3253ccfcdbc65f8145a02eae34562cbbb641cce21c1f80128466a25e196fe33"
+          "sha256": "e37a0267f12f696b2d513a1631fbdadea7d144723957338e3cd2e165c537189d"
         }
       ],
       "title": "Calibration metrics before and after temperature scaling"
@@ -85,7 +85,7 @@
         },
         {
           "path": "docs/images/uncertainty-gate-results.svg",
-          "sha256": "0c54cdf14d19bcdae8f9c176942280d0ed430a8f96954454b0f502ad0e54b6fa"
+          "sha256": "e41bdb850d62d0d9479d2a9834ab1dd7d3fb6d6d630f8261d030a3203cfd6589"
         }
       ],
       "title": "Selective-prediction and possible-OOD gate results"
@@ -102,7 +102,7 @@
         },
         {
           "path": "docs/images/robustness-gate-results.svg",
-          "sha256": "651c4b522eb4819630366e4f30806eb0076a4273c31888d5d13c2523ee0a824c"
+          "sha256": "3a67d8448b85b337b0861f549b249c5c8d8c2974845836720d96e9b6f2f9baa8"
         }
       ],
       "title": "Synthetic robustness gate results"
@@ -117,7 +117,7 @@
         },
         {
           "path": "docs/images/governed-routing-architecture.svg",
-          "sha256": "985dd8947748c75808aa32d5ca0433a966050551d895815b4d981dba00960ef9"
+          "sha256": "4424b5b9acbe7d8d0ae55c8b3d5bbceb7870f969f398ba9cbb28377caaab07af"
         }
       ],
       "title": "Governed research-service architecture"
@@ -126,7 +126,7 @@
   "generator": {
     "matplotlib_version": "3.11.1",
     "path": "scripts/generate_publication_figures.py",
-    "sha256": "0ee15b501afbf6d2c891716dabf0aa1091f41fa9bd9825a50bd50cdcd4d1bb84"
+    "sha256": "5fbd0fb26634887467a0c7c3fabd69a441bbd12b3db042bbb7d5ea655411f17a"
   },
   "limitations": [
     "Historical BANKING77 test metrics are single-seed and previously observed.",
